@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Article : {{ article.title }}{% endblock %}
+
+{% block body %} 
+
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <section class="container">
+        <h1>{{ article.title }}</h1>
+        <small class="text-secondary">{{ article.user.nickname}}</small>
+        <article>
+            <p>{{ article.summary }}</p>
+            <p>{{ article.content}}</p>
+        </article>
+    </section>
+
+
+{% endblock %}
