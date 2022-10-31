@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid flex-column col-19">
+        <div class="container-fluid flex-column col-9">
             <div class="row col-12">
                 <div class="col-3 align-self-center">
                     <a href="{{ path('main') }}">
@@ -16,17 +16,17 @@
             <div class="navbar-nav">
                 <ul class="nav">
                     {% if app.user %}
-                    <li class="nav-item">
+                    <li class="nav-item ms-2">
                             <a class="nav-link" href="{{ path('forum_index') }}">Accès au forum</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ms-2">
                             <a class="nav-link" href="{{ path('profile_index') }}">Mon compte</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ms-2">
                             <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
                         </li>
                     {% else %}
-                        <li class="nav-item">
+                        <li class="nav-item ms-2">
                             <a class="nav-link" href="{{ path('app_login') }}">Me connecter</a>
                         </li>
                     {% endif %}

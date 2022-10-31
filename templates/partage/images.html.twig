@@ -6,7 +6,24 @@
 {% block body %} 
 
     {% include "_parts/_forumHeader.html.twig" %}
+    <section class="container">
+        <h1>Forum images</h1>
 
-    <h1>Forum images</h1>
+        <h2>Liste tes images existantes</h2>
+
+        <p>
+        <ul>
+            {#{% for article in articles %}
+                <a href="{{ path('articles_article', { "title": article.title})|lower }}"><li>{{ article.title }}</li></a>
+            {% endfor %}  #}
+        </ul>
+            
+
+        {# {% for title in article %}
+                {{ article.title }}
+            {% endfor %} #}
+        
+        </p>
+    </section>
 
 {% endblock %}
