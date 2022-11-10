@@ -5,8 +5,13 @@
             <h6 class="card-subtitle mb-2 text-muted">Forum pour s'amuser entre amis</h6>
             <p class="card-text">Ce forum privé est destiné à partager des images ou des articles entre amis.</p>
             <p class="text-center">
+            {% if app.user %}
+                <p>Vous êtes déjà connecté en tant que {{ app.user.nickname }}, vous pouvez accéder au forum en suivant le lien prévu à cet effet.</p>
+            {% else %}
                 <a href="{{ path('app_login') }}" class="card-link">Connexion</a>
                 <a href="{{ path('app_register') }}" class="card-link">Inscription</a>
+            {% endif %}
+                
             </p>
             
         </div>
