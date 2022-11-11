@@ -12,17 +12,11 @@
         <h2>Liste tes articles existants</h2>
 
         <p>
-        <ul>
-            {% for article in articles %}
-                <a href="{{ path('articles_app_article_show', { "title": article.title})|lower }}"><li>{{ article.title }}</li></a>
-            {% endfor %}  
-        </ul>
-            
-
-        {# {% for title in article %}
-                {{ article.title }}
-            {% endfor %} #}
-        
+            <ul>
+                {% for article in articles %}
+                    <a href="{{ path('articles_app_article_show', { "title": article.title})|lower }}"><li>{{ article.title }}</li></a>
+                {% endfor %}  
+            </ul>
         </p>
     </section>
     
