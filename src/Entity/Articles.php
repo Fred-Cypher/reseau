@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-
 #[ORM\Entity(repositoryClass: ArticlesRepository::class)]
 class Articles
 {
@@ -44,7 +43,7 @@ class Articles
         $this->created_at = new \DateTimeImmutable();
     }
 
-    public function getId(): ?int
+    public function getId(): ?int   
     {
         return $this->id;
     }

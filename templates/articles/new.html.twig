@@ -1,19 +1,46 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Nouvel article{% endblock %}
 
-{% block body %}
-    <section class="container">
-        <h2>Enregistrer un nouvel article</h2>
-        <article class="mt-3">
-            {{ form_start(article) }}
-                {{ form_row(article.title) }}
-                {{ form_row(article.summary) }}
-                {{ form_row(article.content) }}
-                <button type="submit" class="btn btn-primary mt-3 btn-lg">Enregistrer l'article</button>
-            {{ form_end(article) }}
-        </article>
-    </section>
 
-    <a href="{{ path('app_articles') }}">Retour à la liste d'articles</a>
+{% block body %}
+
+{% include "_parts/_forumHeader.html.twig" %}
+
+    <main class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Enregistrer un nouvel article</h2>
+                <article class="mt-3">
+                    {{ form_start(formNew) }}
+                        <p class="mt-3">
+                            {{ form_row(formNew.title) }}
+                        </p>
+                        <p class="mt-3">
+                            {{ form_row(formNew.summary) }}
+                            
+                        </p>
+                        <p class="mt-3">
+                            {{ form_row(formNew.content) }}
+                        </p>
+                        <p class="mt-3">
+                            {{ form_row(formNew.user)}}
+                        </p>
+                        <!--<p class="mt-3">
+                            Auteur de l'article : {{ app.user.nickname }}
+                        </p>-->
+                        <p>
+                            <button type="submit" class="btn btn-primary mt-3 btn-lg">Enregistrer l'article</button>
+                        </p>
+                    {{ form_end(formNew) }}
+                    <a href="{{ path('articles_app_articles') }}">Retour à la liste d'articles</a>
+                </article>
+                
+            </div>
+        </div>
+        
+    </main>
+
+    
 {% endblock %}

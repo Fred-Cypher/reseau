@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use App\Form\ArticlesFormType;
-use App\Form\ArticlesType;
 use App\Repository\ArticlesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +22,7 @@ class ArticlesController extends AbstractController
     }
 
     #[Route('/newarticle', name: 'app_article_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ArticlesRepository $articlesRepository): Response
+    public function newArticle(Request $request, ArticlesRepository $articlesRepository): Response
     {
         $article = new Articles();
         $form = $this->createForm(ArticlesFormType::class, $article);
@@ -32,12 +31,12 @@ class ArticlesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $articlesRepository->save($article, true);
 
-            return $this->redirectToRoute('app_articles', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('articles_app_articles', [], Response::HTTP_SEE_OTHER);
         }
-        
-        return $this->renderForm('articles/new.html.twig', [
+
+        return $this->render('articles/new.html.twig', [
             'article' => $article,
-            'form' => $form->createView(),
+            'formNew' => $form->createView(),
         ]);
     }
 
@@ -61,7 +60,7 @@ class ArticlesController extends AbstractController
             return $this->redirectToRoute('app_articles', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('articles/edit.html.twig', [
+        return $this->render('articles/edit.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
         ]);
