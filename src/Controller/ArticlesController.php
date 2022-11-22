@@ -40,7 +40,7 @@ class ArticlesController extends AbstractController
         ]);
     }
 
-    #[Route('/{title}', name: 'app_article_show', methods: ['GET'])]
+    #[Route('/{title}', name: 'app_article_show', requirements: ['title', 'title'], defaults: ['title', ''], methods: ['GET'])]
     public function show(Articles $article): Response
     {
         return $this->render('articles/article.html.twig', [
