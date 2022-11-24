@@ -25,17 +25,22 @@ class ArticlesController extends AbstractController
     public function newArticle(Request $request, ArticlesRepository $articlesRepository): Response
     {
         $article = new Articles();
+        $user = $this->getUser();
         $form = $this->createForm(ArticlesFormType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setUser($this->getUser());
             $articlesRepository->save($article, true);
+
+            $this->addFlash('info', 'Votre article a bien été enregistré, vous pouvez dès à présent le retrouver dans la liste d\'articles.');
 
             return $this->redirectToRoute('articles_app_articles', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('articles/new.html.twig', [
             'article' => $article,
+            'user' => $user,
             'formNew' => $form->createView(),
         ]);
     }
