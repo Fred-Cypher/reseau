@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Image : {{ image.title }}{% endblock %}
+
+{% block body %}
+
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <section class="container">
+        <h1>{{ image.title }}</h1>
+        <small class="text-secondary">{{ image.user.nickname}}</small>
+        <article>
+            <img class="img-thumbnail" src="{{ asset('public/assets/uploads/casper.png') }}" alt="Casper">
+            <p>{{ image.description }}</p>
+            <p>
+            {% if app.user is same as (image.user) %}
+                <a href="{{ path('images_app_article_edit', {'title': image.title})|lower  }}" class="btn btn-primary">Modifier l'image</a>
+
+                {{ include('images/_delete_form.html.twig') }}
+            {% endif %}
+            </p>
+            <p>
+                <a href="{{ path('images_app_images_edit', {'id': image.id}) }} " class="btn btn-primary">Modifier</a>
+            </p>
+            <p>
+                {{ include('images/_delete_form.html.twig') }} 
+            </p>
+        </article>
+        <p>
+            <a href="{{ path('images_app_images_index') }}">Retour à la liste d'images</a>
+        </p>
+        
+    </section>
+
+    
+{% endblock %}

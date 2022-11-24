@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partage d'images{% endblock %}
+
+{% block body %}
+
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <section class="container">
+        <h1>Forum de partage d'images</h1>
+
+        <h2>Liste des images existantes</h2>
+
+        <p>
+            <ul>
+            {% for image in images %}
+                <a href="{{ path('images_app_images_show', {'id': image.id}) }}">{{ image.title }}</a>
+            {% else %}
+                <p>
+                    Pas d'image trouvée.
+                </p>
+            {% endfor %}
+            </ul>
+        </p>
+
+        <p>
+            <a href="{{ path('images_app_images_new') }}">
+                <button class='btn btn-success btn-lg'>
+                    Enregistrer une nouvelle image
+                </button>
+            </a>
+        </p>
+    </section>
+    
+{% endblock %}

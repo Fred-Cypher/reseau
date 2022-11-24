@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle image{% endblock %}
+
+{% block body %}
+
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <h1>Enregistrer une nouvelle image</h1>
+
+    
+
+    <a href="{{ path('images_app_images_index') }}">Retour à la liste d'images</a>
+{% endblock %}

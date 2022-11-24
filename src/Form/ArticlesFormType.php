@@ -44,7 +44,7 @@ class ArticlesFormType extends AbstractType
                 'class' => Users::class,
                 'choice_label' => 'nickname',
                 'attr' => [
-                    'class' => 'd-none disabled',
+                    'class' => 'disabled',
                 ],
                 'label' => ' ',
             ])

@@ -32,6 +32,7 @@ class Articles
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Users $user = null;
 
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: CommentsArticle::class)]
@@ -42,6 +43,11 @@ class Articles
         $this->commentsArticles = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
     }
+
+    /*public function __toString()
+    {
+        return $this->title;
+    }*/
 
     public function getId(): ?int   
     {
