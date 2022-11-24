@@ -16,7 +16,7 @@ class ImagesController extends AbstractController
     #[Route('/', name: 'app_images_index', methods: ['GET'])]
     public function index(ImagesRepository $imagesRepository): Response
     {
-        return $this->render('images/index.html.twig', [
+        return $this->render('sharing/index.html.twig', [
             'images' => $imagesRepository->findAll(),
         ]);
     }
@@ -29,12 +29,15 @@ class ImagesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //$image->setImageUrl($this->getImageUrl());
             $imagesRepository->save($image, true);
+
+            $this->addFlash('info', 'Votre image a bien été enregistrée, vous pouvez dès à présent la retrouvée dans la liste.');
 
             return $this->redirectToRoute('images_app_images_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('images/new.html.twig', [
+        return $this->renderForm('sharing/new.html.twig', [
             'image' => $image,
             'form' => $form,
         ]);
@@ -43,7 +46,7 @@ class ImagesController extends AbstractController
     #[Route('/{id}', name: 'app_images_show', methods: ['GET'])]
     public function show(Images $image): Response
     {
-        return $this->render('images/show.html.twig', [
+        return $this->render('sharing/show.html.twig', [
             'image' => $image,
         ]);
     }
@@ -60,7 +63,7 @@ class ImagesController extends AbstractController
             return $this->redirectToRoute('app_images_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('images/edit.html.twig', [
+        return $this->renderForm('sharing/edit.html.twig', [
             'image' => $image,
             'form' => $form,
         ]);

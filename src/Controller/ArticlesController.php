@@ -25,7 +25,6 @@ class ArticlesController extends AbstractController
     public function newArticle(Request $request, ArticlesRepository $articlesRepository): Response
     {
         $article = new Articles();
-        $user = $this->getUser();
         $form = $this->createForm(ArticlesFormType::class, $article);
         $form->handleRequest($request);
 
@@ -40,7 +39,6 @@ class ArticlesController extends AbstractController
 
         return $this->render('articles/new.html.twig', [
             'article' => $article,
-            'user' => $user,
             'formNew' => $form->createView(),
         ]);
     }
@@ -61,9 +59,12 @@ class ArticlesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setUser($this->getUser());
             $articlesRepository->save($article, true);
 
-            return $this->redirectToRoute('app_articles', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('info', 'Votre article a bien été modifié.');
+
+            return $this->redirectToRoute('articles_app_articles', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('articles/edit.html.twig', [

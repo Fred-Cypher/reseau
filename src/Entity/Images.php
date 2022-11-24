@@ -40,6 +40,7 @@ class Images
     public function __construct()
     {
         $this->commentsImages = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

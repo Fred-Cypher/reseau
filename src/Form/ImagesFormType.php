@@ -32,7 +32,6 @@ class ImagesFormType extends AbstractType
                 'label' => 'Description de l\'image (limité 300 caractères) : '
             ]
             )
-            ->add('user')
         ;
     }
 

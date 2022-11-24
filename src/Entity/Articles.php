@@ -44,10 +44,10 @@ class Articles
         $this->created_at = new \DateTimeImmutable();
     }
 
-    /*public function __toString()
+    public function __toString()
     {
         return $this->title;
-    }*/
+    }
 
     public function getId(): ?int   
     {
