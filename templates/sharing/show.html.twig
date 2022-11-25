@@ -10,7 +10,7 @@
         <h1>{{ image.title }}</h1>
         <small class="text-secondary">{{ image.user.nickname}}</small>
         <article>
-            <img class="img-thumbnail" src="{{ asset('public/assets/uploads/casper.png') }}" alt="Casper">
+            <img class="img-thumbnail" src="{{ asset('assets/uploads/casper.png') }}" alt="Casper">
             <p>{{ image.description }}</p>
             <p>
             {% if app.user is same as (image.user) %}
@@ -27,7 +27,7 @@
             </p>
         </article>
         <p>
-            <a href="{{ path('images_app_images_index') }}">Retour à la liste d'images</a>
+            <a href="{{ path('images_app_images_index') }}" class="btn btn-secondary">Retour à la liste d'images</a>
         </p>
         
     </section>
