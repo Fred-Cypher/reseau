@@ -13,8 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/images', name: 'images_')]
 class ImagesController extends AbstractController
 {
-    #[Route('/', name: 'app_images_index', methods: ['GET'])]
-    public function index(ImagesRepository $imagesRepository): Response
+    #[Route('/', name: 'app_images', methods: ['GET'])]
+    public function newImage(ImagesRepository $imagesRepository): Response
     {
         return $this->render('sharing/index.html.twig', [
             'images' => $imagesRepository->findAll(),
@@ -32,9 +32,9 @@ class ImagesController extends AbstractController
             //$image->setImageUrl($this->getImageUrl());
             $imagesRepository->save($image, true);
 
-            $this->addFlash('info', 'Votre image a bien été enregistrée, vous pouvez dès à présent la retrouvée dans la liste.');
+            $this->addFlash('info', 'Votre image a bien été enregistrée, vous pouvez dès à présent la retrouver dans la liste.');
 
-            return $this->redirectToRoute('images_app_images_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('images_app_images', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('sharing/new.html.twig', [
@@ -60,7 +60,7 @@ class ImagesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $imagesRepository->save($image, true);
 
-            return $this->redirectToRoute('app_images_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('images_app_images', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('sharing/edit.html.twig', [
@@ -76,6 +76,6 @@ class ImagesController extends AbstractController
             $imagesRepository->remove($image, true);
         }
 
-        return $this->redirectToRoute('images_app_images_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('images_app_images', [], Response::HTTP_SEE_OTHER);
     }
 }
