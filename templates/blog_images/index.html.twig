@@ -1,4 +1,4 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Partage d'images{% endblock %}
 
@@ -14,7 +14,7 @@
         <p>
             <ul>
             {% for image in images %}
-                <a href="{{ path('images_app_images_show', {'id': image.id}) }}">{{ image.title }}</a>
+                <a href="{{ path('images_app_blog_images_show', {'id': image.id}) }}">{{ image.title }}</a>
             {% else %}
                 <p>
                     Pas d'image trouvée.
@@ -24,12 +24,12 @@
         </p>
 
         <p>
-            <a href="{{ path('images_app_images_new') }}">
+            <a href="{{ path('images_app_blog_images_new') }}">
                 <button class='btn btn-success'>
                     Enregistrer une nouvelle image
                 </button>
             </a>
         </p>
     </section>
-    
+
 {% endblock %}

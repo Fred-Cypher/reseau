@@ -5,28 +5,26 @@
 {% block body %}
 
     {% include "_parts/_forumHeader.html.twig" %}
-    
+
     <section class="container">
         <h2>Modifier une image</h2>
         <article class="mt-3"> 
             {{ form_start(form) }}
                 {{ form_row(form.title) }}
                 {{ form_row(form.description) }}
+                {{ form_row(form.image_url) }}
                 <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'article</button>
             {{ form_end(form) }}
         </article>
         <p>
-            {{ include('sharing/_delete_form.html.twig') }}
+            {{ include('blog_images/_delete_form.html.twig') }}
         </p>
         <p>
-            <a href="{{ path('images_app_images') }}">Retour à la liste d'image</a>
+            <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-secondary">Retour à la liste d'image</a>
         </p>
 
         
 
     </section>
-    
 
-    
-    
 {% endblock %}
