@@ -29,9 +29,22 @@ class BlogImagesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image->setUser($this->getUser());
+
+            $picture = $form->get('image_url')->getData();
+
+            $file = md5(uniqid()).'.'.$picture->guessExtension();
+
+            $picture->move(
+                $this->getParameter('images_directory'),
+                $file
+            );
+
+            $image->setImageUrl($file);
+
             $imagesRepository->save($image, true);
 
-            return $this->redirectToRoute('app_blog_images_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('images_app_blog_images_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('blog_images/new.html.twig', [
@@ -57,7 +70,7 @@ class BlogImagesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $imagesRepository->save($image, true);
 
-            return $this->redirectToRoute('app_blog_images_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('images_app_blog_images_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('blog_images/edit.html.twig', [

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Images;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,15 +20,17 @@ class BlogImagesFormType extends AbstractType
                 ],
                 'label' => 'Titre de l\'image : '
             ])
-            ->add('image_url', TextType::class, [
+            ->add('image_url', FileType::class, [
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
-                'label' => 'Chemin de l\'image : '
+                'label' => 'Choisissez une image : ',
+                'multiple' => false,
+                'mapped' => false,
+                'required' => true
             ])
             ->add(
-                'description',
-                TextType::class,
+                'description', TextType::class,
                 [
                     'attr' => [
                         'class' => 'form-control mt-2'

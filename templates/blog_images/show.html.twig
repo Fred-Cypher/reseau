@@ -10,7 +10,7 @@
         <h1>{{ image.title }}</h1>
         <small class="text-secondary">{{ image.user.nickname}}</small>
         <article>
-            <img class="img-thumbnail" src="{{ asset('assets/uploads/casper.png') }}" alt="Casper">
+            <img class="img-thumbnail" src="{{ asset('assets/uploads/casper.png') }}" alt="{{ image.title }}">
             <p>{{ image.description }}</p>
             <p>
             {% if app.user is same as (image.user) %}
