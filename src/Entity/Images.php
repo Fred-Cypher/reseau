@@ -6,8 +6,11 @@ use App\Repository\ImagesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ImagesRepository::class)]
+#[Vich\Uploadable]
 class Images
 {
     #[ORM\Id]
@@ -23,6 +26,9 @@ class Images
 
     #[ORM\Column(length: 300)]
     private ?string $description = null;
+
+    #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'title')]
+    private ?File $imageFile= null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
@@ -82,6 +88,20 @@ class Images
         $this->description = $description;
 
         return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(File $imageFile = null)
+    {
+        $this->imageFile = $imageFile;
+
+        if($imageFile) {
+            $this->updated_at = new \DateTime('now');
+        }
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable

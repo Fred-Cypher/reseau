@@ -11,31 +11,29 @@
 
         <h2>Liste des images existantes</h2>
 
-        <p class="row">
-            <ul>
-            {% for image in images %}
-                <a href="{{ path('images_app_blog_images_show', {'id': image.id}) }}">
-                    <div class="card mb-3 col-6 col-md-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-5">
-                                <img src="{{ asset('assets/uploads/casper.png') }}" class="img-fluid rounded h-100 w-100" alt="{{ image.title }}">
-                            </div>
-                            <div class="col-md-7">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ image.title }}</h5>
-                                    <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
-                                </div>
+        <ul class="col-6 col-md-4">
+        {% for image in images %}
+            <a href="{{ path('images_app_blog_images_show', {'id': image.id}) }}">
+                <div class="card  mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-5">
+                            <img src="{{ asset('assets/uploads/casper.png') }}" class="img-fluid rounded h-100 w-100" alt="{{ image.title }}">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ image.title }}</h5>
+                                <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
                             </div>
                         </div>
                     </div>
-                </a>
-            {% else %}
-                <p>
-                    Pas d'image trouvée.
-                </p>
-            {% endfor %}
-            </ul>
-        </p>
+                </div>
+            </a>
+        {% else %}
+            <p>
+                Pas d'image trouvée.
+            </p>
+        {% endfor %}
+        </ul>
 
         <p>
             <a href="{{ path('images_app_blog_images_new') }}">
