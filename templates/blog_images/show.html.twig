@@ -7,10 +7,10 @@
     {% include "_parts/_forumHeader.html.twig" %}
 
     <section class="container">
-        <h1>{{ image.title }}</h1>
-        <small class="text-secondary">{{ image.user.nickname}}</small>
-        <article>
-            <img class="img-thumbnail" src="{{ asset('assets/uploads/casper.png') }}" alt="{{ image.title }}">
+        <h2>{{ image.title }}</h2>
+        <small class="text-secondary">{{ image.user.nickname }}</small>
+        <article class="text-center">
+            <img class="img-thumbnail" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
             <p>{{ image.description }}</p>
             <p>
             {% if app.user is same as (image.user) %}
@@ -19,12 +19,9 @@
             {% endif %}
             </p>
         </article>
-
-        <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-secondary">Retour à la liste d'images</a>
+        <p class="text-start">
+            <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-secondary">Retour à la liste d'images</a>
+        </p>
     </section>
 
-
-    
-
-    
 {% endblock %}

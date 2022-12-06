@@ -25,3 +25,6 @@ codetest.php
 afaire.txt
 .env
 /public/assets/uploads
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

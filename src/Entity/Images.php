@@ -27,7 +27,7 @@ class Images
     #[ORM\Column(length: 300)]
     private ?string $description = null;
 
-    #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'title')]
+    #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'image_url')]
     private ?File $imageFile= null;
 
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]

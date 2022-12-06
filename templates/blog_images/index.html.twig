@@ -7,32 +7,32 @@
     {% include "_parts/_forumHeader.html.twig" %}
 
     <section class="container">
-        <h1>Forum de partage d'images</h1>
+        <h2>Forum de partage d'images</h2>
 
-        <h2>Liste des images existantes</h2>
+        <h3>Liste des images existantes</h3>
 
         <ul class="col-6 col-md-4">
-        {% for image in images %}
-            <a href="{{ path('images_app_blog_images_show', {'id': image.id}) }}">
-                <div class="card  mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-5">
-                            <img src="{{ asset('assets/uploads/casper.png') }}" class="img-fluid rounded h-100 w-100" alt="{{ image.title }}">
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ image.title }}</h5>
-                                <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
+            {% for image in images %}
+                <a href="{{ path('images_app_blog_images_show', {'id': image.id}) }}">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ vich_uploader_asset(image, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded h-100 w-100" alt="{{ image.title }}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ image.title }}</h5>
+                                    <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        {% else %}
-            <p>
-                Pas d'image trouvée.
-            </p>
-        {% endfor %}
+                </a>
+            {% else %}
+                <p>
+                    Pas d'image trouvée.
+                </p>
+            {% endfor %}
         </ul>
 
         <p>
