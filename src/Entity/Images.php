@@ -71,7 +71,7 @@ class Images
         return $this->image_url;
     }
 
-    public function setImageUrl(string $image_url): self
+    public function setImageUrl($image_url): self
     {
         $this->image_url = $image_url;
 

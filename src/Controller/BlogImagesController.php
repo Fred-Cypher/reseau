@@ -79,13 +79,13 @@ class BlogImagesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_blog_images_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'app_blog_images_delete', methods: ['POST'])]
     public function delete(Request $request, Images $image, ImagesRepository $imagesRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$image->getId(), $request->request->get('_token'))) {
             $imagesRepository->remove($image, true);
         }
 
-        return $this->redirectToRoute('app_blog_images_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('images_app_blog_images_index', [], Response::HTTP_SEE_OTHER);
     }
 }
