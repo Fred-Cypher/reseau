@@ -7,7 +7,7 @@
 
     {% include "_parts/_forumHeader.html.twig" %}
 
-    <section class="container">
+    <main class="container">
         <h2>Forum articles</h2>
 
         <h3>Liste tes articles existants</h3>
@@ -15,7 +15,10 @@
         <p>
             <ul>
                 {% for article in articles %}
-                    <a href="{{ path('articles_app_article_show', {'id': article.id}) }}"><li>{{ article.title }}</li></a>
+                    <a href="{{ path('articles_app_article_show', {'id': article.id}) }}" class="itemTitle">
+                        <li>{{ article.title }}</li>
+                    </a>
+                    <div class="line my-1"></div>
                 {% else %}
                     <p>Pas d'article trouvé.</p>
                 {% endfor %}  
@@ -24,12 +27,12 @@
 
         <p>
             <a href="{{ path('articles_app_article_new') }}">
-                <button class='btn btn-success'>
+                <button class='btn btn-success mt-3'>
                     Enregistrer un nouvel article
                 </button>
             </a>
         </p>
-    </section>
+    </main>
     
 {% endblock %}
 

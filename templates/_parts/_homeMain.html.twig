@@ -1,20 +1,20 @@
 <main class="container">
     <div class="card mt-5">
-        <div class="card-body">
-            <h5 class="card-title">Forum privé</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Forum pour s'amuser entre amis</h6>
-            <p class="card-text">Ce forum privé est destiné à partager des images ou des articles entre amis.</p>
-            <p class="text-center">
-            {% if app.user %}
-                <p>Vous êtes déjà connecté en tant que {{ app.user.nickname }}, vous pouvez accéder au forum en suivant le lien prévu à cet effet.</p>
-            {% else %}
-                <a href="{{ path('app_login') }}" class="card-link">Connexion</a>
-                <a href="{{ path('app_register') }}" class="card-link">Inscription</a>
-            {% endif %}
-                
+        <div class="card-body mx-auto">
+            <h5 class="card-title mt-3">Forum privé</h5>
+            <h6 class="card-subtitle mt-2 mb-2 text-muted">Forum pour s'amuser entre amis</h6>
+            <p class="card-text mt-4">Ce forum privé est destiné à partager des images ou des articles entre amis.</p>
+            <p class="text-center mt-2">
+                {% if app.user %}
+                    <p class="text-dark">Vous êtes déjà connecté en tant que <span class="connectedUser">{{ app.user.nickname }}</span>, vous pouvez accéder au forum en suivant le lien prévu à cet effet.</p>
+                {% else %}
+                    <p class="mt-5 text-center">
+                        <a href="{{ path('app_login') }}" class="card-link btn btn-primary">Connexion</a>
+                        <a href="{{ path('app_register') }}" class="card-link btn btn-success">Inscription</a>
+                    </p>
+                    
+                {% endif %}
             </p>
-            
         </div>
     </div>
-
 </main>

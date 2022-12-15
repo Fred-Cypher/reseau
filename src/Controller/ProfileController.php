@@ -24,4 +24,15 @@ class ProfileController extends AbstractController
             'controller_name' => 'Modification du profil de l\'utilisateur',
         ]);
     }
+
+    #[Route('/images', name: 'images')]
+    public function showImages(): Response{
+        return $this->render('profile/images.html.twig');
+    }
+
+    #[Route('/articles', name: 'articles')]
+    public function showArticles(): Response
+    {
+        return $this->render('profile/articles.html.twig');
+    }
 }

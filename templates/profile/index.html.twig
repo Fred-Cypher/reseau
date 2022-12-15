@@ -6,14 +6,32 @@
     {% include '_parts/_forumHeader.html.twig' %}
 
     <main class="container">
-        <h1>Mon profil</h1>
-        <section>
-            <h2>Afficher le profil et proposer les modifications :</h2>
-            <ul>
-                <li>mot de passe</li>
-                <li>adresse mail</li>
-                <li>avatar ?</li>
-            </ul>
+        <h2 class="mt-2 mb-4">Mon profil</h2>
+        <section class="m-2">
+            <div class="card ms-3">
+                <div class="card-body">
+                    <p class="card-title h5 mb-3">Voir mes publications</p>
+                    <p class="card-text">
+                        <a href="{{ path('profile_images') }}" class="btn btn-outline-dark">Voir mes images</a>
+                    </p>
+                    <p>
+                        <a href="{{ path('profile_articles') }}" class="btn btn-outline-dark">Voir mes articles</a>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="card ms-3 mt-5">
+                <div class="card-body">
+                    <p class="card-title h5 mb-3">Modifier mon profil</p>
+                    
+                    <ul>
+                        <li>mot de passe</li>
+                        <li>adresse mail</li>
+                        <li>avatar ?</li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </main>
 {% endblock %}

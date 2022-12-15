@@ -1,18 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Partage d'images{% endblock %}
+{% block title %} Images de {{ app.user.nickname }} {% endblock %}
 
 {% block body %}
-
-    {% include "_parts/_forumHeader.html.twig" %}
+    {% include '_parts/_forumHeader.html.twig' %}
 
     <main class="container">
-        <h2>Forum de partage d'images</h2>
-
-        <h3>Liste des images existantes</h3>
-
+        <h2>Mes images</h2>
         <section class="row">
-            {% for image in images %}
+            {% for image in app.user.images %}
             <div class="col-6 col-md-4">
                 <a href="{{ path('images_app_blog_images_show', {'id': image.id}) }}">
                     <div class="card mt-3">
@@ -23,7 +19,6 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h5 class="card-title itemTitle">{{ image.title }}</h5>
-                                    <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
                                 </div>
                             </div>
                         </div>
@@ -32,18 +27,13 @@
             </div>
             {% else %}
                 <p>
-                    Pas d'image trouvée.
+                    Vous n'avez pas encore enregistré d'images.
                 </p>
             {% endfor %}
+
+            <p class="mt-5">
+                <a href="{{ path('profile_index') }}" class="btn btn-outline-secondary">Retour à mon profil</a>
+            </p>
         </section>
-
-        <p>
-            <a href="{{ path('images_app_blog_images_new') }}">
-                <button class='btn btn-success mt-5'>
-                    Enregistrer une nouvelle image
-                </button>
-            </a>
-        </p>
     </main>
-
 {% endblock %}
