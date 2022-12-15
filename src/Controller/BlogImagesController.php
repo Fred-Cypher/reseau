@@ -44,6 +44,8 @@ class BlogImagesController extends AbstractController
 
             $imagesRepository->save($image, true);
 
+            $this->addFlash('info', 'Votre image a bien été enregistrée, vous pouvez dès à présent la retrouver dans la liste d\'images.');
+
             return $this->redirectToRoute('images_app_blog_images_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -68,7 +70,10 @@ class BlogImagesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image->setUser($this->getUser());
             $imagesRepository->save($image, true);
+
+            $this->addFlash('info', 'Votre image a bien été modifiée.');
 
             return $this->redirectToRoute('images_app_blog_images_index', [], Response::HTTP_SEE_OTHER);
         }
