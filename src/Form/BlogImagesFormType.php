@@ -45,5 +45,5 @@ class BlogImagesFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Images::class,
         ]);
-    }
+    }  
 }

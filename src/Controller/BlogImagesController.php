@@ -14,10 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogImagesController extends AbstractController
 {
     #[Route('/', name: 'app_blog_images_index', methods: ['GET'])]
-    public function index(ImagesRepository $imagesRepository): Response
+    public function index(ImagesRepository $imagesRepository, Request $request): Response
     {
+        $page = $request->query->getInt('page', 1);
+
+        $images = $imagesRepository->imagesPaginated($page, 2);
+
         return $this->render('blog_images/index.html.twig', [
-            'images' => $imagesRepository->findAll(),
+            'images' => $images,
         ]);
     }
 

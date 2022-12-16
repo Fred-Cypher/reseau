@@ -13,9 +13,9 @@
         <h3>Liste tes articles existants</h3>
 
         <p>
-            <ul>
+            <ul class="">
                 {% for article in articles %}
-                    <a href="{{ path('articles_app_article_show', {'id': article.id}) }}" class="itemTitle">
+                    <a href="{{ path('articles_app_article_show', {'id': article.id}) }}" class="itemTitle d-inline-flex">
                         <li>{{ article.title }}</li>
                     </a>
                     <div class="line my-1"></div>

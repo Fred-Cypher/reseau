@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <div class="row col-12 col-md-3 text-center">
                 <div class="border">
@@ -38,7 +38,7 @@
             <ul class="flex-column text-center">
                 {% if app.user %}
                     <li class="ms-auto">
-                        <a class="" href="{{ path('profile_index') }}">Mon profil</a>
+                        <a class="" href="{{ path('profile_index') }}">Mon compte</a>
                     </li>
                     <li class="ms-auto mt-2">
                         <a class="" href="{{ path('app_logout') }}">Me déconnecter</a>

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Images;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,7 +38,39 @@ class ImagesRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }  
+
+    public function imagesPaginated(int $page, int $limit = 3): array
+    {
+        $limit = abs($limit);
+
+        $result = [];
+
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('image')
+            ->from('App\Entity\Images', 'image')
+            ->setMaxResults($limit)
+            ->setFirstResult(($page * $limit) - $limit);
+
+        $paginator = new Paginator($query);
+        $data = $paginator->getQuery()->getResult();
+
+        if(empty($data)){
+            return $result;
+        }
+
+        //Calul du nombre de pages
+        $pages = ceil($paginator->count() / $limit);
+
+        //Remplissage tableau
+        $result['data'] = $data;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit'] = $limit; 
+
+        return $result;
     }
+
 
 //    /**
 //     * @return Images[] Returns an array of Images objects

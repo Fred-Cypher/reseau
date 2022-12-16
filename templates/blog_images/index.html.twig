@@ -6,13 +6,13 @@
 
     {% include "_parts/_forumHeader.html.twig" %}
 
-    <main class="container">
+    <main class="container">  
         <h2>Forum de partage d'images</h2>
 
         <h3>Liste des images existantes</h3>
 
         <section class="row">
-            {% for image in images %}
+            {% for image in images.data %}
             <div class="col-6 col-md-4">
                 <a href="{{ path('images_app_blog_images_show', {'id': image.id}) }}">
                     <div class="card mt-3">
@@ -35,6 +35,12 @@
                     Pas d'image trouvée.
                 </p>
             {% endfor %}
+
+            {% set path = 'images_app_blog_images_index' %}
+            {% set pages = images.pages %}
+            {% set currentPage = images.page %}
+            {% include "_parts/_pagination.html.twig" %}
+
         </section>
 
         <p>
