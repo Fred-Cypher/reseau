@@ -3,31 +3,28 @@
         <ul class="pagination justify-content-center">
             {% if currentPage > 1 %}
                 <li class="page-item">
-                    <a href="{{ path(path, {page: currentPage - 1}) }}" class="page-link">Page précédente</a>
+                    <a href="{{ path(path, {page: currentPage - 1}) }}" class="page-link">&laquo;</a>
                 </li>
             {% else %}
                 <li class="page-item disabled">
-                    <a href="#" class="page-link">Page précédente</a>
+                    <a href="#" class="page-link">&laquo;</a>
                 </li>
             {% endif %}
             {% for page in 1..pages %}
-                <li class="page-item btn border {{ (page == currentPage) ? 'active' : '' }}" >
-                    <a href="{{ path(path, {page: page}) }}">{{ page }}</a>
+                <li class="page-item {{ (page == currentPage) ? 'active' : '' }} " >
+                    <a href="{{ path(path, {page: page}) }}" class="page-link">{{ page }}</a>
                 </li>
             {% endfor %}
             {% if currentPage < pages %}
                 <li class="page-item">
-                    <a href="{{ path(path, {page: currentPage + 1}) }}" class="page-item btn border">Page suivante</a>
+                    <a href="{{ path(path, {page: currentPage + 1}) }}" class="page-link">&raquo;</a>
                 </li>
             {% else %}
                 <li class="page-item disabled">
-                    <a href="#" class="page-link btn">Page suivante</a>
+                    <a href="#" class="page-link btn">&raquo;</a>
                 </li>    
             {% endif %}
         </ul>
     </nav>
-
-
-
 
 {% endif %}

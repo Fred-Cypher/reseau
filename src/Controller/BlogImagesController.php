@@ -18,7 +18,7 @@ class BlogImagesController extends AbstractController
     {
         $page = $request->query->getInt('page', 1);
 
-        $images = $imagesRepository->imagesPaginated($page, 2);
+        $images = $imagesRepository->imagesPaginated($page, 6);
 
         return $this->render('blog_images/index.html.twig', [
             'images' => $images,

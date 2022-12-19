@@ -1,6 +1,6 @@
 *{
-    margin : 0;
-    padding :0;
+    margin: 0;
+    padding:0;
 }
 
 body{
@@ -16,21 +16,6 @@ a{
     color: currentColor;
 }
 
-.itemTitle:hover{
-    color:crimson;
-    font-weight: bold;
-}
-
-li{
-    list-style-type: none;
-
-}
-
-.line{
-    border-top: solid 2px grey;
-    width: 4rem;
-}
-
 .logo{
     width: 5rem;
     height: auto;
@@ -39,4 +24,31 @@ li{
 .connectedUser{
     font-weight: bold;
     color: crimson;
+}
+
+li{
+    list-style-type: none;
+}
+
+.itemTitle:hover{
+    color:crimson;
+    font-weight: bold;
+}
+.line{
+    border-top: solid 2px grey;
+    width: 4rem;
+}
+
+.pagination a{
+    color: brown;
+}
+
+.pagination .active a{
+    background-color: brown !important;
+    border: 1px brown solid !important; 
+}
+
+.pagination .active a:hover{
+    background-color: rgb(187, 47, 47) !important; /*un peu plus clair*/
+    border: 1px brown solid !important; 
 }

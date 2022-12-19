@@ -40,7 +40,7 @@ class ImagesRepository extends ServiceEntityRepository
         }
     }  
 
-    public function imagesPaginated(int $page, int $limit = 3): array
+    public function imagesPaginated(int $page, int $limit = 0): array
     {
         $limit = abs($limit);
 
@@ -59,7 +59,7 @@ class ImagesRepository extends ServiceEntityRepository
             return $result;
         }
 
-        //Calul du nombre de pages
+        //Calcul du nombre de pages
         $pages = ceil($paginator->count() / $limit);
 
         //Remplissage tableau
