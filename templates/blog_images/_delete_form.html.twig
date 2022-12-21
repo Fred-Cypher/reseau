@@ -1,4 +1,12 @@
 <form method="post" action="{{ path('images_app_blog_images_delete', {'id': image.id}) }}" onsubmit="return confirm('Êtes vous sûr de vouloir supprimer cette image ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ image.id) }}">
-    <button class="btn btn-danger">Supprimer l'image</button>
+    {% for role in app.user.roles %}
+        {% if role == "ROLE_ADMIN" %}
+            {% if app.user is not same as (image.user) %}
+                <button  class="btn btn-outline-danger">Supprimer l'image</button>
+        {% else %}
+            <button  class="btn btn-danger">Supprimer l'image</button>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
 </form>

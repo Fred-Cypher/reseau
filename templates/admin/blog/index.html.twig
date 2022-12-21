@@ -9,7 +9,7 @@
     <section class="container">
         <h2>Modifier une image</h2>
         <article class="mt-3"> 
-            <img class="img-thumbnail modifPicture" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
+            <img class="img-thumbnail" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
             {{ form_start(form) }}
                 {{ form_row(form.title) }}
                 {{ form_row(form.description) }}
@@ -24,17 +24,6 @@
                 {{ include('blog_images/_delete_form.html.twig') }}
             </p>
         {% endif %}
-
-        {% for role in app.user.roles %}
-            {% if role == "ROLE_ADMIN" %}
-                {% if app.user is not same as (image.user) %}
-                    <p class="card-link mt-4">
-                        <button type="submit" class="btn btn-outline-primary mt-3 btn-lg">Modifier l'image</button>
-                        {{ include('blog_images/_delete_form.html.twig') }}
-                    </p>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
         <p>
             <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-secondary">Retour à la liste d'image</a>
         </p>

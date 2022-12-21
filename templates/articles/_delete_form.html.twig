@@ -1,4 +1,12 @@
 <form method="post" action="{{ path('articles_app_article_delete', {'id': article.id}) }}" onsubmit="return confirm('Êtes vous sûr de vouloir supprimer cet article ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-    <button  class="btn btn-danger">Supprimer l'article</button>
+    {% for role in app.user.roles %}
+        {% if role == "ROLE_ADMIN" %}
+            {% if app.user is not same as (article.user) %}
+                <button  class="btn btn-outline-danger">Supprimer l'article</button>
+        {% else %}
+            <button  class="btn btn-danger">Supprimer l'article</button>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
 </form>

@@ -52,3 +52,11 @@ li{
     background-color: rgb(187, 47, 47) !important; /*un peu plus clair*/
     border: 1px brown solid !important; 
 }
+
+.blogPicture{
+    max-width: 30rem;
+}
+
+.modifPicture{
+    max-width: 20rem;
+}

@@ -35,6 +35,14 @@
         
             <div class="navbar-nav col-6 col-md-3 text-center">
                 <ul class="nav w-100 flex-row flex-md-column">
+                    {% for role in app.user.roles %}
+                        {% if role == "ROLE_ADMIN" %}
+                            <li class="nav-item">
+                                <a class="nav-link text-danger border border-danger rounded-pill" href="{{ path('admin_users_index') }}">Administration du forum</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
                     {% if app.user %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('profile_index') }}">Mon compte</a>

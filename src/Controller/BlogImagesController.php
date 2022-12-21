@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Images;
 use App\Form\BlogImagesFormType;
+use App\Form\BlogModifFormType;
 use App\Repository\ImagesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,7 +71,7 @@ class BlogImagesController extends AbstractController
     #[Route('/{id}/edit', name: 'app_blog_images_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Images $image, ImagesRepository $imagesRepository): Response
     {
-        $form = $this->createForm(BlogImagesFormType::class, $image);
+        $form = $this->createForm(BlogModifFormType::class, $image);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

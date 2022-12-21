@@ -7,17 +7,30 @@
     {% include "_parts/_forumHeader.html.twig" %}
 
     <section class="container">
-        <h2>{{ image.title }}</h2>
-        <small class="text-secondary">{{ image.user.nickname }}</small>
-        <article class="text-center">
-            <img class="img-thumbnail" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
-            <p>{{ image.description }}</p>
-            <p>
+        <article class="card m-2 m-md-5">
+            <div class="card-body">
+                <p class="card-title h3">{{ image.title }}</p>
+                <small class="card-subtitle text-muted">{{ image.user.nickname }}</small>
+                <p class="card-text">{{ image.description }}</p>
+                <img class="card-img-bottom blogPicture" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
                 {% if app.user is same as (image.user) %}
-                    <a href="{{ path('images_app_blog_images_edit', {'id': image.id}) }}" class="btn btn-primary">Modifier l'image</a>
-                    {{ include('blog_images/_delete_form.html.twig') }}
+                    <p class="card-link mt-4">
+                        <a href="{{ path('images_app_blog_images_edit', {'id': image.id}) }}" class="btn btn-primary">Modifier l'image</a>
+                        {{ include('blog_images/_delete_form.html.twig') }}
+                    </p>
                 {% endif %}
-            </p>
+                {% for role in app.user.roles %}
+                    {% if role == "ROLE_ADMIN" %}
+                        {% if app.user is not same as (image.user) %}
+                            <p class="card-link mt-4">
+                                <a href="{{ path('images_app_blog_images_edit', {'id': image.id}) }}" class="btn btn-outline-primary">Modifier l'image</a>
+                                {{ include('blog_images/_delete_form.html.twig') }}
+                            </p>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+            </div>
         </article>
         <p class="text-start">
             <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-secondary">Retour à la liste d'images</a>
