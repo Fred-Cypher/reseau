@@ -10,14 +10,14 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 w-100 text-center">    
+            <div class="col-12 col-md-6 text-center">    
                 <div  class="mt-2">
                     <h1>Réseau social</h1>
                     <p>Bienvenue sur la partie privée notre réseau social</p>
                 </div>
 
                 <div class="navbar-nav">
-                    <ul class="nav w-100 justify-content-center">
+                    <ul class="nav w-100 justify-content-center flex-column flex-md-row">
                         {% if app.user %}
                             <li class="nav-item ms-2">
                                 <a class="nav-link" href="{{ path('forum_index') }}">Retour à l'accueil du forum</a>
@@ -32,24 +32,24 @@
                     </ul>
                 </div>
             </div>
-        </div>
         
-        <div class="col-12 col-md-3 align-self-end">
-            <ul class="flex-column text-center">
-                {% if app.user %}
-                    <li class="ms-auto">
-                        <a class="" href="{{ path('profile_index') }}">Mon compte</a>
-                    </li>
-                    <li class="ms-auto mt-2">
-                        <a class="" href="{{ path('app_logout') }}">Me déconnecter</a>
-                    </li>
-                    <li class="ms-auto mt-3">
-                        Compte : {{ app.user.nickname }}
-                    </li>
-                {% else %}
-                    Aucun utilisateur connecté
-                {% endif %}
-            </ul>
+            <div class="navbar-nav col-6 col-md-3 text-center">
+                <ul class="nav w-100 flex-row flex-md-column">
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('profile_index') }}">Mon compte</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+                        </li>
+                        <li class="nav-item">
+                            Compte : {{ app.user.nickname }}
+                        </li>
+                    {% else %}
+                        Aucun utilisateur connecté
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </nav>
     

@@ -22,7 +22,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title itemTitle">{{ image.title }}</h5>
+                                    <h5 class="card-title itemTitle text-truncate">{{ image.title }}</h5>
                                     <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
 
         <p>
             <a href="{{ path('images_app_blog_images_new') }}">
-                <button class='btn btn-success mt-5'>
+                <button class='btn btn-success mt-4'>
                     Enregistrer une nouvelle image
                 </button>
             </a>

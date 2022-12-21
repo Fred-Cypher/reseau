@@ -7,19 +7,24 @@
     {% include "_parts/_forumHeader.html.twig" %}
 
     <section class="container">
-        <h2>{{ article.title }}</h2>
-        <small class="text-secondary">{{ article.user.nickname}}</small>
-        <article>
-            <p>{{ article.summary }}</p>
-            <p>{{ article.content}}</p>
-            <p>
-            {% if app.user is same as (article.user) %}
-                <a href="{{ path('articles_app_article_edit', {'title': article.title})|lower  }}" class="btn btn-primary">Modifier l'article</a>
+        <article class="card m-2 m-md-5">
+            <div class="card-body">
+                <p class="card-title font-weight-bold h3">{{ article.title }}</p>
+                <small class="card-subtitle text-muted">{{ article.user.nickname}}</small>
+                <p class="card-text mt-2">{{ article.summary }}</p>
+                <p class="card-text">{{ article.content}}</p>
+                {% if app.user is same as (article.user) %}
+                    <p class="card-link mt-4">
+                        <a href="{{ path('articles_app_article_edit', {'title': article.title})|lower  }}" class="btn btn-primary">Modifier l'article</a>
 
-                {{ include('articles/_delete_form.html.twig') }}
-            {% endif %}
-            </p>
-            <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary">Retour à la liste d'articles</a>
+                        {{ include('articles/_delete_form.html.twig') }}
+                    </p>
+                {% endif %}
+
+                <p class="card-link mt-4">
+                    <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary">Retour à la liste d'articles</a>
+                </p>
+            </div>
         </article>
     </section>
 
