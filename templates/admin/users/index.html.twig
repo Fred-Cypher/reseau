@@ -5,7 +5,13 @@
 {% block body %}
     {% include "_parts/_forumHeader.html.twig" %}
 
-    <h1>Administration des utilisateurs</h1>
+    <main class="container">
+        <h2>Administration des utilisateurs</h2>
+        
+        <a href="{{  path('admin_blog_index') }}" class="btn btn-warning">Modération du blog images</a>
+        <a href="{{  path('admin_articles_index')  }}" class="btn btn-warning">Modération des articles</a>
+    </main>
+    
 
 
 {% endblock %}

@@ -7,18 +7,12 @@
     {% include "_parts/_forumHeader.html.twig" %}
 
     <section class="container">
-        <h2>Modifier un article</h2>
-        <article class="mt-3">
-            {{ form_start(form) }}
-                {{ form_row(form.title) }}
-                {{ form_row(form.summary) }}
-                {{ form_row(form.content) }}
-                <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'article</button>
-            {{ form_end(form) }}
-            <p>
-                <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary mt-3">Retour à la liste d'articles</a>
-            </p>
-        </article>
+        <h2>Liste des articles à modérer</h2>
+        <section class="row">
+            Mettre une liste des articles à désactiver ou pas
+
+            <a href="{{ path('admin_users_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+        </section>
     </section>
 
     

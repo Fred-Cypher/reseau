@@ -12,7 +12,10 @@
                 <p class="card-title h3">{{ image.title }}</p>
                 <small class="card-subtitle text-muted">{{ image.user.nickname }}</small>
                 <p class="card-text">{{ image.description }}</p>
-                <img class="card-img-bottom blogPicture" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
+                <p class="card-text text-center">
+                    <img class="card-img-bottom blogPicture" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
+                </p>
+                
                 {% if app.user is same as (image.user) %}
                     <p class="card-link mt-4">
                         <a href="{{ path('images_app_blog_images_edit', {'id': image.id}) }}" class="btn btn-primary">Modifier l'image</a>
