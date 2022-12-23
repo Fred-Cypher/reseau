@@ -4,8 +4,14 @@
         {% if role == "ROLE_ADMIN" %}
             {% if app.user is not same as (article.user) %}
                 <button  class="btn btn-outline-danger">Supprimer l'article</button>
+            {% endif %}
+        {% elseif role == "ROLE_MODO" %}
+            {% if app.user is not same as (article.user) %}
+                <button  class="btn btn-outline-danger">Supprimer l'article</button>
+            {% endif %}
         {% else %}
-            <button  class="btn btn-danger">Supprimer l'article</button>
+            {% if app.user is same as (article.user) %}
+                <button  class="btn btn-danger">Supprimer l'article</button>
             {% endif %}
         {% endif %}
     {% endfor %}
