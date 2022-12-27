@@ -12,9 +12,10 @@
         <h3>Liste des images existantes</h3>
 
         <section class="row">
+        {% if images.data %}
             {% for image in images.data %}
                 <div class="col-6 col-md-4">
-                    <a href="{{ path('images_app_blog_images_show', {'id': image.id}) }}">
+                    <a href="{{ path('images_app_blog_images_show', {'slug': image.slug}) }}">
                         <div class="card mt-3">
                             <div class="row g-0">
                                 <div class="col-md-4 p-1">
@@ -35,6 +36,13 @@
                     Pas d'image trouvée.
                 </p>
             {% endfor %}
+        {% else %}
+            <p>
+                Il n'y a pas encore d'images enregistrées.
+            </p>
+        {% endif %}
+        
+            
 
             {% set path = 'images_app_blog_images_index' %}
             {% set pages = images.pages %}

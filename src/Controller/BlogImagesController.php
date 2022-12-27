@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/blog/images', name: 'images_')]
 class BlogImagesController extends AbstractController
@@ -27,7 +28,7 @@ class BlogImagesController extends AbstractController
     }
 
     #[Route('/new', name: 'app_blog_images_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ImagesRepository $imagesRepository): Response
+    public function new(Request $request, ImagesRepository $imagesRepository, SluggerInterface $slug): Response
     {
         $image = new Images();
         $form = $this->createForm(BlogImagesFormType::class, $image);
@@ -35,6 +36,7 @@ class BlogImagesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $image->setUser($this->getUser());
+            $image->getSlug($slug);
 
             $picture = $form->get('image_url')->getData();
 
@@ -60,7 +62,7 @@ class BlogImagesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_blog_images_show', methods: ['GET'])]
+    #[Route('/{slug}', name: 'app_blog_images_show', methods: ['GET'])]
     public function show(Images $image): Response
     {
         return $this->render('blog_images/show.html.twig', [
@@ -68,7 +70,7 @@ class BlogImagesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_blog_images_edit', methods: ['GET', 'POST'])]
+    #[Route('/{slug}/edit', name: 'app_blog_images_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Images $image, ImagesRepository $imagesRepository): Response
     {
         $form = $this->createForm(BlogModifFormType::class, $image);

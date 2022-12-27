@@ -15,7 +15,7 @@
         <p>
             <ul class="">
                 {% for article in articles %}
-                    <a href="{{ path('articles_app_article_show', {'id': article.id}) }}" class="itemTitle d-inline-flex">
+                    <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
                         <li>{{ article.title }}</li>
                     </a>
                     <div class="line my-1"></div>
