@@ -12,36 +12,35 @@
         <h3>Liste des images existantes</h3>
 
         <section class="row">
-        {% if images.data %}
-            {% for image in images.data %}
-                <div class="col-6 col-md-4">
-                    <a href="{{ path('images_app_blog_images_show', {'slug': image.slug}) }}">
-                        <div class="card mt-3">
-                            <div class="row g-0">
-                                <div class="col-md-4 p-1">
-                                    <img src="{{ vich_uploader_asset(image, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded h-100 w-100" alt="{{ image.title }}">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title itemTitle text-truncate">{{ image.title }}</h5>
-                                        <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
+            {% if images.data %}
+                {% for image in images.data %}
+                    <div class="col-6 col-md-4">
+                        <a href="{{ path('images_app_blog_images_show', {'slug': image.slug}) }}">
+                            <div class="card mt-3">
+                                <div class="row g-0">
+                                    <div class="col-md-4 p-1">
+                                        <img src="{{ vich_uploader_asset(image, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded h-100 w-100" alt="{{ image.title }}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title itemTitle text-truncate">{{ image.title }}</h5>
+                                            <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                {% else %}
+                    <p>
+                        Pas d'image trouvée.
+                    </p>
+                {% endfor %}
             {% else %}
                 <p>
-                    Pas d'image trouvée.
+                    Il n'y a pas encore d'images enregistrées.
                 </p>
-            {% endfor %}
-        {% else %}
-            <p>
-                Il n'y a pas encore d'images enregistrées.
-            </p>
-        {% endif %}
-        
+            {% endif %}
             
 
             {% set path = 'images_app_blog_images_index' %}

@@ -12,18 +12,30 @@
 
         <h3>Liste tes articles existants</h3>
 
-        <p>
-            <ul class="">
-                {% for article in articles %}
-                    <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
-                        <li>{{ article.title }}</li>
-                    </a>
-                    <div class="line my-1"></div>
+        <section class="row">
+            <ul>
+                {% if articles.data %}
+                    {% for article in articles.data %}
+                        <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
+                            <li>{{ article.title }}</li>
+                        </a>
+                        <div class="line my-1"></div>
+                    {% else %}
+                        <p>Pas d'article trouvé.</p>
+                    {% endfor %}
                 {% else %}
-                    <p>Pas d'article trouvé.</p>
-                {% endfor %}  
+                    <p>
+                        Il n'y a pas encore d'articles enregistrés.
+                    </p>
+                {% endif %}
             </ul>
-        </p>
+
+            {% set path = 'articles_app_articles' %}
+            {% set pages = articles.pages %}
+            {% set currentPage = articles.page %}
+            {% include "_parts/_pagination.html.twig" %}
+
+        </section>
 
         <p>
             <a href="{{ path('articles_app_article_new') }}">

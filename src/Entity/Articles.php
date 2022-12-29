@@ -40,6 +40,9 @@ class Articles
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: CommentsArticle::class)]
     private Collection $commentsArticles;
 
+    #[ORM\Column(options: ['default' => true])]
+    private ?bool $is_visible = true;
+
     public function __construct()
     {
         $this->commentsArticles = new ArrayCollection();
@@ -142,6 +145,18 @@ class Articles
                 $commentsArticle->setArticle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsVisible(): ?bool
+    {
+        return $this->is_visible;
+    }
+
+    public function setIsVisible(bool $is_visible): self
+    {
+        $this->is_visible = $is_visible;
 
         return $this;
     }

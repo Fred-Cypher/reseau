@@ -34,6 +34,7 @@ li{
     color:crimson;
     font-weight: bold;
 }
+
 .line{
     border-top: solid 2px grey;
     width: 4rem;
@@ -59,4 +60,8 @@ li{
 
 .modifPicture{
     max-width: 20rem;
+}
+
+.invisible{
+    display: none;
 }

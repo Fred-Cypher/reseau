@@ -45,6 +45,9 @@ class Images
     #[ORM\OneToMany(mappedBy: 'image', targetEntity: CommentsImage::class)]
     private Collection $commentsImages;
 
+    #[ORM\Column(options: ['default' => true])]
+    private ?bool $is_visible = true;
+
     public function __construct()
     {
         $this->commentsImages = new ArrayCollection();
@@ -156,6 +159,18 @@ class Images
                 $commentsImage->setImage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsVisible(): ?bool
+    {
+        return $this->is_visible;
+    }
+
+    public function setIsVisible(bool $is_visible): self
+    {
+        $this->is_visible = $is_visible;
 
         return $this;
     }

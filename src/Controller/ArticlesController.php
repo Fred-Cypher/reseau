@@ -15,10 +15,15 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ArticlesController extends AbstractController
 {
     #[Route('/', name: 'app_articles', methods: ['GET'])]
-    public function articles(ArticlesRepository $articlesRepository): Response
+    public function articles(ArticlesRepository $articlesRepository, Request $request): Response
     {
+        $page = $request->query->getInt('page', 1);
+
+        $articles = $articlesRepository->articlesPaginated($page, 10);
+
+
         return $this->render('articles/articles.html.twig', [
-            'articles' => $articlesRepository->findAll(),
+            'articles' => $articles,
         ]);
     }
 

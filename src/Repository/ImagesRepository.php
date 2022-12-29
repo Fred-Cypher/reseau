@@ -49,6 +49,7 @@ class ImagesRepository extends ServiceEntityRepository
         $query = $this->getEntityManager()->createQueryBuilder()
             ->select('image')
             ->from('App\Entity\Images', 'image')
+            ->where('image.is_visible = 1')
             ->setMaxResults($limit)
             ->setFirstResult(($page * $limit) - $limit);
 
