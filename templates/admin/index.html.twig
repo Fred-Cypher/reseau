@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration du forum{% endblock %}
+
+{% block body %}
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <main class="container">
+        <h2>Administration des utilisateurs</h2>
+        
+        <a href="{{  path('admin_blog_index') }}" class="btn btn-warning">Gestion du blog images</a>
+        <a href="{{  path('admin_articles_index') }}" class="btn btn-warning">Gestion des articles</a>
+        <a href="{{  path('admin_users_index') }}" class="btn btn-warning">Gestion des utilisateurs</a>
+
+    </main>
+    
+
+{% endblock %}

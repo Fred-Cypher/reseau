@@ -10,9 +10,47 @@
         <h3>Liste des images à modérer</h3>
 
         <section class="row">
-            Mettre une liste des images à désactiver ou pas
+            <table class="table table-striped mt-5">
+                <thead>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Image</th>
+                    <th>Visible</th>
+                    <th>Action</th>
+                </thead>
+                <tbody> 
+                    {% for image in images %}
+                        <tr>
+                            <td>{{ image.id }}</td>
+                            <td>{{ image.title }}</td>
+                            <td>{{ image.user.nickname }}</td>
+                            <td>
+                                <img src="{{ vich_uploader_asset(image, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded h-50 w-50" alt="{{ image.title }}">
+                            </td>
+                            <td>
+                                <div class="form-check form-switch">
+                                        {% if image.isVisible  %} 
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked{{ image.id }}" checked data-id="{{ image.id }}">
+                                            <label class="form-check-label" for="flexSwitchCheckChecked{{ image.id }}"></label>
+                                        {% else %}
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked{{ image.id }}" data-id="{{ image.id }}">
+                                            <label class="form-check-label" for="flexSwitchCheckChecked{{ image.id }}"></label>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            <td>
+                                <a href="{{ path('images_app_blog_images_edit', {'slug': image.slug}) }}" class="btn btn-outline-primary">Modifier</a>
+                                <a href="" class="btn">{{ include('blog_images/_delete_form.html.twig') }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
 
-            <a href="{{ path('admin_users_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+                </tbody>
+            </table>
+            <p class="mt-3">
+                <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+            </p>
         </section>
     </main>
 

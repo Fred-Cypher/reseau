@@ -38,7 +38,7 @@
                     {% for role in app.user.roles %}
                         {% if role == "ROLE_ADMIN" %}
                             <li class="nav-item">
-                                <a class="nav-link text-danger border border-danger rounded-pill" href="{{ path('admin_users_index') }}">Administration du forum</a>
+                                <a class="nav-link text-danger border border-danger rounded-pill" href="{{ path('admin_index') }}">Administration du forum</a>
                             </li>
                         {% endif %}
                     {% endfor %}

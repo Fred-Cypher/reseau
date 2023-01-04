@@ -21,7 +21,6 @@ class ArticlesController extends AbstractController
 
         $articles = $articlesRepository->articlesPaginated($page, 10);
 
-
         return $this->render('articles/articles.html.twig', [
             'articles' => $articles,
         ]);

@@ -1,17 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administration du forum{% endblock %}
+{% block title %}Modification image{% endblock %}
 
 {% block body %}
+
     {% include "_parts/_forumHeader.html.twig" %}
 
     <main class="container">
-        <h2>Administration des utilisateurs</h2>
-        
-        <a href="{{  path('admin_blog_index') }}" class="btn btn-warning">Modération du blog images</a>
-        <a href="{{  path('admin_articles_index')  }}" class="btn btn-warning">Modération des articles</a>
-    </main>
-    
+        <h3>Liste des utilisateurs à modérer</h3>
 
+        <section class="row">
+            
+            <table class="table table-striped mt-5">
+                <thead>
+                    <th>Id</th>
+                    <th>Pseudo</th>
+                    <th>Rôle(s)</th>
+                    <th>Vérifié</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.Id }}</td>
+                            <td>{{ user.nickname }}</td>
+                            <td>{{ user.roles|json_encode() }}</td>
+                            <td>{{ user.isVerified }}</td>
+                            <td>
+                                <a href="#" class="btn btn-warning">Modifier</a>
+                                <a href="" class="btn">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <p class="mt-3">
+                <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+            </p>
+        </section>
+    </main>
 
 {% endblock %}

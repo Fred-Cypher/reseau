@@ -10,7 +10,7 @@
         <section class="row">
             <ul class="mt-3">
                 {% for article in app.user.articles %}
-                    <a href="{{ path('articles_app_article_show', {'id': article.id}) }}" class="itemTitle">
+                    <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle">
                         <li>{{ article.title }}</li>
                     </a>
                     <div class="line my-1"></div>
