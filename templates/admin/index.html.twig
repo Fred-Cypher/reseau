@@ -6,11 +6,21 @@
     {% include "_parts/_forumHeader.html.twig" %}
 
     <main class="container">
-        <h2>Administration des utilisateurs</h2>
+        <h2 class="mt-5">Administration du forum</h2>
         
-        <a href="{{  path('admin_blog_index') }}" class="btn btn-warning">Gestion du blog images</a>
-        <a href="{{  path('admin_articles_index') }}" class="btn btn-warning">Gestion des articles</a>
-        <a href="{{  path('admin_users_index') }}" class="btn btn-warning">Gestion des utilisateurs</a>
+        <section class="row mt-5 w-75 m-auto">
+            <nav class="nav flex-column">
+                <li class="nav-item">
+                    <a href="{{  path('admin_blog_index') }}" class="btn btn-warning mt-3 nav-link moderationButton">Gestion du blog images</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{  path('admin_articles_index') }}" class="btn btn-warning mt-3 nav-link moderationButton">Gestion des articles</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{  path('admin_users_index') }}" class="btn btn-warning mt-3 nav-link moderationButton">Gestion des utilisateurs</a>
+                </li>
+            </nav>
+        </section>
 
     </main>
     

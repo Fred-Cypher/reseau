@@ -3,7 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Articles;
-use App\Entity\Users;
+use App\Entity\Images;
+use App\Form\AdminArticlesFormType;
+use App\Form\AdminBlogFormType;
 use App\Repository\ArticlesRepository;
 use App\Repository\ImagesRepository;
 use App\Repository\UsersRepository;
@@ -45,6 +47,28 @@ class UsersController extends AbstractController
         ]);
     }
 
+    #[Route('/{slug}/edit', name: 'blog_images_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Images $image, ImagesRepository $imagesRepository): Response
+    {
+        $form = $this->createForm(AdminBlogFormType::class, $image);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $image->setUser($this->getUser());
+            $image->setIsVisible(($image->isIsVisible() ? true : false));
+            $imagesRepository->save($image, true);
+
+            $this->addFlash('info', 'L\'image a bien été modifiée');
+
+            return $this->redirectToRoute('admin_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/blog/edit.html.twig', [
+            'image' => $image,
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/articles', name: 'articles_index', methods: ['GET'])]
     public function articles(ArticlesRepository $articlesRepository): Response
     {
@@ -65,6 +89,28 @@ class UsersController extends AbstractController
         return $this->render('admin/articles/index.html.twig', [
             /*'articles' => $articlesRepository->findAll(),*/
             'articles' => $article,
+        ]);
+    }
+
+    #[Route('/{slug}/modif', name: 'article_edit', methods: ['GET', 'POST'])]
+    public function adminEdit(Request $request, Articles $article, ArticlesRepository $articlesRepository): Response
+    {
+        $form = $this->createForm(AdminArticlesFormType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $article->setUser($this->getUser());
+            $article->setIsVisible(($article->isIsVisible()? true : false));
+            $articlesRepository->save($article, true);
+
+            $this->addFlash('info', 'L\'article a bien été modifié');
+
+            return $this->redirectToRoute('admin_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('admin/articles/edit.html.twig', [
+            'article' => $article,
+            'form' => $form->createView(),
         ]);
     }
 }
