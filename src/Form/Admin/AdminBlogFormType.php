@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Admin;
 
 use App\Entity\Images;
 use Symfony\Component\Form\AbstractType;
@@ -37,7 +37,7 @@ class AdminBlogFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data-class' => Images::class,
+            'data_class' => Images::class,
         ]);
     }
 }

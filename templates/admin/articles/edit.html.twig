@@ -21,8 +21,9 @@
                 {{ form_row(form.title) }}
                 {{ form_row(form.summary) }}
                 {{ form_row(form.content) }}
+                <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'article</button>
             {{ form_end(form) }}
-            <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'article</button>
+            
             <p class="m-3 d-flex justify-content-end">
                 <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
             </p>

@@ -4,8 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Articles;
 use App\Entity\Images;
-use App\Form\AdminArticlesFormType;
-use App\Form\AdminBlogFormType;
+use App\Entity\Users;
+use App\Form\Admin\AdminArticlesFormType;
+use App\Form\Admin\AdminBlogFormType;
+use App\Form\Admin\AdminUsersFormType;
 use App\Repository\ArticlesRepository;
 use App\Repository\ImagesRepository;
 use App\Repository\UsersRepository;
@@ -31,6 +33,27 @@ class UsersController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/edit', name: 'users_edit', methods: ['GET', 'POST'])]
+    public function adminUserEdit(Request $request, Users $users, UsersRepository $usersRepository): Response
+    {
+        $form = $this->createForm(AdminUsersFormType::class, $users);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $usersRepository->save($users, true);
+
+            $this->addFlash('info', 'L\'utilisateur a bien été modifié');
+
+            return $this->redirectToRoute('admin_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('admin/users/edit.html.twig', [
+            'users' => $users,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
     #[Route('/blog', name: 'blog_index', methods: ['GET'])]
     public function blogImage(ImagesRepository $imagesRepository, Request $request): Response
     {
@@ -47,8 +70,8 @@ class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}/edit', name: 'blog_images_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Images $image, ImagesRepository $imagesRepository): Response
+    #[Route('/{slug}/blog/edit', name: 'blog_images_edit', methods: ['GET', 'POST'])]
+    public function adminBlogEdit(Request $request, Images $image, ImagesRepository $imagesRepository): Response
     {
         $form = $this->createForm(AdminBlogFormType::class, $image);
         $form->handleRequest($request);
@@ -92,13 +115,13 @@ class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}/modif', name: 'article_edit', methods: ['GET', 'POST'])]
-    public function adminEdit(Request $request, Articles $article, ArticlesRepository $articlesRepository): Response
+    #[Route('/{slug}/article/edit', name: 'article_edit', methods: ['GET', 'POST'])]
+    public function adminArticleEdit(Request $request, Articles $article, ArticlesRepository $articlesRepository): Response
     {
         $form = $this->createForm(AdminArticlesFormType::class, $article);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $article->setUser($this->getUser());
             $article->setIsVisible(($article->isIsVisible()? true : false));
             $articlesRepository->save($article, true);

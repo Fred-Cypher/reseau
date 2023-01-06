@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Admin;
 
 use App\Entity\Articles;
 use Symfony\Component\Form\AbstractType;
@@ -37,14 +37,13 @@ class AdminArticlesFormType extends AbstractType
                 ],
                 'label' => 'Contenu de l\'article : '
             ])
-
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data-class' => Articles::class,
+            'data_class' => Articles::class,
         ]);
     }
 }
