@@ -25,18 +25,23 @@
                 <tbody>
                     {% for user in users %}
                         <tr>
-                            <td>{{ user.Id }}</td>
+                            <td>{{ user.id }}</td>
                             <td>{{ user.nickname }}</td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.roles|json_encode() }}</td>
-                            <td>{{ user.isVerified }}</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked{{ user.id }}" {{ (user.isEnabled) ? 'checked' : '' }} data-id="{{ user.id }}">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked{{ user.id }}"></label>
+                                </div>
+                            {{ user.isEnabled }}</td>
                             <td>
                                 <a href="{{ path('admin_users_edit', {'id': user.id}) }}" class="btn btn-warning">Modifier</a>
                                 <a href="" class="btn">Supprimer</a>
                             </td>
                         </tr>
                     {% endfor %}
-                </tbody>
+                </tbody> 
             </table>
 
             <p class="m-3 d-flex justify-content-end">
@@ -44,5 +49,7 @@
             </p>
         </section>
     </main>
+
+    <script src="{{ asset('assets/js/scriptsUsers.js') }}"></script>
 
 {% endblock %}

@@ -18,7 +18,7 @@
 
                 <div class="navbar-nav">
                     <ul class="nav w-100 justify-content-center flex-column flex-md-row">
-                        {% if app.user %}
+                        {% if app.user.isEnabled %}
                             <li class="nav-item ms-2">
                                 <a class="nav-link" href="{{ path('forum_index') }}">Retour à l'accueil du forum</a>
                             </li>
@@ -43,7 +43,7 @@
                         {% endif %}
                     {% endfor %}
 
-                    {% if app.user %}
+                    {% if app.user.isEnabled %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('profile_index') }}">Mon compte</a>
                         </li>

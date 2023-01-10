@@ -32,7 +32,6 @@ class UsersController extends AbstractController
             'users' => $usersRepository->findAll(),
         ]);
     }
-
     #[Route('/{id}/edit', name: 'users_edit', methods: ['GET', 'POST'])]
     public function adminUserEdit(Request $request, Users $users, UsersRepository $usersRepository): Response
     {
@@ -77,7 +76,6 @@ class UsersController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $image->setUser($this->getUser());
             $image->setIsVisible(($image->isIsVisible() ? true : false));
             $imagesRepository->save($image, true);
 
@@ -122,7 +120,6 @@ class UsersController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $article->setUser($this->getUser());
             $article->setIsVisible(($article->isIsVisible()? true : false));
             $articlesRepository->save($article, true);
 

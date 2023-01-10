@@ -52,9 +52,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(options: ['default' => false])]
     private ?bool $is_verified = false;
 
+    #[ORM\Column(options: ['default' => true])]
+    private ?bool $is_enabled = true;
+
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $resetToken = null;
-
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Articles::class)]
     private Collection $articles;
@@ -69,6 +71,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $commentsArticles;
 
     public $user;
+
+    
 
     public function __construct($user)
     {
@@ -242,6 +246,17 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function isIsEnabled(): ?bool
+    {
+        return $this->is_enabled;
+    }
+
+    public function setIsEnabled(bool $is_enabled): self
+    {
+        $this->is_enabled = $is_enabled;
+
+        return $this;
+    }
     public function getResetToken(): ?string
     {
         return $this->resetToken;
@@ -253,9 +268,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-
-    
 
     /**
      * @return Collection<int, Articles>
@@ -376,4 +388,5 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 }

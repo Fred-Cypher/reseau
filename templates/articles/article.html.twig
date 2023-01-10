@@ -10,7 +10,7 @@
         <article class="card m-2 m-md-5">
             <div class="card-body">
                 <p class="card-title font-weight-bold h3">{{ article.title }}</p>
-                <small class="card-subtitle text-muted">{{ article.user.nickname}}</small>
+                <small class="card-subtitle text-muted">{{ article.user.nickname }}</small>
                 <p class="card-text mt-2">{{ article.summary }}</p>
                 <p class="card-text">{{ article.content}}</p>
                 {% if app.user is same as (article.user) %}
