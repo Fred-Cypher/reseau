@@ -5,10 +5,18 @@
 
 body{
     background-color:bisque;
+    height: 100%;
 }
 
 header{
     background-color: whitesmoke;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color: whitesmoke;
+    width: 100% !important;
 }
 
 a{

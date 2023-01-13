@@ -5,7 +5,7 @@
 {% block body %}
     {% include '_parts/_forumHeader.html.twig' %}
 
-    <main class="container">
+    <main class="container h-100">
         <h2 class="mt-2 mb-4">Mon profil</h2>
         <section class="m-2">
             <div class="card ms-3">
@@ -20,11 +20,15 @@
                 </div>
             </div>
 
-
             <div class="card ms-3 mt-5">
                 <div class="card-body">
                     <p class="card-title h5 mb-3">Modifier mon profil</p>
-                    
+                    <p>
+                        Il est seulement possible de modifier le mot de passe et l'adresse mail. <br> 
+                        Les coordonnées (nom, prénom) et le pseudo ne sont pas modifiables.</p>
+                    <p>
+                        <a href="{{ path('profile_edit') }}" class="btn btn-primary">Modifier mon profil</a>
+                    </p>
                     <ul>
                         <li>mot de passe</li>
                         <li>adresse mail</li>
@@ -34,4 +38,7 @@
             </div>
         </section>
     </main>
+
+    {% include "_parts/_footer.html.twig" %}
+
 {% endblock %}

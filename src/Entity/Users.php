@@ -22,7 +22,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'ROLE_USER'])]
     private array $roles = [];
 
     /**
@@ -81,6 +81,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->commentsImages = new ArrayCollection();
         $this->commentsArticles = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+        //$this->roles = new ArrayCollection();
         $this->user = $user;
     }
 

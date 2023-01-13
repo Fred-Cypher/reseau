@@ -3,7 +3,10 @@
 namespace App\Form\Admin;
 
 use App\Entity\Users;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+//use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+//use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,6 +23,11 @@ class AdminUsersFormType extends AbstractType
                 ],
                 'label' => 'Adresse email : '
             ])
+            /*->add('roles', EntityType::class, [
+                'class' => Users::class,
+                'choice_label' => 'roles',
+                'multiple' => true
+            ])*/
             ->add('nickname', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
@@ -36,3 +44,18 @@ class AdminUsersFormType extends AbstractType
         ]);
     }
 }
+
+/*
+->add('roles', CollectionType::class, [
+                'entry_type' => ChoiceType::class,
+                'entry_options' => [
+                    'choices' => [
+                        'Administrateur' => 'ROLE_ADMIN',
+                        'Modérateur' => 'ROLE_MODO',
+                        'Utilisateur' => 'ROLE_USER',
+                        'Pas de rôle spécifique' => '',
+                    ],
+                ],
+                'label' => 'Roles : '
+            ])
+*/

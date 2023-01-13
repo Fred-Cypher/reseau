@@ -23,8 +23,7 @@ class UsersController extends AbstractController
     public function index(): Response
     {
         return $this->render('admin/index.html.twig');
-    }
-
+    } 
     #[Route('/users', name: 'users_index', methods: ['GET'])]
     public function users(UsersRepository $usersRepository): Response
     {
@@ -34,8 +33,10 @@ class UsersController extends AbstractController
     }
     #[Route('/{id}/edit', name: 'users_edit', methods: ['GET', 'POST'])]
     public function adminUserEdit(Request $request, Users $users, UsersRepository $usersRepository): Response
-    {
+    {   
+        $roles = [];
         $form = $this->createForm(AdminUsersFormType::class, $users);
+        $users->setRoles(($users->getRoles()));
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
@@ -48,6 +49,7 @@ class UsersController extends AbstractController
 
         return $this->render('admin/users/edit.html.twig', [
             'users' => $users,
+            'roles' => $roles,
             'form' => $form->createView(),
         ]);
     }

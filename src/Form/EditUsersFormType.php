@@ -20,7 +20,7 @@ class EditUsersFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Adresse email : '
+                'label' => 'Entrez votre nouvelle adresse email : '
             ])
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
@@ -39,7 +39,7 @@ class EditUsersFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ]
-            ]);
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver):void
@@ -49,3 +49,13 @@ class EditUsersFormType extends AbstractType
         ]);
     }
 }
+
+/*
+
+->add('password', PasswordType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Entrez votre nouveau mot de passe : ',
+            ]);
+*/

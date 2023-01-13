@@ -4,13 +4,15 @@
 
 {% block body %}
 
-{% include "_parts/_homeHeader.html.twig" %}
+    {% include "_parts/_homeHeader.html.twig" %}
 
-<main class="container">
-    <div class="card m-5 p-5">
-        <h2 class="card-text">Page non trouvée</h2>
-        <div class="card-text mt-5">La page que vous recherchez n'a pas été trouvée. ☹️</div>
-    </div>
-</main>
+    <main class="container">
+        <div class="card m-5 p-5">
+            <h2 class="card-text">Page non trouvée</h2>
+            <div class="card-text mt-5">La page que vous recherchez n'a pas été trouvée. ☹️</div>
+        </div>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
 
 {% endblock %}

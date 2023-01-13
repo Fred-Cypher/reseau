@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Users;
+use App\Form\EditUsersFormType;
+use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,11 +21,25 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/modification', name: 'update')]
-    public function update(): Response
+    #[Route('/edit', name: 'edit', methods: ['GET', 'POST'])]
+    public function update(Request $request, Users $user, UsersRepository $usersRepository): Response
     {
-        return $this->render('profile/index.html.twig', [
-            'controller_name' => 'Modification du profil de l\'utilisateur',
+        $form = $this->createForm(EditUsersFormType::class, $user);
+        $user->setEmail(($user->getEmail()));
+        $user->getPassword($user->getPassword());
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $usersRepository->save($user, true);
+
+            $this->addFlash('info', 'Votre profil a bien été modifié');
+
+            return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('profile/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 

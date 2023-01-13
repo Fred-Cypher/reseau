@@ -4,14 +4,16 @@
 
 {% block body %}
 
-{% include "_parts/_homeHeader.html.twig" %}
+    {% include "_parts/_homeHeader.html.twig" %}
 
-<main class="container">
-    <div class="card m-5 p-5">
-        <h2 class="card-text">Erreur de dialogue avec la base de données.</h2>
-        <div class="card-text mt-3">Un problème est survenu.☹️</div>
-        <div class="card-text mt-4">Veuillez réessayer un peu plus tard. </div>
-    </div>
-</main>
+    <main class="container">
+        <div class="card m-5 p-5">
+            <h2 class="card-text">Erreur de dialogue avec la base de données.</h2>
+            <div class="card-text mt-3">Un problème est survenu.☹️</div>
+            <div class="card-text mt-4">Veuillez réessayer un peu plus tard. </div>
+        </div>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
 
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modification image{% endblock %}
+{% block title %}Modération des utilisateurs{% endblock %}
 
 {% block body %}
 
@@ -18,8 +18,9 @@
                 <thead>
                     <th>Id</th>
                     <th>Pseudo</th>
-                    <th>Rôle(s)</th>
+                    <th>Email</th>
                     <th>Vérifié</th>
+                    <th>Rôle(s)</th>
                     <th>Actions</th>
                 </thead>
                 <tbody>
@@ -28,6 +29,7 @@
                             <td>{{ user.id }}</td>
                             <td>{{ user.nickname }}</td>
                             <td>{{ user.email }}</td>
+                            <td>{{ user.isVerified }}</td>
                             <td>{{ user.roles|json_encode() }}</td>
                             <td>
                                 <div class="form-check form-switch">
@@ -37,7 +39,6 @@
                             {{ user.isEnabled }}</td>
                             <td>
                                 <a href="{{ path('admin_users_edit', {'id': user.id}) }}" class="btn btn-warning">Modifier</a>
-                                <a href="" class="btn">Supprimer</a>
                             </td>
                         </tr>
                     {% endfor %}

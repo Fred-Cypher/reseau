@@ -5,10 +5,10 @@
 {% block body %}
     {% include "_parts/_forumHeader.html.twig" %}
 
-    <main class="container">
+    <main class="container col-sm-9 col-md-12">
         <h2 class="mt-5">Administration du forum</h2>
         
-        <section class="row mt-5 w-75 m-auto">
+        <section class="row m-5 w-75 m-auto">
             <nav class="nav flex-column">
                 <li class="nav-item">
                     <a href="{{  path('admin_blog_index') }}" class="btn btn-warning mt-3 nav-link moderationButton">Gestion du blog images</a>
@@ -24,5 +24,6 @@
 
     </main>
     
+    {% include "_parts/_footer.html.twig" %}
 
 {% endblock %}
