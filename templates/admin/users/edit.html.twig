@@ -10,9 +10,16 @@
         <h2 class="mt-3">Modifier un utilisateur</h2>
 
         <article class="mt-3">
+            <p>
+                <div>Bloqué / Autorisé</div>
+                <div class="form-check form-switch">
+                    <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {{ (users.isEnabled) ? 'checked' : '' }} data-id="users.id">
+                </div>
+            </p>
             {{ form_start(form) }}
                 {{ form_row(form.nickname) }}
-                {# {{ form_row(form.roles|json_encode() ) }} #}
+                {{ form_row(form.roles) }}
                 {{ form_row(form.email) }}
                 <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'utilisateur</button>
             {{ form_end(form) }}

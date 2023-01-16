@@ -6,6 +6,7 @@ use App\Entity\Images;
 use App\Form\BlogImagesFormType;
 use App\Form\BlogModifFormType;
 use App\Repository\ImagesRepository;
+use Liip\ImagineBundle\LiipImagineBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -101,3 +102,12 @@ class BlogImagesController extends AbstractController
         return $this->redirectToRoute('images_app_blog_images_index', [], Response::HTTP_SEE_OTHER);
     }
 }
+
+
+/**
+*  $path = 'asset(assets/media/cache/miniature/assets/uploads)';
+*  $miniature = $path . $image->getImageUrl();
+*  if(file_exists($miniature)){
+*     unlink($miniature);
+*  }
+ */

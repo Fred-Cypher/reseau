@@ -34,9 +34,9 @@ class UsersController extends AbstractController
     #[Route('/{id}/edit', name: 'users_edit', methods: ['GET', 'POST'])]
     public function adminUserEdit(Request $request, Users $users, UsersRepository $usersRepository): Response
     {   
-        $roles = [];
+        $roles = $this->getParameter('security.role_hierarchy.roles');
         $form = $this->createForm(AdminUsersFormType::class, $users);
-        $users->setRoles(($users->getRoles()));
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){

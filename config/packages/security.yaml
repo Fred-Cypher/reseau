@@ -34,8 +34,8 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/modo, roles: ROLE_MODO }
         - { path: ^/profil, roles: ROLE_USER }
-        - { path: ^/blog, roles: ROLE_USER}
-        - { path: ^/articles, roles: ROLE_USER}
+        - { path: ^/blog, roles: ROLE_USER }
+        - { path: ^/articles, roles: ROLE_USER }
 
     role_hierarchy:
         ROLE_MODO: ROLE_USER
