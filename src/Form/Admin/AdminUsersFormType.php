@@ -3,8 +3,7 @@
 namespace App\Form\Admin;
 
 use App\Entity\Users;
-use PHPUnit\Framework\Constraint\IsEmpty;
-use Symfony\Component\CssSelector\Parser\Shortcut\EmptyStringParser;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -16,45 +15,43 @@ class AdminUsersFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $roles = $this->getParent('security.roel_hierarchy.roles');
+        $roles = $this->getParent('security.role_hierarchy.roles');
 
         $builder
             ->add('email', EmailType::class,[
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control my-2'
                 ],
                 'label' => 'Adresse email : '
             ])
             ->add('nickname', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control my-2'
                 ],
                 'label' => 'Pseudo : '
             ])
-            ->add('roles', ChoiceType::class,
-                array(
-                    'attr' => array('class' => 'form-control') ,
-                    'label' => 'Ajouter un rôle : 
-                    Pour ajouter plusieurs rôles, ajouter seulement le plus élevé',
-                    'choices' => 
-                    array
-                    (
-                        'ROLE_ADMIN' => array
-                        (
-                            'Ajouter le rôle Administrateur' => 'ROLE_ADMIN'
-                        ),
-                        'ROLE_MODO' => array
-                        (
-                            'Ajouter le rôle Modérateur' => 'ROLE_MODO'
-                        ),
-                        'ROLE_USER' => array
-                        (
-                            'Ajouter le rôle Utilisateur' => ''
-                        ),
-                    ),
-                    'multiple' => true,
-                    'required' => true,
-                )) 
+            ->add('roles', ChoiceType::class,[
+                'attr' => [
+                    'class' => 'form-select my-2',
+                ],
+                'label' => 'Sélectionner les rôles à assigner l\'utilisateur, plusieurs choix possibles (le rôle utilisateur est attribué par défaut) : ',
+                'choices' => [
+                    'Ajouter le rôle Administrateur' => 'ROLE_ADMIN',
+                    'Ajouter le rôle Modérateur' => 'ROLE_MODO',
+                    'Revenir au rôle Utilisateur' => '',
+                ],
+                'multiple' => true,
+            ])
+            ->add('isEnabled', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Vilain / gentil',
+                'choices' => [
+                    'Bloqué' => 0,
+                    'Autorisé' => 1
+                ]
+            ])
         ;
     }
 
@@ -66,23 +63,13 @@ class AdminUsersFormType extends AbstractType
     }
 }
 
-/*
-
-
-
-
-*/
-
-
-
-
 
 /*
 ->add('roles', EntityType::class, [
-                'class' => Users::class,
-                'choice_label' => 'roles',
-                'multiple' => true
-            ])
+    'class' => Users::class,
+    'choice_label' => 'roles',
+    'multiple' => true
+])
 ->add('roles', CollectionType::class, [
     'entry_type' => ChoiceType::class,
     'entry_options' => [

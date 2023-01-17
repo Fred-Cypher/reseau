@@ -36,7 +36,6 @@ class UsersController extends AbstractController
     {   
         $roles = $this->getParameter('security.role_hierarchy.roles');
         $form = $this->createForm(AdminUsersFormType::class, $users);
-
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){

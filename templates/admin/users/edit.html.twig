@@ -21,6 +21,7 @@
                 {{ form_row(form.nickname) }}
                 {{ form_row(form.roles) }}
                 {{ form_row(form.email) }}
+                {{ form_row(form.isEnabled) }}
                 <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'utilisateur</button>
             {{ form_end(form) }}
         </article>
@@ -31,5 +32,5 @@
     </main>
 
     <script src="{{ asset('assets/js/scriptsUsers.js') }}"></script>
-    
+
 {% endblock %} 
