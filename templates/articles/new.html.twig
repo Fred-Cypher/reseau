@@ -31,9 +31,10 @@
                             <button type="submit" class="btn btn-primary mt-3 btn-lg">Enregistrer l'article</button>
                         </p>
                     {{ form_end(formNew) }}
-
-                    <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary">Retour à la liste d'articles</a>
                 </article>
+                <p class="backTo">
+                    <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary">Retour à la liste d'articles</a>
+                </p>
             </div>
         </div>
     </main>

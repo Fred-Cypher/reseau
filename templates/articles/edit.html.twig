@@ -6,20 +6,20 @@
 
     {% include "_parts/_forumHeader.html.twig" %}
 
-    <section class="container">
+    <main class="container">
         <h2>Modifier un article</h2>
-        <article class="mt-3">
+        <section class="mt-3">
             {{ form_start(form) }}
                 {{ form_row(form.title) }}
                 {{ form_row(form.summary) }}
                 {{ form_row(form.content) }}
                 <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'article</button>
             {{ form_end(form) }}
-            <p>
+            <p class="backTo">
                 <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary mt-3">Retour à la liste d'articles</a>
             </p>
-        </article>
-    </section>
+        </section>
+    </main>
 
     {% include "_parts/_footer.html.twig" %}
 

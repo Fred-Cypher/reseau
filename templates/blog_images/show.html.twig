@@ -17,10 +17,17 @@
                 </p>
                 
                 {% if app.user is same as (image.user) %}
-                    <p class="card-link mt-4">
+                    {% if image.isVisible %}
+                        <p class="card-link mt-4">
                         <a href="{{ path('images_app_blog_images_edit', {'slug': image.slug}) }}" class="btn btn-primary">Modifier l'image</a>
                         {{ include('blog_images/_delete_form.html.twig') }}
                     </p>
+                    {% else %}
+                        <p class="bg-warning p-3">
+                            Cette image a été bloquée par un administrateur, elle n'est pas visible par les autres utilisateurs. <br>
+                            Pour plus de renseignements, contacter un administrateur.
+                        </p>
+                    {% endif %}
                 {% endif %}
                 {% for role in app.user.roles %}
                     {% if role == "ROLE_ADMIN" %}
@@ -32,10 +39,10 @@
                         {% endif %}
                     {% endif %}
                 {% endfor %}
-
             </div>
         </article>
-        <p class="text-start">
+
+        <p class="text-start backTo">
             <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-secondary">Retour à la liste d'images</a>
         </p>
     </section>
