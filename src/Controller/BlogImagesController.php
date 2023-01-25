@@ -11,17 +11,40 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/blog/images', name: 'images_')]
 class BlogImagesController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/', name: 'app_blog_images_index', methods: ['GET'])]
     public function index(ImagesRepository $imagesRepository, Request $request): Response
     {
-        $page = $request->query->getInt('page', 1);
+        //$role = $this->getUser()->getRoles();
+        $user = $this->getUser();
 
-        $images = $imagesRepository->imagesPaginated($page, 6);
+        if($this->security->isGranted('ROLE_ADMIN')){
+            $page = $request->query->getInt('page', 1);
+
+            $images = $imagesRepository->imagesPaginatedAll($page, 6);
+        } /*elseif($user) {
+            $page = $request->query->getInt('page', 1);
+
+            $images = $imagesRepository->imagesPaginatedUser($page, 6);
+        }*/ else {
+            $page = $request->query->getInt('page', 1);
+
+            $images = $imagesRepository->imagesPaginated($page, 6);
+        }
 
         return $this->render('blog_images/index.html.twig', [
             'images' => $images,

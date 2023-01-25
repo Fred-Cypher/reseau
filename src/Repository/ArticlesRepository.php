@@ -49,7 +49,7 @@ class ArticlesRepository extends ServiceEntityRepository
         $query = $this->getEntityManager()->createQueryBuilder()
             ->select('article')
             ->from('App\Entity\Articles', 'article')
-            ->where('article.is_visible = 1')
+            //->where('article.is_visible = 1')
             ->setMaxResults($limit)
             ->setFirstResult(($page * $limit) - $limit);
 

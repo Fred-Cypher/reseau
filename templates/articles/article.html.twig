@@ -14,20 +14,37 @@
                 <p class="card-text mt-2">{{ article.summary }}</p>
                 <p class="card-text">{{ article.content}}</p>
                 {% if app.user is same as (article.user) %}
-                    <p class="card-link mt-4">
-                        <a href="{{ path('articles_app_article_edit', {'slug': article.slug})|lower  }}" class="btn btn-primary">Modifier l'article</a>
+                    {% if article.isVisible %}
+                        <p class="card-link mt-4">
+                            <a href="{{ path('articles_app_article_edit', {'slug': article.slug})|lower  }}" class="btn btn-primary">Modifier l'article</a>
 
-                        {{ include('articles/_delete_form.html.twig') }}
-                    </p>
+                            {{ include('articles/_delete_form.html.twig') }}
+                        </p>
+                    {% else %}
+                        <p class="bg-warning p-3">
+                            Cet article a été bloqué par un administrateur, il n'est pas visible par les autres utilisateurs. <br>
+                            Pour plus de renseignements, contacter un administrateur.
+                        </p>
+                    {% endif %}
                 {% endif %}
 
                 {% for role in app.user.roles %}
                     {% if role == "ROLE_ADMIN" %}
                         {% if app.user is not same as (article.user) %}
-                            <p class="card-link mt-4">
-                                <a href="{{ path('articles_app_article_edit', {'slug': article.slug})|lower  }}" class="btn btn-outline-primary">Modifier l'article</a>
-                                {{ include('articles/_delete_form.html.twig') }}
-                            </p>
+                            {% if article.isVisible %}
+                                <p class="card-link mt-4">
+                                    <a href="{{ path('articles_app_article_edit', {'slug': article.slug})|lower  }}" class="btn btn-outline-primary">Modifier l'article</a>
+                                    {{ include('articles/_delete_form.html.twig') }}
+                                </p>
+                            {% else %}
+                                <p class="card-link mt-4">
+                                    <p class="btn btn-warning">Article bloqué</p>
+                                    <p>
+                                        <a href="{{ path('articles_app_article_edit', {'slug': article.slug})|lower  }}" class="btn btn-outline-primary">Modifier l'article</a>
+                                        {{ include('articles/_delete_form.html.twig') }}
+                                    </p>
+                                </p>
+                            {% endif %}
                         {% endif %}
                     {% endif %}
                 {% endfor %}

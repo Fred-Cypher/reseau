@@ -16,10 +16,29 @@
             <ul>
                 {% if articles.data %}
                     {% for article in articles.data %}
-                        <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
-                            <li>{{ article.title }}</li>
-                        </a>
-                        <div class="line my-1"></div>
+                        {% if article.isVisible %}
+                            <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
+                                <li>{{ article.title }}</li>
+                            </a>
+                            <div class="line my-1"></div>
+                            {% elseif app.user is same as (article.user) %}
+                                <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
+                                    <li>{{ article.title }} <span class="badge bg-warning text-dark">Bloqué</span> </li>
+                                </a>
+                                <div class="line my-1"></div>
+                            {% else %}
+                                {% for role in app.user.roles %}
+                                    {% if role == "ROLE_ADMIN" %}
+                                        {% if app.user is not same as (article.user) %}
+                                        <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
+                                            <li>{{ article.title }} <span class="badge bg-warning text-dark">Bloqué</span> </li>
+                                        </a>
+                                        <div class="line my-1"></div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                        {% endif %}
+
                     {% else %}
                         <p>Pas d'article trouvé.</p>
                     {% endfor %}

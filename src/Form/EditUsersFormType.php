@@ -39,7 +39,8 @@ class EditUsersFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ]
-                ]);
+            ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver):void
@@ -58,4 +59,29 @@ class EditUsersFormType extends AbstractType
                 ],
                 'label' => 'Entrez votre nouveau mot de passe : ',
             ]);
-*/
+->add('password', PasswordType::class, [
+                'label' => 'Entrez votre nouveau mot de passe',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+->add('plainPassword', PasswordType::class, [
+                'mapped' => false,
+                'attr' => [
+                    'auto-complete' => 'new-password',
+                    'class' => 'form-control'
+                ],
+                'label' => 'Mot de passe :',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Entrez un mot de passe'
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Votre mot de passe doit faire au moins {{ limit }} caractères',
+                        'max' => 4096,
+                    ]),
+                ]
+                ]);
+
+            */

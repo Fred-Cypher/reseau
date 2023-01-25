@@ -72,10 +72,74 @@ class ImagesRepository extends ServiceEntityRepository
         return $result;
     }
 
+    public function imagesPaginatedAll(int $page, int $limit = 0): array
+    {
+        $limit = abs($limit);
+
+        $result = [];
+
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('image')
+            ->from('App\Entity\Images', 'image')
+            ->setMaxResults($limit)
+            ->setFirstResult(($page * $limit) - $limit);
+
+        $paginator = new Paginator($query);
+        $data = $paginator->getQuery()->getResult();
+
+        if (empty($data)) {
+            return $result;
+        }
+
+        //Calcul du nombre de pages
+        $pages = ceil($paginator->count() / $limit);
+
+        //Remplissage tableau
+        $result['data'] = $data;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit'] = $limit;
+
+        return $result;
+    }
+
+    /*public function imagesPaginatedUser(int $page, int $limit = 0): array
+    {
+        $limit = abs($limit);
+
+        $result = [];
+
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('image')
+            ->from('App\Entity\Images', 'image')
+            ->where('image.user = 2')
+            ->setMaxResults($limit)
+            ->setFirstResult(($page * $limit) - $limit);
+
+        $paginator = new Paginator($query);
+        $data = $paginator->getQuery()->getResult();
+
+        if (empty($data)) {
+            return $result;
+        }
+
+        //Calcul du nombre de pages
+        $pages = ceil($paginator->count() / $limit);
+
+        //Remplissage tableau
+        $result['data'] = $data;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit'] = $limit;
+
+        return $result;
+    }*/
 
 //    /**
+
 //     * @return Images[] Returns an array of Images objects
 //     */
+//      $user = $this->getUser();
 //    public function findByExampleField($value): array
 //    {
 //        return $this->createQueryBuilder('i')

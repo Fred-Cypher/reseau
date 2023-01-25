@@ -8,7 +8,11 @@
     <main class="container">
         <h2>Modifier mon profil</h2>
         <section class="row">
-            
+            {{ form_start(form) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.password) }}
+                    <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier mon profil</button>
+            {{ form_end(form) }}
         </section>    
     </main>
 

@@ -81,6 +81,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->commentsImages = new ArrayCollection();
         $this->commentsArticles = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
         //$this->roles = new ArrayCollection();
         $this->user = $user;
     }

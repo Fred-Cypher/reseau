@@ -10,10 +10,17 @@
         <section class="row">
             <ul class="mt-3">
                 {% for article in app.user.articles %}
-                    <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle">
-                        <li>{{ article.title }}</li>
-                    </a>
-                    <div class="line my-1"></div>
+                    {% if article.isVisible %}
+                        <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle">
+                            <li>{{ article.title }}</li>
+                        </a>
+                        <div class="line my-1"></div>
+                    {% else %}
+                        <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
+                            <li>{{ article.title }} <span class="badge bg-warning text-dark shadow-sm">Bloqué</span> </li>
+                        </a>
+                        <div class="line my-1"></div>
+                    {% endif %}
                 {% else %}
                     <p>Pas d'article trouvé.</p>
                 {% endfor %}  

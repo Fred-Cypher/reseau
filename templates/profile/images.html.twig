@@ -9,22 +9,45 @@
         <h2>Mes images</h2>
         <section class="row">
             {% for image in app.user.images %}
-                <div class="col-6 col-md-4">
-                    <a href="{{ path('images_app_blog_images_show', {'slug': image.slug}) }}">
-                        <div class="card mt-3">
-                            <div class="row g-0">
-                                <div class="col-md-4 p-1">
-                                    <img src="{{ vich_uploader_asset(image, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded h-100 w-100" alt="{{ image.title }}">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title itemTitle">{{ image.title }}</h5>
+                {% if image.isVisible %}
+                    <div class="col-6 col-md-4">
+                        <a href="{{ path('images_app_blog_images_show', {'slug': image.slug}) }}">
+                            <div class="card mt-3">
+                                <div class="row g-0">
+                                    <div class="col-md-4 p-1">
+                                        <img src="{{ vich_uploader_asset(image, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded h-100 w-100" alt="{{ image.title }}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title itemTitle">{{ image.title }}</h5>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="col-6 col-md-4">
+                        <a href="{{ path('images_app_blog_images_show', {'slug': image.slug}) }}">
+                            <div class="card mt-3">
+                                <div class="row g-0">
+                                    <div class="col-md-4 p-1">
+                                        <img src="{{ vich_uploader_asset(image, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded h-100 w-100" alt="{{ image.title }}">
+                                        <div class="card-img-overlay">
+                                            <span class="badge bg-warning text-dark shadow-sm">Bloquée</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title itemTitle">{{ image.title }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+                
             {% else %}
                 <p>
                     Vous n'avez pas encore enregistré d'images.
