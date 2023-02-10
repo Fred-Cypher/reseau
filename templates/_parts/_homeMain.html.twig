@@ -6,13 +6,12 @@
             <p class="card-text mt-4">Ce forum privé est destiné à partager des images ou des articles entre amis.</p>
             <p class="text-center mt-2">
                 {% if app.user %}
-                    <p class="text-dark">Vous êtes déjà connecté en tant que <span class="connectedUser">{{ app.user.nickname }}</span>, vous pouvez accéder au forum en suivant le lien prévu à cet effet.</p>
+                    <p class="text-dark">Vous êtes connecté en tant que <span class="connectedUser">{{ app.user.nickname }}</span>, vous pouvez accéder au forum en suivant le lien prévu à cet effet.</p>
                 {% else %}
                     <p class="mt-5 text-center">
                         <a href="{{ path('app_login') }}" class="card-link btn btn-primary">Connexion</a>
                         <a href="{{ path('app_register') }}" class="card-link btn btn-success">Inscription</a>
                     </p>
-                    
                 {% endif %}
             </p>
         </div>

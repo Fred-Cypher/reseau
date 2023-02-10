@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Images;
+use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
@@ -103,7 +104,7 @@ class ImagesRepository extends ServiceEntityRepository
         return $result;
     }
 
-    /*public function imagesPaginatedUser(int $page, int $limit = 0): array
+    public function imagesPaginatedUser(int $page, int $limit = 0): array
     {
         $limit = abs($limit);
 
@@ -112,8 +113,9 @@ class ImagesRepository extends ServiceEntityRepository
         $query = $this->getEntityManager()->createQueryBuilder()
             ->select('image')
             ->from('App\Entity\Images', 'image')
-            ->where('image.user = 2')
-            ->setMaxResults($limit)
+            ->where('image.is_visible = 1')
+            ->orWhere('image.user = 2')
+            ->setMaxResults($limit) 
             ->setFirstResult(($page * $limit) - $limit);
 
         $paginator = new Paginator($query);
@@ -133,7 +135,7 @@ class ImagesRepository extends ServiceEntityRepository
         $result['limit'] = $limit;
 
         return $result;
-    }*/
+    }
 
 //    /**
 

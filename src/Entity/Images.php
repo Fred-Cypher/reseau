@@ -33,7 +33,7 @@ class Images
     private ?string $description = null;
 
     #[Vich\UploadableField(mapping: 'images', fileNameProperty: 'image_url')]
-    private ?File $imageFile= null;
+    private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;

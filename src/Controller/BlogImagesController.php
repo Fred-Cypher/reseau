@@ -6,14 +6,11 @@ use App\Entity\Images;
 use App\Form\BlogImagesFormType;
 use App\Form\BlogModifFormType;
 use App\Repository\ImagesRepository;
-use Liip\ImagineBundle\LiipImagineBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/blog/images', name: 'images_')]
@@ -36,11 +33,11 @@ class BlogImagesController extends AbstractController
             $page = $request->query->getInt('page', 1);
 
             $images = $imagesRepository->imagesPaginatedAll($page, 6);
-        } /*elseif($user) {
+        } elseif($user) {
             $page = $request->query->getInt('page', 1);
 
             $images = $imagesRepository->imagesPaginatedUser($page, 6);
-        }*/ else {
+        } else {
             $page = $request->query->getInt('page', 1);
 
             $images = $imagesRepository->imagesPaginated($page, 6);
