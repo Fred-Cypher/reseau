@@ -4,6 +4,7 @@
             <div class="row col-12 col-md-3 text-center">
                 <div class="border">
                     <a href="{{ path('main') }}">
+                        <p class="dateNow">{{ "now"|date('d M Y, H : i', 'Europe/Paris') }}</p>
                         <img src=" {{ asset('assets/icons/globe.ico') }}" alt="Logo site" class="logo">
                         <p class="mt-2">Page d'accueil du site</p>
                     </a>
@@ -12,7 +13,7 @@
             
             <div class="col-12 col-md-6 w-100 text-center">
                 <div class="mt-2">
-                    <h1>Réseau social</h1>
+                    <h1 class="siteTitle">Réseau social</h1>
                     <p>Bienvenue sur notre réseau social</p>
                 </div>
             

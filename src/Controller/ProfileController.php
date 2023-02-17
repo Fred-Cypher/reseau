@@ -23,7 +23,7 @@ class ProfileController extends AbstractController
         $this->security = $security;
     }
 
-
+    // Affichage de la page de profil d'un utilisateur
     #[Route('/', name: 'index')]
     public function index(): Response
     {
@@ -32,6 +32,7 @@ class ProfileController extends AbstractController
         ]);
     }
 
+    // Affichage de la page d'édition de l'utilisateur
     #[Route('/edit', name: 'edit')]
     public function edit(Request $request): Response
     {
@@ -53,12 +54,14 @@ class ProfileController extends AbstractController
         ]);
     }
 
+    // Affichage de la page d'édition du mot de passe
     #[Route('/edit/pass', name: 'edit_password')]
         public function editPass()
     {
 
     }
 
+    // Affichage de la page d'édition de l'adresse mail
     #[Route('/edit/email', name: 'edit_email', methods: ['GET', 'POST'])]
     public function editEmail(/*Request $request, Users $users, UsersRepository $usersRepository*/): Response
     {
@@ -83,11 +86,13 @@ class ProfileController extends AbstractController
         ]);
     }
 
+    // Affichage de la page avec la liste des images d'un utilisateur
     #[Route('/images', name: 'images')]
     public function showImages(): Response{
         return $this->render('profile/images.html.twig');
     }
 
+    // Affichage de la page avec la liste des articles d'un utilisateur
     #[Route('/articles', name: 'articles')]
     public function showArticles(): Response
     {

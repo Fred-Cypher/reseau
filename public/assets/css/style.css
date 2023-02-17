@@ -12,11 +12,16 @@ header{
     background-color: whitesmoke;
 }
 
+.siteTitle{
+    color:rgb(187, 47, 47);
+}
+
 footer{
     position: fixed;
     bottom: 0;
-    background-color: whitesmoke;
+    background-color:brown;
     width: 100% !important;
+    color: whitesmoke;
 }
 
 a{

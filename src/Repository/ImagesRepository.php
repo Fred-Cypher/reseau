@@ -41,6 +41,8 @@ class ImagesRepository extends ServiceEntityRepository
         }
     }  
 
+    // Affichage des images pour tous les utilisateurs
+    // Seules les images non bloquées (visibles)
     public function imagesPaginated(int $page, int $limit = 0): array
     {
         $limit = abs($limit);
@@ -73,6 +75,8 @@ class ImagesRepository extends ServiceEntityRepository
         return $result;
     }
 
+    // Affichage de toutes les images réservé aux administrateurs
+    // Affichages de toutes les images bloquées (avec badge indicatif) et des non-bloquées
     public function imagesPaginatedAll(int $page, int $limit = 0): array
     {
         $limit = abs($limit);
@@ -104,6 +108,8 @@ class ImagesRepository extends ServiceEntityRepository
         return $result;
     }
 
+    // Affichage des images différent pour un utilisateur donné
+    // Afichage des images non-bloquées et des images bloquées de l'utilisateur connecté avec badge indicatif
     public function imagesPaginatedUser(int $page, int $limit = 0): array
     {
         $limit = abs($limit);

@@ -23,23 +23,30 @@ class BlogImagesController extends AbstractController
         $this->security = $security;
     }
 
+    // Affichage de la page d'index avec la liste des images, visibilité différentes suivant l'utilisateur
     #[Route('/', name: 'app_blog_images_index', methods: ['GET'])]
     public function index(ImagesRepository $imagesRepository, Request $request): Response
     {
         //$role = $this->getUser()->getRoles();
         $user = $this->getUser();
 
+        //## Page d'affichage administrateur
         if($this->security->isGranted('ROLE_ADMIN')){
+            // Récupération du numéro de la page dans l'url
             $page = $request->query->getInt('page', 1);
-
+            // Récupération des images, définition du nombre d'images par page
             $images = $imagesRepository->imagesPaginatedAll($page, 6);
         } elseif($user) {
+        //## Page d'affichage de l'utilisateur connecté
+            // Récupération du numéro de la page dans l'url
             $page = $request->query->getInt('page', 1);
-
+            // Récupération des images, définition du nombre d'images par page
             $images = $imagesRepository->imagesPaginatedUser($page, 6);
         } else {
+        //## Page d'affichage des autres utilisateurs
+            // Récupération du numéro de la page dans l'url
             $page = $request->query->getInt('page', 1);
-
+            // Récupération des images, définition du nombre d'images par page
             $images = $imagesRepository->imagesPaginated($page, 6);
         }
 
@@ -51,23 +58,29 @@ class BlogImagesController extends AbstractController
     #[Route('/new', name: 'app_blog_images_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ImagesRepository $imagesRepository, SluggerInterface $slug): Response
     {
+        // Création d'une nouvelle image
         $image = new Images();
+        // Création du formulaire
         $form = $this->createForm(BlogImagesFormType::class, $image);
+        // Traitement de la requête du formulaire
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récupération de l'utilisateur connecté et génération du slug
             $image->setUser($this->getUser());
             $image->getSlug($slug);
 
+            // Récupération de l'image
             $picture = $form->get('image_url')->getData();
-
+            // Création du nom de l'image
             $file = md5(uniqid()).'.'.$picture->guessExtension();
-
+            // Enregistrement de l'image dans le dossier prédéfini
             $picture->move(
                 $this->getParameter('images_directory'),
                 $file
             );
 
+            // Récupération du nom de l'image et enregistrement dans la BDD
             $image->setImageUrl($file);
 
             $imagesRepository->save($image, true);
@@ -83,6 +96,7 @@ class BlogImagesController extends AbstractController
         ]);
     }
 
+    // Affichage d'une page blog image
     #[Route('/{slug}', name: 'app_blog_images_show', methods: ['GET'])]
     public function show(Images $image): Response
     {
@@ -91,12 +105,16 @@ class BlogImagesController extends AbstractController
         ]);
     }
 
+    // Affichage de la page de modification d'une page de blog image
     #[Route('/{slug}/edit', name: 'app_blog_images_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Images $image, ImagesRepository $imagesRepository): Response
     {
+        // Création du formulaire
         $form = $this->createForm(BlogModifFormType::class, $image);
+        // Traitement de la requête du formulaire
         $form->handleRequest($request);
 
+        // Vérification que le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
             $image->setUser($this->getUser());
             $imagesRepository->save($image, true);
@@ -112,6 +130,7 @@ class BlogImagesController extends AbstractController
         ]);
     }
 
+    // Suppression d'une page du blog image
     #[Route('/delete/{id}', name: 'app_blog_images_delete', methods: ['POST'])]
     public function delete(Request $request, Images $image, ImagesRepository $imagesRepository): Response
     {

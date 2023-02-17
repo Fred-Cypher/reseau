@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// Affichage de la page d'accueil du forum
 #[Route('/forum', name: 'forum_')]
 class ForumController extends AbstractController
 {
