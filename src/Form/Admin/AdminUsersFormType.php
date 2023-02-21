@@ -31,25 +31,27 @@ class AdminUsersFormType extends AbstractType
             ])
             ->add('roles', ChoiceType::class,[
                 'attr' => [
-                    'class' => 'form-select my-2',
+                    'class' => 'form-check d-flex justify-content-evenly align-items-center col-sm-12 col-md-8 col-lg-7 mt-2',
                 ],
-                'label' => 'Sélectionner les rôles à assigner l\'utilisateur, plusieurs choix possibles (le rôle utilisateur est attribué par défaut) : ',
+                'label' => 'Sélectionner les rôles à assigner l\'utilisateur, plusieurs choix possibles : ',
                 'choices' => [
-                    'Ajouter le rôle Administrateur' => 'ROLE_ADMIN',
-                    'Ajouter le rôle Modérateur' => 'ROLE_MODO',
-                    //'Revenir au rôle Utilisateur' => '',
+                    'Administrateur' => 'ROLE_ADMIN',
+                    'Modérateur' => 'ROLE_MODO',    
+                    'Utilisateur' => 'ROLE_USER',
                 ],
                 'multiple' => true,
+                'expanded' => true,
             ])
             ->add('isEnabled', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-check my-2'
+                    'class' => 'form-check form-check-inline d-flex justify-content-evenly align-items-center col-sm-12 col-md-5 col-lg-4 mt-2'
                 ],
                 'label' => 'Utilisateur autorisé / bloqué',
                 'choices' => [
                     'Bloqué' => 0,
                     'Autorisé' => 1
-                ]
+                ],
+                'expanded' => true,
             ])
         ;
     }
