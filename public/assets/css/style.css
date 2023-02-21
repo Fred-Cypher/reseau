@@ -93,8 +93,11 @@ li{
 }
 
 .form-check-input{
-    background-color: brown !important;
     border: 1px brown solid !important;
+}
+
+.form-check-input:checked{
+    background-color: brown !important;
 }
 
 .backTo{

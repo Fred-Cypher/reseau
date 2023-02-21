@@ -31,11 +31,26 @@
                             <td>{{ user.nickname }}</td>
                             <td>{{ user.email }}</td>
                             <td class="text-center">{{ user.isVerified }}</td>
-                            <td>{{ user.roles|json_encode() }}</td>
+                            <!--<td>{{ user.roles|json_encode() }}</td>-->
+                            <td>
+                                {% for role in user.roles %}
+                                    {% if role == "ROLE_ADMIN" %}
+                                        {% set name = "Administrateur" %}
+                                        {% set color = "black" %}
+                                    {% elseif role == "ROLE_MODO" %}
+                                        {% set name = "Modérateur" %}
+                                        {% set color = "danger" %}
+                                    {% else %}
+                                        {% set name = "Membre" %}
+                                        {% set color = "secondary" %}
+                                    {% endif %}
+                                    <span class="badge bg-{{ color }}">{{ name }}</span>
+                                {% endfor %}
+                            </td>
                             <td>
                                 <div class="form-check form-switch">
-                                    <label class="form-check-label" for="flexSwitchCheckChecked{{ user.id }}"></label>
-                                    <input class="form-check-input ms-2" type="checkbox" role="switch" id="flexSwitchCheckChecked{{ user.id }}" {{ (user.isEnabled) ? 'checked' : '' }} data-id="{{ user.id }}" disabled>
+                                    <label class="form-check-label" for="switch{{ user.id }}"></label>
+                                    <input class="form-check-input ms-2" type="checkbox" role="switch" id="switch{{ user.id }}" {{ (user.isEnabled) ? 'checked' : '' }} data-id="{{ user.id }}" disabled>
                                 </div>
                             </td>
                             <td>

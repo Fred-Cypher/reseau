@@ -37,7 +37,7 @@ class AdminUsersFormType extends AbstractType
                 'choices' => [
                     'Ajouter le rôle Administrateur' => 'ROLE_ADMIN',
                     'Ajouter le rôle Modérateur' => 'ROLE_MODO',
-                    'Revenir au rôle Utilisateur' => '',
+                    //'Revenir au rôle Utilisateur' => '',
                 ],
                 'multiple' => true,
             ])
