@@ -33,11 +33,10 @@ class AdminUsersFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-check d-flex justify-content-evenly align-items-center col-sm-12 col-md-8 col-lg-7 mt-2',
                 ],
-                'label' => 'Sélectionner les rôles à assigner l\'utilisateur, plusieurs choix possibles : ',
+                'label' => 'Sélectionner les rôles à assigner à l\'utilisateur, plusieurs choix possibles : ',
                 'choices' => [
                     'Administrateur' => 'ROLE_ADMIN',
                     'Modérateur' => 'ROLE_MODO',    
-                    'Utilisateur' => 'ROLE_USER',
                 ],
                 'multiple' => true,
                 'expanded' => true,
