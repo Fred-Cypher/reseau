@@ -30,7 +30,12 @@
                             <td>{{ user.id }}</td>
                             <td>{{ user.nickname }}</td>
                             <td>{{ user.email }}</td>
-                            <td class="text-center">{{ user.isVerified }}</td>
+                            <td class="text-center">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="switch{{ user.id }}" {{ (user.isVerified) ? 'checked' : '' }} data-id="{{ user.id }}" disabled>
+                                    <label class="form-check-label" for="switch{{ user.id }}"></label>
+                                </div>
+                            </td>
                             <!--<td>{{ user.roles|json_encode() }}</td>-->
                             <td>
                                 {% for role in user.roles %}

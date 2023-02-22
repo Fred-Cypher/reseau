@@ -4,6 +4,7 @@ namespace App\Form\Admin;
 
 use App\Entity\Articles;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -36,6 +37,17 @@ class AdminArticlesFormType extends AbstractType
                     'class' => 'form-control mt-2'
                 ],
                 'label' => 'Contenu de l\'article : '
+            ])
+            ->add('isVisible', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-check form-check-inline d-flex justify-content-evenly align-items-center col-md-5 col-lg-4 mt-2'
+                ],
+                'label' => 'Bloquer / débloquer un article',
+                'choices' => [
+                    'Bloquer' => 0,
+                    'Autoriser' => 1
+                ],
+                'expanded' => true,
             ])
         ;
     }

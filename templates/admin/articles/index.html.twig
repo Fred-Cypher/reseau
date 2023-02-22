@@ -29,13 +29,13 @@
                             <td>{{ article.id }}</td>
                             <td>{{ article.title }}</td>
                             <td>{{ article.user.nickname }}</td>
-                            <td>{{ article.summary }}</td>
+                            <td class="w-25">{{ article.summary }}</td>
                             <td>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked{{ article.id }}" {{ (article.isVisible) ? 'checked' : '' }} data-id="{{ article.id }}" disabled>
                                     <label class="form-check-label" for="flexSwitchCheckChecked{{ article.id }}"></label>
                                 </div>
-                            {{ article.isVisible }}</td>
+                            </td>
                             <td>
                                 <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btn-outline-primary">Modifier</a>
                                 <a href="" class="btn">{{ include('articles/_delete_form.html.twig') }}</a>
