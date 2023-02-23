@@ -12,6 +12,11 @@ header{
     background-color: whitesmoke;
 }
 
+/*.adminbtn:hover{
+    background-color: rgba(255, 0, 0, 0.315);
+    color: black;
+}*/
+
 .siteTitle{
     color:rgb(187, 47, 47);
 }

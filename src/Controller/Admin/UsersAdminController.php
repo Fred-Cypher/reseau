@@ -22,6 +22,14 @@ class UsersAdminController extends AbstractController
         ]);
     }
 
+    #[Route('/private', name: 'private', methods: ['GET'])]
+    public function private(UsersRepository $usersRepository): Response
+    {
+        return $this->render('admin/users/private.html.twig', [
+            'users' => $usersRepository->findBy([], ['lastname' => 'asc']),
+        ]);
+    }
+
     // Affichage de la modification des utilisateurs par un administrateur
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function adminUserEdit(Request $request, Users $users, UsersRepository $usersRepository): Response
