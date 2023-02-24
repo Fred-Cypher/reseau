@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modération des images{% endblock %}
+
+{% block body %}
+
+    {% include '_parts/_forumHeader.html.twig' %}
+
+    <main class="container">
+        <h2 class="mt-3">Liste des images à modérer</h2>
+
+        <p class="m-3 d-flex justify-content-end">
+            <a href="{{ path('modo_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+        </p>
+
+        <section class="row mt-5">
+            <table class="table table-striped">
+                <thead>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Image</th>
+                    <th>Visible</th>
+                    <th>Action</th>
+                </thead>
+                <tbody> 
+                    {% for image in images %}
+                        <tr>
+                            <td>{{ image.id }}</td>
+                            <td>{{ image.title }}</td>
+                            <td>{{ image.user.nickname }}</td>
+                            <td>
+                                <img src="{{ vich_uploader_asset(image, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded h-50 w-50" alt="{{ image.title }}">
+                            </td>
+                            <td>
+                                <div class="form-check form-switch"> 
+                                        {% if image.isVisible  %} 
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked{{ image.id }}" checked data-id="{{ image.id }}" disabled>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked{{ image.id }}"></label>
+                                        {% else %}
+                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked{{ image.id }}" data-id="{{ image.id }}" disabled>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked{{ image.id }}"></label>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            <td>
+                                <a href="{{ path('modo_blog_images_edit', {'slug': image.slug}) }}" class="btn btn-outline-primary">Modifier</a>
+                                <a href="" class="btn">{{ include('blog_images/_delete_form.html.twig') }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+            <p class="m-3 d-flex justify-content-end">
+                <a href="{{ path('modo_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+            </p>
+        </section>
+    </main>
+    
+{% endblock %}

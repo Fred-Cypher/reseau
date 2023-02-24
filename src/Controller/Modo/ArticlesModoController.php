@@ -3,6 +3,7 @@
 namespace App\Controller\Modo;
 
 use App\Entity\Articles;
+use App\Form\Modo\ModoArticlesFormType;
 use App\Repository\ArticlesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,5 +53,10 @@ class ArticlesModoController extends AbstractController
                 'form' => $form->createView(),
             ]);
         }
+
+        return $this->render('modo/articles/edit.html.twig', [
+            'article' => $article,
+            'form' => $form->createView(),
+        ]);
     }
 }

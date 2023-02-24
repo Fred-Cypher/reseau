@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modération du forum{% endblock %}
+
+{% block body %}
+
+    {% include '_parts/_forumHeader.html.twig' %}
+
+    <main class="container col-sm-9 col-md-12">
+        <h2 class="mt-5">Modération du forum</h2>
+        
+        <section class="row m-5 w-75 m-auto">
+            <nav class="nav flex-column">
+                <li class="nav-item">
+                    <a href="{{ path('modo_blog_index') }}" class="btn btn-warning mt-3 nav-link moderationButton">Gestion du blog images</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('modo_articles_index') }}" class="btn btn-warning mt-3 nav-link moderationButton">Gestion des articles</a>
+                </li>
+            </nav>
+        </section>
+    </main>
+    
+    {% include "_parts/_footer.html.twig" %}
+    
+{% endblock %}

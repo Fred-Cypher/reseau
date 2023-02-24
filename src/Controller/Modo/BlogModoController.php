@@ -3,6 +3,7 @@
 namespace App\Controller\Modo;
 
 use App\Entity\Images;
+use App\Form\Modo\ModoBlogFormType;
 use App\Repository\ImagesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
