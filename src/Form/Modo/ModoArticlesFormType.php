@@ -5,6 +5,7 @@ namespace App\Form\Modo;
 use App\Entity\Articles;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -30,7 +31,7 @@ class ModoArticlesFormType extends AbstractType
                     'class' => 'small text-secondary'
                 ]
             ])
-            ->add('content', TextType::class, [
+            ->add('content', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],
