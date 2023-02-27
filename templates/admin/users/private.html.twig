@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modération - Données privées{% endblock %}
+{% block title %}Admin - Données privées{% endblock %}
 
 {% block body %}
 
@@ -15,7 +15,7 @@
         </p>
 
         <section class="row">
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted ('ROLE_ADMIN') %}
                 <table class="table table-sm table-striped mt-3">
                     <thead>
                         <th>Id</th>

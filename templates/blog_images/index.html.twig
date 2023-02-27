@@ -78,7 +78,30 @@
                                         </div>
                                     </a>
                                 </div>
+                            {% elseif role == 'ROLE_MODO' %}
+                                <div class="col-6 col-md-4">
+                                    <a href="{{ path('images_app_blog_images_show', {'slug': image.slug}) }}">
+                                        <div class="card mt-3">
+                                            <div class="row g-0">
+                                                <div class="col-md-4 p-1">
+                                                    <img src="{{ vich_uploader_asset(image, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded h-100 w-100" alt="{{ image.title }}">
+                                                    <div class="card-img-overlay">
+                                                        <span class="badge bg-warning text-dark">Bloquée</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title itemTitle text-truncate">{{ image.title }}</h5>
+                                                        
+                                                        <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             {% endif %}
+                            
                         {% endfor %}
                     {% endif %}
                 {% else %}

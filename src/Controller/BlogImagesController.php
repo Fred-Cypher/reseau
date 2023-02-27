@@ -31,7 +31,7 @@ class BlogImagesController extends AbstractController
         $user = $this->getUser();
 
         //## Page d'affichage administrateur
-        if($this->security->isGranted('ROLE_ADMIN')){
+        if($this->security->isGranted('ROLE_MODO')){
             // Récupération du numéro de la page dans l'url
             $page = $request->query->getInt('page', 1);
             // Récupération des images, définition du nombre d'images par page

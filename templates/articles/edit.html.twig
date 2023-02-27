@@ -9,12 +9,17 @@
     <main class="container">
         <h2>Modifier un article</h2>
         <section class="mt-3">
-            {{ form_start(form) }}
-                {{ form_row(form.title) }}
-                {{ form_row(form.summary) }}
-                {{ form_row(form.content) }}
-                <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'article</button>
-            {{ form_end(form) }}
+            {% if app.user is same as (article.user) %}
+                {{ form_start(form) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.summary) }}
+                    {{ form_row(form.content) }}
+                    <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'article</button>
+                {{ form_end(form) }}
+            {% else %}
+            Vous n'avez pas le droit de modifier cet article
+            {% endif %}
+            
             <p class="backTo">
                 <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary mt-3">Retour à la liste d'articles</a>
             </p>
