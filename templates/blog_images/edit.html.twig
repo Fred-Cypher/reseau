@@ -16,6 +16,7 @@
                 {{ form_row(form.image_url) }}
                 {% if app.user is same as (image.user) %}
                     <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'image</button>
+                    
                 {% endif %}
             {{ form_end(form) }}
         </section>

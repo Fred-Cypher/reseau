@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Images;
 use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\AST\IndexBy;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -110,17 +111,20 @@ class ImagesRepository extends ServiceEntityRepository
 
     // Affichage des images différent pour un utilisateur donné
     // Afichage des images non-bloquées et des images bloquées de l'utilisateur connecté avec badge indicatif
-    public function imagesPaginatedUser(int $page, int $limit = 0): array
+    public function imagesPaginatedUser(Users $user, int $page, int $limit = 0): array
     {
         $limit = abs($limit);
 
         $result = [];
 
+        //$user = $this->getUser();
+
         $query = $this->getEntityManager()->createQueryBuilder()
             ->select('image')
             ->from('App\Entity\Images', 'image')
             ->where('image.is_visible = 1')
-            ->orWhere('image.user = 2')
+            ->innerJoin('App\Entity\Users', 'user')
+            ->Where('user.id = image.user')
             ->setMaxResults($limit) 
             ->setFirstResult(($page * $limit) - $limit);
 

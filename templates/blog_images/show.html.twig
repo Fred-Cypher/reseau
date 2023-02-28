@@ -16,8 +16,8 @@
                     <img class="card-img-bottom blogPicture" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
                 </p>
 
-                
-                    {% if is_granted ('ROLE_ADMIN') %}
+                {% for role in app.user.roles %}
+                    {% if role == 'ROLE_ADMIN' %}
                         {% if app.user is not same as (image.user) %}
                             {% if image.isVisible %}
                                 <p class="card-link mt-4">
@@ -39,9 +39,7 @@
                                 {{ include('blog_images/_delete_form.html.twig') }}
                             </p>    
                         {% endif %}
-                    {% endif %}
-
-                    {% if is_granted ('ROLE_MODO') %}
+                    {% elseif role == 'ROLE_MODO' %}
                         {% if app.user is not same as (image.user) %}
                             {% if image.isVisible %}
                                 <p class="card-link mt-4">
@@ -58,9 +56,7 @@
                                 </p>
                             {% endif %}
                         {% endif %}
-                    {% endif %}
-
-                    {% if is_granted ('ROLE_USER') %}
+                    {% else %}
                         {% if app.user is same as (image.user) %}
                             {% if image.isVisible %}
                                 <p class="card-link mt-4">
@@ -75,8 +71,8 @@
                             {% endif %}
                         {% endif %}
                     {% endif %}
-                
-            </div>
+                {% endfor %}
+                </div>
         </article>
 
         <p class="text-start backTo">

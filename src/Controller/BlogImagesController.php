@@ -41,7 +41,7 @@ class BlogImagesController extends AbstractController
             // Récupération du numéro de la page dans l'url
             $page = $request->query->getInt('page', 1);
             // Récupération des images, définition du nombre d'images par page
-            $images = $imagesRepository->imagesPaginatedUser($page, 6);
+            $images = $imagesRepository->imagesPaginatedUser($user, $page, 6);
         } else {
         //## Page d'affichage des autres utilisateurs
             // Récupération du numéro de la page dans l'url
