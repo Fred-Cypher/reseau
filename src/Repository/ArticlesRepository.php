@@ -72,49 +72,9 @@ class ArticlesRepository extends ServiceEntityRepository
         return $result;
     }
 
-    /*public function articlesVisibility($isVisible): bool
-    {
-
-        return $this->createQueryBuilder('article')
-            ->andwhere('is_visible = :visible')
-            ->setParameter('visible', $isVisible)
-            ->getQuery()
-            ->getResult();
-    }*/
-
     //    /**
     //     * @return Articles[] Returns an array of Articles objects
     //     */
-
-    /*public function findAll()
-    {
-        return $this->findBy(array());
-    }*/
-
-    /*public function findAllArticles(): array{
-
-        $result=[];
-
-        $query = $this->getEntityManager()->createQueryBuilder()
-        ->select('t')
-        ->
-
-        return $result;
-    }*/
-
-    /**
-     * $article = new Articles;
-
-     *      $articleArray = $article->findBy($id);
-
-     *      if($articleArray){
-     *         $article = $article->hydrate();
-            
-     *         $article->setVisible($article->getVisible() ? 0 : 1);
-
-     *         $article->update();
-     *    }
-     */
 
 //    public function findByExampleField($value): array
 //    {

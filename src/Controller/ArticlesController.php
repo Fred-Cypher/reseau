@@ -76,10 +76,10 @@ class ArticlesController extends AbstractController
         $form = $this->createForm(ArticlesFormType::class, $article);
         // Traitement de la requête du formulaire
         $form->handleRequest($request);
-
+        
         // Vérification que le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
-            $article->setUser($this->getUser());
+            $article->setUser($this->getUser()); 
             $articlesRepository->save($article, true);
 
             $this->addFlash('info', 'Votre article a bien été modifié.');

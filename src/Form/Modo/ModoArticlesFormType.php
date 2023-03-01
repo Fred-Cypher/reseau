@@ -41,7 +41,7 @@ class ModoArticlesFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-check form-check-inline d-flex justify-content-evenly align-items-center col-md-5 col-lg-4 mt-2'
                 ],
-                'label' => 'Bloques / débloquer un article',
+                'label' => 'Bloquer / débloquer un article',
                 'choices' => [
                     'Bloquer' => 0,
                     'Autoriser' => 1

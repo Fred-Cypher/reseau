@@ -38,7 +38,9 @@ class ArticlesModoController extends AbstractController
     #[Route('/{slug}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function modoArticleEdit(Request $request, Articles $article, ArticlesRepository $articlesRepository): Response
     {
+        // Création du formulaire
         $form = $this->createForm(ModoArticlesFormType::class, $article);
+        // Traitement de la requête du formulaire
         $form->handleRequest($request);
 
         //Vérification que le formulaire est soumis et valide
@@ -48,10 +50,7 @@ class ArticlesModoController extends AbstractController
 
             $this->addFlash('info', 'L\'article a bien été modifié');
 
-            return $this->redirectToRoute('modo/articles/edit.html.twig', [
-                'article' => $article,
-                'form' => $form->createView(),
-            ]);
+            return $this->redirectToRoute('modo_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('modo/articles/edit.html.twig', [
