@@ -113,9 +113,7 @@ class ImagesRepository extends ServiceEntityRepository
     // Afichage des images non-bloquées et des images bloquées de l'utilisateur connecté avec badge indicatif
     public function imagesPaginatedUser(Users $user, int $page, int $limit = 0): array
     {
-        $limit = abs($limit);
-
-        $result = [];
+       
 
         //$user = $this->getUser();
 
@@ -130,6 +128,10 @@ class ImagesRepository extends ServiceEntityRepository
 
         $paginator = new Paginator($query);
         $data = $paginator->getQuery()->getResult();
+
+        $limit = abs($limit);
+
+        $result = [];
 
         if (empty($data)) {
             return $result;

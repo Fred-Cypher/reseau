@@ -40,7 +40,14 @@
                 <p class="fs-4 text-danger font-weight-bold">Vous n'avez pas le droit de lire ces informations</p>
             {% endif %}
         </section>
-    
+
+        <div class="backTo">
+            <p class="m-3 d-flex justify-content-end">
+                <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+            </p>
+        </div>
     </main>
+
+    {% include "_parts/_footer.html.twig" %}
     
 {% endblock %}

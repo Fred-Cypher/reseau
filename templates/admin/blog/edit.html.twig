@@ -28,10 +28,15 @@
             {{ form_end(form) }}
         </article>
 
-        <p class="m-3 d-flex justify-content-end">
-            <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
-        </p>
+        <div class="backTo">
+            <p class="m-3 d-flex justify-content-end">
+                <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-secondary me-4">Aller à la liste d'images du forum</a>
+                <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+            </p>
+        </div>
     </main>
+
+    {% include "_parts/_footer.html.twig" %}
 
     <script src="{{ asset('assets/js/scriptsBlog.js') }}"></script>
     

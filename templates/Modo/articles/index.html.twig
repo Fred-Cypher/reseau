@@ -45,11 +45,14 @@
                 </tbody>
             </table>
 
-            <p class="m-3 d-flex justify-content-end">
-                <a href="{{ path('modo_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
-            </p>
-
+            <div class="backTo">
+                <p class="m-3 d-flex justify-content-end">
+                    <a href="{{ path('modo_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+                </p>
+            </div>
         </section>
     </main>
+
+    {% include "_parts/_footer.html.twig" %}
     
 {% endblock %}

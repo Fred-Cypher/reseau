@@ -29,10 +29,15 @@
             {{ form_end(form) }}
         </article>
         
-        <p class="m-3 d-flex justify-content-end">
+        <div class="backTo">
+            <p class="m-3 d-flex justify-content-end">
+                <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary me-3">Aller à la liste d'articles du forum</a>
                 <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
             </p>
+        </div>
     </main>
+
+    {% include "_parts/_footer.html.twig" %}
 
     <script src="{{ asset('assets/js/scriptsArticles.js') }}"></script>
 
