@@ -6,6 +6,7 @@
 body{
     background-color:bisque;
     height: 100%;
+    background-image: url("../images/nebuleuse.jpg");
 }
 
 header{
@@ -24,7 +25,7 @@ header{
 footer{
     position: fixed;
     bottom: 0;
-    background-color:brown;
+    background-color:#CB454E; /*avant brown*/
     width: 100% !important;
     color: whitesmoke;
 }
@@ -88,6 +89,35 @@ li{
     display: none;
 }
 
+.backTo{
+    height: 6rem;
+}
+
+.buttons{
+    height: 8rem;
+}
+
+.catError{
+    width: 14rem;
+}
+
+
+/*### COULEURS BOUTONS, CHECKS, BACKGROUND ###*/
+
+.pagination a{
+    color: brown;
+}
+
+.pagination .active a{
+    background-color: brown !important;
+    border: 1px brown solid !important; 
+}
+
+.pagination .active a:hover{
+    background-color: rgb(187, 47, 47) !important; /*un peu plus clair*/
+    border: 1px brown solid !important; 
+}
+
 .moderationButton{
     color: black;
 }
@@ -105,18 +135,17 @@ li{
     background-color: brown !important;
 }
 
-.backTo{
-    height: 6rem;
+.btn-secondary{
+    background-color: #2B2211 !important;
+    border: #2B2211 !important;
 }
 
-.buttons{
-    height: 8rem;
+.btn-secondary:hover{
+    background-color: #302d28 !important; /* un peu plus clair */
+    box-shadow: 2px 2px #302d2859;
 }
 
-/*### COULEURS ###*/
-
-/*.btn-primary{
-    background-color: blueviolet !important;
-    border: 1px solid rgb(76, 24, 124) !important;
-}*/
+.bg-light{
+    background-color: #f7e0e0 !important;
+}
 

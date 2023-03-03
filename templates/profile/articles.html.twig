@@ -8,7 +8,7 @@
     <main class="container">
         <h2>Mes articles</h2>
         <section class="row">
-            <ul class="mt-3">
+            <ul class="mt-3 card">
                 {% for article in app.user.articles %}
                     {% if article.isVisible %}
                         <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle">

@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Users;
+//use App\Entity\Users;
 //use App\Form\EditUsersEmailFormType;
-use App\Repository\UsersRepository;
+//use App\Repository\UsersRepository;
 //use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,32 +55,38 @@ class ProfileController extends AbstractController
     }
 
     // Affichage de la page d'édition du mot de passe
-    #[Route('/edit/pass', name: 'edit_password')]
+    #[Route('/edit/pass', name: 'edit_password', methods: ['GET', 'POST'])]
         public function editPass()
     {
-
+        return $this->render('profile/editPass.html.twig', [
+            'controller_name' => 'Edition du profil de l\'utilisateur'
+        ]);
     }
 
     // Affichage de la page d'édition de l'adresse mail
     #[Route('/edit/email', name: 'edit_email', methods: ['GET', 'POST'])]
     public function editEmail(/*Request $request, Users $users, UsersRepository $usersRepository*/): Response
     {
-        /*$form = $this->createForm(EditUsersEmailFormType::class, $users);
+        /* $user = $this->getUser()->getId();
+
+        dd($user);
+
+         // Création du formulaire
+        $form = $this->createForm(EditUsersEmailFormType::class, $users);
+        // Traitement de la requête du formulaire
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            $users->getEmail();
-            $usersRepository->save($users, true);
+        // Vérification que le formulaire est soumis et valide
+        if ($form->isSubmitted() && $form->isValid()) { 
+            if($user){
+                $usersRepository->save($users, true);
 
-            $this->addFlash('info', 'Votre adresse email a bien été modifiée.');
+            $this->addFlash('info', 'Votre adresse e-mail a bien été modifiée.');
 
-            return $this->redirectToRoute('profile_edit');
-        }
+            return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
+            }
+        }*/
 
-        return $this->renderform('profile/index.html.twig', [
-            'users' => $users,
-            'form' => $form,
-        ]);*/
         return $this->render('profile/editEmail.html.twig', [
             'controller_name' => 'Edition du profil de l\'utilisateur'
         ]);

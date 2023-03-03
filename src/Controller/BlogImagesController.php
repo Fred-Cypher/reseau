@@ -30,7 +30,7 @@ class BlogImagesController extends AbstractController
         //$role = $this->getUser()->getRoles();
         $user = $this->getUser();
 
-        //## Page d'affichage administrateur
+        //## Page d'affichage administrateur et modérateur
         if($this->security->isGranted('ROLE_MODO')){
             // Récupération du numéro de la page dans l'url
             $page = $request->query->getInt('page', 1);

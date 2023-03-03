@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Images;
 use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\AST\IndexBy;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -113,7 +112,9 @@ class ImagesRepository extends ServiceEntityRepository
     // Afichage des images non-bloquées et des images bloquées de l'utilisateur connecté avec badge indicatif
     public function imagesPaginatedUser(Users $user, int $page, int $limit = 0): array
     {
-       
+        $limit = abs($limit);
+
+        $result = [];
 
         //$user = $this->getUser();
 
@@ -128,10 +129,6 @@ class ImagesRepository extends ServiceEntityRepository
 
         $paginator = new Paginator($query);
         $data = $paginator->getQuery()->getResult();
-
-        $limit = abs($limit);
-
-        $result = [];
 
         if (empty($data)) {
             return $result;

@@ -13,7 +13,7 @@
         <h3>Liste tes articles existants</h3>
 
         <section class="row">
-            <ul>
+            <ul class="card">
                 {% if articles.data %}
                     {% for article in articles.data %}
                         {% if article.isVisible %}

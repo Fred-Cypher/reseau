@@ -6,11 +6,15 @@
 
     {% include "_parts/_homeHeader.html.twig" %}
 
-    <main class="container">
+    <main class="container text-center">
         <div class="card m-5 p-5">
             <h2 class="card-text">Page non trouvée</h2>
-            <div class="card-text mt-5">La page que vous recherchez n'a pas été trouvée. ☹️</div>
+            <img src=" {{ asset('assets/images/cat404.png') }} " class="catError m-auto"> <!-- Image Pixabay libre de droits -->
+            <div class="card-text mt-5 h5">Oups, je n'ai pas trouvé la page que vous cherchez. </div>
         </div>
+        <p class="backTo">
+            <a href="{{ path('forum_index') }}" class="btn btn-secondary">Retour au forum</a>
+        </p>
     </main>
 
     {% include "_parts/_footer.html.twig" %}
