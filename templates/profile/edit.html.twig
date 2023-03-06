@@ -6,21 +6,25 @@
     {% include '_parts/_forumHeader.html.twig' %}
 
     <main class="container h-100">
-        <h2 class="mt-2 mb-4">Modifier mon profil</h2>
+        <h2 class="mt-2 mb-4 bg-warning p-4">Modifier mon profil</h2>
         <section class="m-2">
             <div class="card ms-3">
                 <div class="card-body">
                     <p class="card-title h5">Ce que je peux modifier</p>
                     <p class="card-text text-center">
-                        <a href="{{ path('profile_edit_password')}}" class="btn btn-primary m-5">Modifier mon mot de passe</a>
-                        <a href="{{ path('profile_edit_email')}}" class="btn btn-info m-5">Modifier mon adresse email</a>
+                        <a href="{{ path('profile_edit_password', {id: app.user.id } )}}" class="btn btn-primary m-5">Modifier mon mot de passe</a>
+                        <a href="{{ path('profile_edit_email', {id: app.user.id } )}}" class="btn btn-info m-5">Modifier mon adresse email</a>
                     </p>
                     <p class="card-text">
                         
                     </p>
                 </div>
             </div>
-        </section>    
+        </section>
+
+        <div class="mt-5">
+            <a href="{{ path('profile_index') }}" class="btn btn-primary">Retour au profil</a>
+        </div>    
     </main>
 
     {% include "_parts/_footer.html.twig" %}

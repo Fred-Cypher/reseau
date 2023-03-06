@@ -6,13 +6,19 @@
     {% include '_parts/_forumHeader.html.twig' %}
 
     <main class="container h-100">
-        <h2 class="mt-2 mb-4">Modifier mon adresse email</h2>
-        <section class="m-2">
-            {## {{ form_start(form) }}
-                {{ form_row(form.email) }}
-                <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'adresse mail'</button>
-            {{ form_end(form) }} ##}
-        </section>    
+        <h2 class="mt-4 mb-4 bg-warning p-4">Modifier mon adresse email</h2>
+        <section class="m-2 card">
+            <div class="card-body">
+                {{ form_start(form) }}
+                    {{ form_row(form.email) }}
+                    <button type="submit" class="btn btn-primary mt-4 btn-lg">Modifier l'adresse mail</button>
+                {{ form_end(form) }} 
+            </div>
+        </section>  
+
+        <div class="mt-4">
+            <a href="{{ path('profile_index') }}" class="btn btn-primary">Retour au profil</a>
+        </div>
     </main>
 
     {% include "_parts/_footer.html.twig" %}
