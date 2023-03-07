@@ -10,7 +10,7 @@
 
     <main class="container">
         <div class="row">
-            <div class="col">
+            <div class="col card mt-3">
                 <h2>Enregistrer un nouvel article</h2>
                 <article class="mt-3">
                     {{ form_start(formNew) }}
@@ -32,10 +32,10 @@
                         </p>
                     {{ form_end(formNew) }}
                 </article>
-                <p class="backTo">
-                    <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary">Retour à la liste d'articles</a>
-                </p>
             </div>
+            <p class="backTo mt-2">
+                <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary">Retour à la liste d'articles</a>
+            </p>
         </div>
     </main>
 

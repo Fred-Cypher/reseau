@@ -16,7 +16,14 @@ class EditUsersPassFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('plainPassword', RepeatedType::class, [
+            ->add('plainPassword', PasswordType::class, [
+                'attr' => [
+                    'type' => 'password',
+                    'class' => 'form-control'
+                ],
+                'label' => 'Mot de passe actuel',
+            ])
+            ->add('newPassword',RepeatedType::class, [
                 'mapped' => false,
                 'type' => PasswordType::class,
                 'options' => [
@@ -28,24 +35,6 @@ class EditUsersPassFormType extends AbstractType
                 ],
                 'first_options' => ['label' => 'Mot de passe : '],
                 'second_options' => ['label' => 'Confirmez le mot de passe :'],
-                'constraints' => [
-                    new NotBlank(),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit faire au moins {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
-            ->add('newPassword', PasswordType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Nouveau mot de passe',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
                 'constraints' => [
                     new NotBlank(),
                     new Length([

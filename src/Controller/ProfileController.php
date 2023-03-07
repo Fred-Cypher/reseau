@@ -97,13 +97,14 @@ class ProfileController extends AbstractController
 // Affichage de la page d'édition de l'adresse mail
     //#[Security("is_granted('ROLE_USER' and user === user)")]
     #[Route('/edit/email/{id}', name: 'edit_email', methods: ['GET', 'POST'])]
-    public function editEmail(Request$request, Users $user, EntityManagerInterface $entityManagerInterface, UserPasswordHasherInterface $hasher): Response
+    public function editEmail(Request $request, Users $user, EntityManagerInterface $entityManagerInterface, UserPasswordHasherInterface $hasher): Response
     {
         $form = $this->createForm(EditUserTypeForm::class, $user);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-                //$user = $form->getData();
+            //$user = $form->getData();
+                $user->setUpdatedAt(new \DateTimeImmutable());
                 $entityManagerInterface->persist($user);
                 $entityManagerInterface->flush();
 

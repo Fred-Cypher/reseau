@@ -10,10 +10,11 @@
     <main class="container">
         <h2>Forum articles</h2>
 
-        <h3>Liste tes articles existants</h3>
+        <section class="row card">
 
-        <section class="row">
-            <ul class="card">
+            <h3>Liste tes articles existants</h3>
+
+            <ul class="p-3">
                 {% if articles.data %}
                     {% for article in articles.data %}
                         {% if article.isVisible %}
