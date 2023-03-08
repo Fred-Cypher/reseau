@@ -117,6 +117,7 @@ class BlogImagesController extends AbstractController
         // Vérification que le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
             $image->setUser($this->getUser());
+            $image->setUpdatedAt(new \DateTimeImmutable());
             $imagesRepository->save($image, true);
 
             $this->addFlash('info', 'Votre image a bien été modifiée.');

@@ -79,7 +79,8 @@ class ArticlesController extends AbstractController
         
         // Vérification que le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
-            $article->setUser($this->getUser()); 
+            $article->setUser($this->getUser());
+            $article->setUpdatedAt(new \DateTimeImmutable());
             $articlesRepository->save($article, true);
 
             $this->addFlash('info', 'Votre article a bien été modifié.');

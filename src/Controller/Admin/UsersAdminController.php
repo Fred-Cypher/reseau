@@ -40,6 +40,7 @@ class UsersAdminController extends AbstractController
 
         // Vérification que le formulaire est soumis et valide
         if($form->isSubmitted() && $form->isValid()){
+            $users->setUpdatedAt(new \DateTimeImmutable());
             $usersRepository->save($users, true);
 
             $this->addFlash('info', 'L\'utilisateur a bien été modifié');

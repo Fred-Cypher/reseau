@@ -48,6 +48,7 @@ class ArticlesAdminController extends AbstractController
         // Vérification que le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setIsVisible(($article->isIsVisible() ? true : false));
+            $article->setUpdatedAt(new \DateTimeImmutable());
             $articlesRepository->save($article, true);
 
             $this->addFlash('info', 'L\'article a bien été modifié');

@@ -41,6 +41,7 @@ class BlogAdminController extends AbstractController
         // Vérification que le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()){
             $image->setIsVisible(($image->isIsVisible() ? true : false));
+            $image->setUpdatedAt(new \DateTimeImmutable());
             $imagesRepository->save($image, true);
 
             $this->addFlash('info', 'L\'image a bien été modifiée');
