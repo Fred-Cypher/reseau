@@ -94,7 +94,7 @@ class BlogImagesController extends AbstractController
             'image' => $image,
             'form' => $form,
         ]);
-    }
+    } 
 
     // Affichage d'une page blog image
     #[Route('/{slug}', name: 'app_blog_images_show', methods: ['GET'])]

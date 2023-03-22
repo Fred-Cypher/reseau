@@ -30,6 +30,11 @@ footer{
     color: whitesmoke;
 }
 
+.contactLink{
+    display: flex;
+    width: auto;
+}
+
 a{
     text-decoration: none;
     color: currentColor;

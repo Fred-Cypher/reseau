@@ -10,6 +10,7 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\EditUsersPassFormType;
 use App\Form\EditUserTypeForm;
+use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -64,22 +65,23 @@ class ProfileController extends AbstractController
     // Affichage de la page d'édition du mot de passe
     //#[Security("is_granted('ROLE_USER' and user === user)")]
     #[Route('/edit/pass/{id}', name: 'edit_password', methods: ['GET', 'POST'])]
-        public function editPass(Users $user, Request $request, EntityManagerInterface $entityManagerInterface, UserPasswordHasherInterface $hasher): Response
+        public function editPass(Users $currentUser, Request $request, EntityManagerInterface $entityManagerInterface, UserPasswordHasherInterface $hasher): Response
         {
+
             $form = $this->createForm(EditUsersPassFormType::class);
             $form->handleRequest($request);
 
             if($form->isSubmitted() && $form->isValid()){
-                if ($hasher->isPasswordValid($user, $form->getData()['plainPassword'])){
-                    $user->setUpdatedAt(new \DateTimeImmutable());
-                    $user->setPlainPassword(
-                        $form->getData()['newPassword']
+                if ($hasher->isPasswordValid($currentUser, $form->getData()['plainPassword'])){
+                    $currentUser->setUpdatedAt(new \DateTimeImmutable());
+                    $currentUser->setPlainPassword(
+                        $form->getData()['newPassword'] 
                     );
 
-                    $this->addFlash('succes', 'Le mot de passe a bien été modifié.');
-
-                    $entityManagerInterface->persist($user);
+                    $entityManagerInterface->persist($currentUser);
                     $entityManagerInterface->flush();
+
+                    $this->addFlash('succes', 'Le mot de passe a bien été modifié.');
 
                     return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
                 } else {
