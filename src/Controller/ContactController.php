@@ -32,8 +32,8 @@ class ContactController extends AbstractController
 
         
         $form = $this->createForm(ContactFormType::class, $contact);
-
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()) {
             $contact = $form->getData();
 
@@ -49,10 +49,9 @@ class ContactController extends AbstractController
                 ]);
 
             $mailer->send($email);
-            dd($email);
+            
 
             $entityManagerInterface->persist($contact);
-            dd($contact);
             $entityManagerInterface->flush();
 
             $this->addFlash('info', 'Votre message est bien envoyé');

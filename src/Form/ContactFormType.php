@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
 use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ContactFormType extends AbstractType
 {
@@ -47,11 +48,17 @@ class ContactFormType extends AbstractType
                 ],
                 'label' => 'Message : '
             ])
-            ->add('captcha', Recaptcha3Type::class, [
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary btn-lg'
+                ],
+                'label' => 'Envoyer le message'
+            ])
+            /*->add('captcha', Recaptcha3Type::class, [
                 'constraints' => new Recaptcha3(),
                 'action_name' => 'contact',
                 'locale' => 'fr'
-            ])
+            ])*/
         ;
     }
 

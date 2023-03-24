@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Images;
+use App\Repository\ArticlesRepository;
 use App\Repository\ImagesRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,11 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ForumController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(ImagesRepository $images): Response
-    {
+    public function index(ImagesRepository $images, ArticlesRepository $articles, EntityManagerInterface $manager): Response
+    {        
         
+
         return $this->render('forum/index.html.twig',[
-            'images' => $images
+            'images' => $images,
+            'articles' => $articles
         ]);
     }
 }

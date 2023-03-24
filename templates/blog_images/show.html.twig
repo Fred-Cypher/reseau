@@ -33,11 +33,6 @@
                                     </p>
                                 </p>
                             {% endif %}
-                        {% else %}
-                            <p class="card-link mt-4">
-                                <a href="{{ path('admin_blog_images_edit', {'slug': image.slug}) }}" class="btn btn-outline-primary">Modifier l'image</a>
-                                {{ include('blog_images/_delete_form.html.twig') }}
-                            </p>    
                         {% endif %}
                     {% elseif role == 'ROLE_MODO' %}
                         {% if app.user is not same as (image.user) %}
