@@ -15,13 +15,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ForumController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(ImagesRepository $images, ArticlesRepository $articles, EntityManagerInterface $manager): Response
-    {        
+    public function index(ImagesRepository $imagesRepository, ArticlesRepository $articlesRepository, EntityManagerInterface $manager): Response
+    {       
+        $images =  $imagesRepository->findAll() ;
         
+        $articles = $articlesRepository->findAll();
+        $article = array_rand($articles, 1);
 
         return $this->render('forum/index.html.twig',[
             'images' => $images,
-            'articles' => $articles
+            'articles' => $articles[$article]
         ]);
     }
 }

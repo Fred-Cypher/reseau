@@ -35,7 +35,9 @@
                                     <p class="card-text mt-2">Exemple d'article (une partie) random posté sur le forum d'articles</p>
                                     <p class="card-text mt-2">
                                         {% if articles %}
-                                            <p class="card-text mt-2">{{ articles.title }}</p>
+                                            
+                                                <p class="border p-2"> {{ articles.summary }} </p>
+                                            
                                         {% endif %}
                                     </p>
                                     <p class="text-center mt-5">
