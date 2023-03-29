@@ -68,6 +68,14 @@ li{
     width: 4rem;
 }
 
+.forumCard{
+    height: 20rem;
+}
+
+.textCard{
+    height: 2rem;
+}
+
 .pagination a{
     color: brown;
 }

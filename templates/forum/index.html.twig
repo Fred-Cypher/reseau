@@ -8,48 +8,50 @@
 
     <main class="container">
         <div class="row">
-
             {% if app.user %}
                 {% if app.user.isEnabled %}
-                    <h2>Choix du forum </h2>
+                    <h2 class="bg-warning mt-2 text-center">Choix du forum </h2>
 
-                    <div class="row">
-                        <div class="col-sm-6 mt-4">
-                            <div class="card">
+                    <div class="row d-flex justify-content-evenly"> 
+                            <div class="card col-md-5 mt-4 forumCard">
                                 <div class="card-body">
                                     <p class="card-title h5">Forum Images</p>
-                                    <p class="card-text mt-2">Exemple d'image (miniature) random postée sur le forum d'images.</p>
-                                    <p>
-                                        
+                                    <p class="card-text mt-2">Exemple d'image postée sur le forum d'images.</p>
+                                    <p class="text-center mb-5">
+                                        {% if images %}
+                                            {% if images.isVisible %}
+                                                <img src="{{ vich_uploader_asset(images, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded mt-2" alt="{{ images.title }}">
+                                            {% else %}
+                                                <img src=" {{ asset('assets/icons/globe.ico') }}" alt="Logo site" class="logo mt-4">
+                                            {% endif %}
+                                        {% endif %}
                                     </p>
-                                    <p class="text-center mt-5">
+                                    <p class="card-text text-center d-flex align-items-end justify-content-center">
                                         <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-primary">Forum images</a>
                                     </p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 mt-4">
-                            <div class="card">
-                                <div class="card-body">
+                            <div class="card col-md-5 mt-4 forumCard">
+                                <div class="card-body d-flex row">
                                     <p class="card-title h5">Forum Articles</p>
-                                    <p class="card-text mt-2">Exemple d'article (une partie) random posté sur le forum d'articles</p>
-                                    <p class="card-text mt-2">
+                                    <p class="card-text mt-2">Exemple d'article posté sur le forum d'articles</p>
+                                    <p class="card-text mt-auto">
                                         {% if articles %}
-                                            
+                                            {% if articles.isVisible %}
                                                 <p class="border p-2"> {{ articles.summary }} </p>
-                                            
+                                            {% else %}
+                                                <p class="border p-2">Article choisi au hasard parmi les articles enregistrés dans la base de données. </p>
+                                            {% endif %}
                                         {% endif %}
                                     </p>
-                                    <p class="text-center mt-5">
+                                    <p class="card-text text-center d-flex align-items-end justify-content-center align-self-end">
                                         <a href="{{ path('articles_app_articles') }}" class="btn btn-primary">Forum articles</a>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 {% else %}
-
                     <div class="row">
                         <div class=" col-8 mt-5 mx-auto">
                             <div class="card">
@@ -61,23 +63,21 @@
                             </div>
                         </div>
                     </div>
-                    
                 {% endif %}
             {% else %}
-
-            <div class="row">
-                        <div class=" col-8 mt-5 mx-auto">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <p class="card-title h1 text-danger font-weight-bold">Accès interdit</p>
-                                    <p class="card-text mt-2 mb-4">Inscrivez-vous et connectez-vous pour avoir accès à cette partie du forum.</p>
-                                </div>
+                <div class="row">
+                    <div class=" col-8 mt-5 mx-auto">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <p class="card-title h1 text-danger font-weight-bold">Accès interdit</p>
+                                <p class="card-text mt-2 mb-4">Inscrivez-vous et connectez-vous pour avoir accès à cette partie du forum.</p>
                             </div>
                         </div>
                     </div>
-                
+                </div>
             {% endif %}
         </div>
+        <div class="backTo"></div>
     </main>
     
     {% include "_parts/_footer.html.twig" %}
