@@ -2,17 +2,10 @@
 
 namespace App\Controller;
 
-//use App\Entity\Users;
-//use App\Form\EditUsersEmailFormType;
-//use App\Repository\UsersRepository;
-//use Doctrine\ORM\EntityManagerInterface;
-
 use App\Entity\Users;
 use App\Form\EditUsersPassFormType;
 use App\Form\EditUserTypeForm;
-use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,30 +58,31 @@ class ProfileController extends AbstractController
     // Affichage de la page d'édition du mot de passe
     //#[Security("is_granted('ROLE_USER' and user === user)")]
     #[Route('/edit/pass/{id}', name: 'edit_password', methods: ['GET', 'POST'])]
-        public function editPass(Users $currentUser, Request $request, EntityManagerInterface $entityManagerInterface, UserPasswordHasherInterface $hasher): Response
+        public function editPass(
+            Users $currentUser, 
+            Request $request, 
+            EntityManagerInterface $entityManagerInterface, 
+            UserPasswordHasherInterface $hasher
+            ): Response
         {
+        $form = $this->createForm(EditUsersPassFormType::class);
 
-            $form = $this->createForm(EditUsersPassFormType::class);
-            $form->handleRequest($request);
+        $form->handleRequest($request);
 
-            if($form->isSubmitted() && $form->isValid()){
-                if ($hasher->isPasswordValid($currentUser, $form->getData()['plainPassword'])){
-                    $currentUser->setUpdatedAt(new \DateTimeImmutable());
-                    $currentUser->setPlainPassword(
-                        $form->getData()['newPassword'] 
-                    );
+        if ($form->isSubmitted() && $form->isValid()) {
+            // On efface le token
+            $currentUser->setPassword(
+                $hasher->hashPassword(
+                    $currentUser,
+                    $form->get('newPassword')->getData()
+                )
+            );
+            $entityManagerInterface->persist($currentUser);
+            $entityManagerInterface->flush();
 
-                    $entityManagerInterface->persist($currentUser);
-                    $entityManagerInterface->flush();
-
-                    $this->addFlash('succes', 'Le mot de passe a bien été modifié.');
-
-                    return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
-                } else {
-                    $this->addFlash('warning', 'Le mot de passe est incorrect.');
-                }
-            }
-
+            $this->addFlash('success', 'Votre mot de passe a bien été modifié.');
+            return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
+        }
 
             return $this->render('profile/editPass.html.twig', [
                 //'controller_name' => 'Edition du profil de l\'utilisateur'
@@ -119,30 +113,6 @@ class ProfileController extends AbstractController
             'form' => $form->createView(),
         ]);
 
-
-        /* $user = $this->getUser()->getId();
-
-        dd($user);
-
-         // Création du formulaire
-        $form = $this->createForm(EditUsersEmailFormType::class, $users);
-        // Traitement de la requête du formulaire
-        $form->handleRequest($request);
-
-        // Vérification que le formulaire est soumis et valide
-        if ($form->isSubmitted() && $form->isValid()) { 
-            if($user){
-                $usersRepository->save($users, true);
-
-            $this->addFlash('info', 'Votre adresse e-mail a bien été modifiée.');
-
-            return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
-            }
-        }
-
-        return $this->render('profile/editEmail.html.twig', [
-            'controller_name' => 'Edition du profil de l\'utilisateur'
-        ]);*/
     }
 
     // Affichage de la page avec la liste des images d'un utilisateur

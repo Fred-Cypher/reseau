@@ -5,35 +5,30 @@
 {% block body %}
     {% include '_parts/_forumHeader.html.twig' %}
 
-    <main class="container h-100">
-        <h2 class="mt-2 mb-4">Mon profil</h2>
-        <section class="m-2">
-            <div class="card ms-3">
-                <div class="card-body">
+    <main class="container h-75">
+        <h2 class="mt-2 mb-4 bg-warning text-center">Mon profil</h2>
+        <section class="row m-2 d-flex justify-content-evenly">
+            <div class="card col-md-5 ms-3 mt-2">
+                <div class="card-body d-flex row">
                     <p class="card-title h5 mb-3">Voir mes publications</p>
-                    <p class="card-text">
+                    <p class="card-text text-center">
                         <a href="{{ path('profile_images') }}" class="btn btn-outline-dark">Voir mes images</a>
                     </p>
-                    <p class="card-text">
+                    <p class="card-text text-center">
                         <a href="{{ path('profile_articles') }}" class="btn btn-outline-dark">Voir mes articles</a>
                     </p>
                 </div>
             </div>
 
-            <div class="card ms-3 mt-5">
-                <div class="card-body">
+            <div class="card col-md-5 ms-3 mt-2">
+                <div class="card-body d-flex row">
                     <p class="card-title h5 mb-3">Modifier mon profil</p>
                     <p class="card-text">
                         Il est seulement possible de modifier le mot de passe et l'adresse mail. <br> 
                         Les coordonnées (nom, prénom) et le pseudo ne sont pas modifiables.</p>
-                    <p>
+                    <p class="card-text text-center d-flex align-items-end justify-content-center mt-2">
                         <a href="{{ path('profile_edit') }}" class="btn btn-primary">Modifier mon profil</a>
                     </p>
-                    <!--<ul>
-                        <li>mot de passe</li>
-                        <li>adresse mail</li>
-                        <li>avatar ?</li>
-                    </ul>-->
                 </div>
             </div>
         </section>

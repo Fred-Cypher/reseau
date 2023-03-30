@@ -24,6 +24,8 @@
                                             {% else %}
                                                 <img src=" {{ asset('assets/icons/globe.ico') }}" alt="Logo site" class="logo mt-4">
                                             {% endif %}
+                                        {% else %}
+                                            <img src=" {{ asset('assets/icons/globe.ico') }}" alt="Logo site" class="logo mt-4">
                                         {% endif %}
                                     </p>
                                     <p class="card-text text-center d-flex align-items-end justify-content-center">
@@ -42,6 +44,8 @@
                                             {% else %}
                                                 <p class="border p-2">Article choisi au hasard parmi les articles enregistrés dans la base de données. </p>
                                             {% endif %}
+                                        {% else %}
+                                            <p class="border p-2">Article choisi au hasard parmi les articles enregistrés dans la base de données. </p>
                                         {% endif %}
                                     </p>
                                     <p class="card-text text-center d-flex align-items-end justify-content-center align-self-end">
