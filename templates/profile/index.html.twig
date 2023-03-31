@@ -6,7 +6,10 @@
     {% include '_parts/_forumHeader.html.twig' %}
 
     <main class="container h-75">
-        <h2 class="mt-2 mb-4 bg-warning text-center">Mon profil</h2>
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Mon profil</span>
+        </div>
+        
         <section class="row m-2 d-flex justify-content-evenly">
             <div class="card col-md-5 ms-3 mt-2">
                 <div class="card-body d-flex row">
@@ -27,7 +30,7 @@
                         Il est seulement possible de modifier le mot de passe et l'adresse mail. <br> 
                         Les coordonnées (nom, prénom) et le pseudo ne sont pas modifiables.</p>
                     <p class="card-text text-center d-flex align-items-end justify-content-center mt-2">
-                        <a href="{{ path('profile_edit') }}" class="btn btn-primary">Modifier mon profil</a>
+                        <a href="{{ path('profile_edit') }}" class="btn btnSend">Modifier mon profil</a>
                     </p>
                 </div>
             </div>

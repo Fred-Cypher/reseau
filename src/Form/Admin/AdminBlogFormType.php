@@ -39,7 +39,7 @@ class AdminBlogFormType extends AbstractType
                 'label' => 'Bloquer / débloquer une image',
                 'choices' => [
                     'Bloquer' => 0,
-                    'Autoriser' => 1
+                    'Autoriser' => 1,
                 ],
                 'expanded' => true,
             ])

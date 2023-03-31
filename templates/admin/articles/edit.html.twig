@@ -24,14 +24,14 @@
                     {{ form_row(form.isVisible) }}
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'article</button>
+                    <button type="submit" class="btn btnSend mt-3 btn-lg">Modifier l'article</button>
                 </div>
             {{ form_end(form) }}
         </article>
         
         <div class="backTo">
             <p class="m-3 d-flex justify-content-end">
-                <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary me-3">Aller à la liste d'articles du forum</a>
+                <a href="{{ path('articles_app_articles') }}" class="btn btnReturn me-3">Aller à la liste d'articles du forum</a>
                 <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
             </p>
         </div>

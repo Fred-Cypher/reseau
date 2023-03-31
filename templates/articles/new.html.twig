@@ -28,13 +28,13 @@
                             Auteur de l'article : {{ app.user.nickname }}
                         </p>
                         <p>
-                            <button type="submit" class="btn btn-primary mt-3 btn-lg">Enregistrer l'article</button>
+                            <button type="submit" class="btn btnSend mt-3 btn-lg">Enregistrer l'article</button>
                         </p>
                     {{ form_end(formNew) }}
                 </article>
             </div>
             <p class="backTo mt-2">
-                <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary">Retour à la liste d'articles</a>
+                <a href="{{ path('articles_app_articles') }}" class="btn btnReturn">Retour à la liste d'articles</a>
             </p>
         </div>
     </main>

@@ -6,7 +6,10 @@
     {% include '_parts/_forumHeader.html.twig' %}
 
     <main class="container">
-        <h2>Mes images</h2>
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Mes images</span>
+        </div>
+        
         <section class="row">
             {% for image in app.user.images %}
                 {% if image.isVisible %}
@@ -55,7 +58,7 @@
             {% endfor %}
 
             <p class="mt-5 backTo">
-                <a href="{{ path('profile_index') }}" class="btn btn-secondary">Retour à mon profil</a>
+                <a href="{{ path('profile_index') }}" class="btn btnReturn">Retour à mon profil</a>
             </p>
         </section>
     </main>

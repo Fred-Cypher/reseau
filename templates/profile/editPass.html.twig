@@ -12,13 +12,13 @@
                 {{ form_start(form) }}
                     {{ form_row(form.plainPassword) }}
                     {{ form_row(form.newPassword) }}
-                    <button type="submit" class="btn btn-primary mt-4 btn-lg">Modifier le mot de passe</button>
+                    <button type="submit" class="btn btnSend mt-4 btn-lg">Modifier le mot de passe</button>
                 {{ form_end(form) }} 
             </div>
         </section> 
 
         <div class="mt-4">
-            <a href="{{ path('profile_index') }}" class="btn btn-primary">Retour au profil</a>
+            <a href="{{ path('profile_index') }}" class="btn btnReturn">Retour au profil</a>
         </div>   
     </main>
 

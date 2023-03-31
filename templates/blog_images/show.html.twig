@@ -21,14 +21,14 @@
                         {% if app.user is not same as (image.user) %}
                             {% if image.isVisible %}
                                 <p class="card-link mt-4">
-                                    <a href="{{ path('admin_blog_images_edit', {'slug': image.slug}) }}" class="btn btn-outline-primary">Modifier l'image</a>
+                                    <a href="{{ path('admin_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier l'image</a>
                                     {{ include('blog_images/_delete_form.html.twig') }}
                                 </p>
                             {% else %}
                                 <p class="card-link mt-4">
                                     <p class="btn btn-warning">Image bloquée</p>
                                     <p>
-                                        <a href="{{ path('admin_blog_images_edit', {'slug': image.slug}) }}" class="btn btn-outline-primary">Modifier l'image</a>
+                                        <a href="{{ path('admin_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier l'image</a>
                                         {{ include('blog_images/_delete_form.html.twig') }}
                                     </p>
                                 </p>
@@ -38,14 +38,14 @@
                         {% if app.user is not same as (image.user) %}
                             {% if image.isVisible %}
                                 <p class="card-link mt-4">
-                                    <a href="{{ path('modo_blog_images_edit', {'slug': image.slug}) }}" class="btn btn-outline-primary">Modifier l'image</a>
+                                    <a href="{{ path('modo_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier l'image</a>
                                     {{ include('blog_images/_delete_form.html.twig') }}
                                 </p>
                             {% else %}
                                 <p class="card-link mt-4">
                                     <p class="btn btn-warning">Image bloquée</p>
                                     <p>
-                                        <a href="{{ path('modo_blog_images_edit', {'slug': image.slug}) }}" class="btn btn-outline-primary">Modifier l'image</a>
+                                        <a href="{{ path('modo_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier l'image</a>
                                         {{ include('blog_images/_delete_form.html.twig') }}
                                     </p>
                                 </p>
@@ -55,7 +55,7 @@
                         {% if app.user is same as (image.user) %}
                             {% if image.isVisible %}
                                 <p class="card-link mt-4">
-                                <a href="{{ path('images_app_blog_images_edit', {'slug': image.slug}) }}" class="btn btn-primary">Modifier l'image</a>
+                                <a href="{{ path('images_app_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier l'image</a>
                                 {{ include('blog_images/_delete_form.html.twig') }}
                             </p>
                             {% else %}
@@ -71,7 +71,7 @@
         </article>
 
         <p class="text-start backTo">
-            <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-secondary">Retour à la liste d'images</a>
+            <a href="{{ path('images_app_blog_images_index') }}" class="btn btnReturn">Retour à la liste d'images</a>
         </p>
     </section>
     

@@ -15,7 +15,7 @@
                         {{ form_row(form.title) }}
                         {{ form_row(form.summary) }}
                         {{ form_row(form.content) }}
-                        <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'article</button>
+                        <button type="submit" class="btn btnSend mt-3 btn-lg">Modifier l'article</button>
                     {{ form_end(form) }}
                 {% else %}
                     <p class="bg-warning p-3 mt-2">
@@ -37,7 +37,7 @@
             {% endif %}
             
             <p class="backTo">
-                <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary mt-3">Retour à la liste d'articles</a>
+                <a href="{{ path('articles_app_articles') }}" class="btn btnReturn mt-3">Retour à la liste d'articles</a>
             </p>
         </section>
     </main>

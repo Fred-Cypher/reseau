@@ -6,7 +6,10 @@
     {% include '_parts/_forumHeader.html.twig' %}
 
     <main class="container">
-        <h2>Mes articles</h2>
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Mes articles</span>
+        </div>
+        
         <section class="row">
             <ul class="mt-3 card">
                 {% for article in app.user.articles %}
@@ -27,7 +30,7 @@
             </ul>
 
             <p class="mt-5 backTo">
-                <a href="{{ path('profile_index') }}" class="btn btn-secondary">Retour à mon profil</a>
+                <a href="{{ path('profile_index') }}" class="btn btnReturn">Retour à mon profil</a>
             </p>
         </section>
     </main>

@@ -25,14 +25,14 @@
                             Auteur du post : {{ app.user.nickname }}
                         </p>
                         <p>
-                            <button type="submit" class="btn btn-primary mt-3 btn-lg">Enregistrer l'image</button>
+                            <button type="submit" class="btn btnSend mt-3 btn-lg">Enregistrer l'image</button>
                         </p>
                     {{ form_end(form) }}
 
                 </section>
             </div>
             <p class="backTo mt-2">
-                <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-secondary">Retour à la liste d'images</a>
+                <a href="{{ path('images_app_blog_images_index') }}" class="btn btnReturn">Retour à la liste d'images</a>
             </p>
         </div>
     </main>

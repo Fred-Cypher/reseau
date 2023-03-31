@@ -18,14 +18,14 @@
                     {% if role == 'ROLE_ADMIN' %}
                         {% if article.isVisible %}
                             <p class="card-link mt-4">
-                                <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btn-outline-primary">Modifier l'article</a>
+                                <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnSend">Modifier l'article</a>
                                 {{ include('articles/_delete_form.html.twig') }}
                             </p>
                         {% else %}
                             <p class="card-link mt-4">
                                 <p class="btn btn-warning">Article bloqué</p>
                                 <p>
-                                    <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btn-outline-primary">Modifier l'article</a>
+                                    <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnSend">Modifier l'article</a>
                                     {{ include('articles/_delete_form.html.twig') }}
                                 </p>
                             </p>
@@ -34,14 +34,14 @@
                     {% if role == 'ROLE_MODO' %}
                         {% if article.isVisible %}
                             <p class="card-link mt-4">
-                                <a href="{{ path('modo_articles_edit', {'slug': article.slug})|lower  }}" class="btn btn-outline-primary">Modifier l'article</a>
+                                <a href="{{ path('modo_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnSend">Modifier l'article</a>
                                 {{ include('articles/_delete_form.html.twig') }}
                             </p>
                         {% else %}
                             <p class="card-link mt-4">
                                 <p class="btn btn-warning">Article bloqué</p>
                                 <p>
-                                    <a href="{{ path('modo_articles_edit', {'slug': article.slug})|lower  }}" class="btn btn-outline-primary">Modifier l'article</a>
+                                    <a href="{{ path('modo_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnSend">Modifier l'article</a>
                                     {{ include('articles/_delete_form.html.twig') }}
                                 </p>
                             </p>
@@ -67,7 +67,7 @@
         </section>
 
         <p class="card-link backTo">
-            <a href="{{ path('articles_app_articles') }}" class="btn btn-secondary">Retour à la liste d'articles</a>
+            <a href="{{ path('articles_app_articles') }}" class="btn btnReturn">Retour à la liste d'articles</a>
         </p>
     </main>
 

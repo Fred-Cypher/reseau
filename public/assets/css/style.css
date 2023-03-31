@@ -76,20 +76,6 @@ li{
     height: 2rem;
 }
 
-.pagination a{
-    color: brown;
-}
-
-.pagination .active a{
-    background-color: brown !important;
-    border: 1px brown solid !important; 
-}
-
-.pagination .active a:hover{
-    background-color: rgb(187, 47, 47) !important; /*un peu plus clair*/
-    border: 1px brown solid !important; 
-}
-
 .blogPicture{
     max-width: 30rem;
 }
@@ -115,7 +101,7 @@ li{
 }
 
 
-/*### COULEURS BOUTONS, CHECKS, BACKGROUND ###*/
+/*### COULEURS BOUTONS, CHECKS ###*/
 
 .pagination a{
     color: brown;
@@ -148,17 +134,59 @@ li{
     background-color: brown !important;
 }
 
-.btn-secondary{
-    background-color: #2B2211 !important;
-    border: #2B2211 !important;
+.checkColor{
+    border-color: brown !important;
 }
 
-.btn-secondary:hover{
-    background-color: #302d28 !important; /* un peu plus clair */
+.btnReturn{
+    background-color: #2B2211;
+    border: #2B2211;
+    color : white;
+}
+
+.btnReturn:hover{
+    background-color: #302d28; /* un peu plus clair */
     box-shadow: 2px 2px #302d2859;
+    color: whitesmoke;
 }
 
-.bg-light{
-    background-color: #f7e0e0 !important;
+.btnSend{
+    background-color: #91283b;
+    color: whitesmoke;
 }
 
+.btnSend:hover{
+    background-color: #963e4e;
+    box-shadow: 2px 2px #302d2859;
+    color: whitesmoke;
+}
+
+.btnNew{
+    background-color: #1d7753;
+    color: #ffffff;
+}
+
+.btnNew:hover{
+    background-color: #249568;
+    box-shadow: 2px 2px #302d2859;
+    color: white;
+}
+
+.btnMail{
+    background-color: #4165c0;
+    color: white;
+}
+
+.btnMail:hover{
+    background-color: #5c78be;
+    box-shadow: 2px 2px #302d2859;
+    color: white;
+}
+
+.backgroundTitle{
+    background-color:antiquewhite;
+}
+
+.userWarning{
+    border: #bb2f2f 3px solid;
+}

@@ -7,8 +7,10 @@
     {% include "_parts/_forumHeader.html.twig" %}
 
     <main class="container">
-        <h2 class="mt-3">Liste des articles à modérer</h2>
-
+        <div class="mt-3 text-center">   
+            <span class="backgroundTitle h2 px-3 rounded">Liste des articles à modérer</span>
+        </div>
+        
         <p class="m-3 d-flex justify-content-end">
             <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
         </p>
@@ -37,7 +39,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btn-outline-primary">Modifier</a>
+                                <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btn-warning">Modifier</a>
                                 <a href="" class="btn">{{ include('articles/_delete_form.html.twig') }}</a>
                             </td>
                         </tr>

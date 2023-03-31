@@ -16,7 +16,7 @@
                         {{ form_row(form.title) }}
                         {{ form_row(form.description) }}
                         {{ form_row(form.image_url) }}
-                        <button type="submit" class="btn btn-primary mt-3 btn-lg">Modifier l'image</button>
+                        <button type="submit" class="btn btnSend mt-3 btn-lg">Modifier l'image</button>
                     {{ form_end(form) }}
                 {% else %}
                 <p class="bg-warning p-3 mt-2">
@@ -37,7 +37,7 @@
             {% endif %}
 
             <p class="backTo">
-                <a href="{{ path('images_app_blog_images_index') }}" class="btn btn-secondary mt-3">Retour à la liste d'images</a>
+                <a href="{{ path('images_app_blog_images_index') }}" class="btn btnReturn mt-3">Retour à la liste d'images</a>
             </p>
         </section>
     </main>

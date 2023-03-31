@@ -28,9 +28,9 @@
             </div>
             <p class="backTo mt-2">
                 {% if app.user %}
-                    <a href="{{ path('forum_index') }}" class="btn btn-secondary ">Accès à la page d'accueil du forum</a>
+                    <a href="{{ path('forum_index') }}" class="btn btnReturn">Accès à la page d'accueil du forum</a>
                 {% else %}
-                    <a href="{{ path('main') }}" class="btn btn-secondary">Retour à la page d'accueil du site</a>
+                    <a href="{{ path('main') }}" class="btn btnReturn">Retour à la page d'accueil du site</a>
                 {% endif %}
                 
             </p>
