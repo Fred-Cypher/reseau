@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\EditUsersPassFormType;
 use App\Form\EditUserTypeForm;
+use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,18 +38,6 @@ class ProfileController extends AbstractController
     #[Route('/edit', name: 'edit')]
     public function edit(): Response
     {
-        /*$user = $this->getUser();
-
-        if($this->security->isGranted('ROLE_USER')){
-            
-            $form = $this->createForm(EditUsersFormType::class, $user);
-            $form->handleRequest($request);
-
-            if($form->isSubmitted() && $form->isValid()){
-                modif mdp et modif email 
-                $user = $this->getUser();
-            }
-        }*/
 
         return $this->render('profile/edit.html.twig', [
             'controller_name' => 'Edition du profil de l\'utilisateur'
@@ -90,7 +79,7 @@ class ProfileController extends AbstractController
             ]);
         }
 
-// Affichage de la page d'édition de l'adresse mail
+    // Affichage de la page d'édition de l'adresse mail
     //#[Security("is_granted('ROLE_USER' and user === user)")]
     #[Route('/edit/email/{id}', name: 'edit_email', methods: ['GET', 'POST'])]
     public function editEmail(Request $request, Users $user, EntityManagerInterface $entityManagerInterface, UserPasswordHasherInterface $hasher): Response
@@ -126,5 +115,16 @@ class ProfileController extends AbstractController
     public function showArticles(): Response
     {
         return $this->render('profile/articles.html.twig');
+    }
+
+    //Suppression du compte d'un utilisateur
+    #[Route('/delete/{id}', name: 'app_user_delete', methods: ['POST'])]
+    public function deleteUser(Request $request, Users $user, UsersRepository $usersRepository): Response
+    {
+        if($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))){
+            $usersRepository->remove($user, true);
+        }
+
+        return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
     }
 }

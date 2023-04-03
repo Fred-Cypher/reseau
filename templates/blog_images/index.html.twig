@@ -25,7 +25,11 @@
                                             <div class="col-md-8">
                                                 <div class="card-body">
                                                     <h5 class="card-title itemTitle text-truncate">{{ image.title }}</h5>
-                                                    <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
+                                                    {% if image.user.nickname %}
+                                                        <p class="card-text"><small class="text-muted">{{ image.user.nickname }}</small></p>
+                                                    {% else %}
+                                                        <p class="card-text"><small class="text-muted">Anonyme</small></p>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>

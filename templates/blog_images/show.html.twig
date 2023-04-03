@@ -10,7 +10,11 @@
         <article class="card m-2 m-md-5">
             <div class="card-body">
                 <p class="card-title h3">{{ image.title }}</p>
-                <small class="card-subtitle text-muted">{{ image.user.nickname }}</small>
+                {% if image.user.nickname %}
+                    <small class="card-subtitle text-muted">{{ image.user.nickname }}</small>
+                {% else %}
+                    <small class="card-subtitle text-muted">Anonyme</small>
+                {% endif %}
                 <p class="card-text">{{ image.description }}</p>
                 <p class="card-text text-center">
                     <img class="card-img-bottom blogPicture" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
