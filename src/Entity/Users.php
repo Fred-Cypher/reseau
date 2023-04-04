@@ -74,8 +74,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     public $user;
 
-    
-
     public function __construct($user)
     {
         $this->articles = new ArrayCollection();

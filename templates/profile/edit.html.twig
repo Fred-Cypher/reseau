@@ -5,21 +5,20 @@
 {% block body %}
     {% include '_parts/_forumHeader.html.twig' %}
 
-    <main class="container h-100">
+    <main class="container h-75">
         <div class="mt-3 text-center">
             <span class="backgroundTitle h2 px-3 rounded">Modifier mon profil</span>
         </div>
 
-        <section class="mt-3">
-            <div class="card ms-3">
-                <div class="card-body">
-                    <p class="card-title h5">Ce que je peux modifier</p>
+        <section class="row m-2 d-flex justify-content-evenly">
+            <div class="card col-md-5 ms-3 mt-2">
+                <div class="card-body d-flex row">
+                    <p class="card-title h5 mb-3">Ce que je peux modifier</p>
                     <p class="card-text text-center">
-                        <a href="{{ path('profile_edit_password', {id: app.user.id } )}}" class="btn btnSend m-5">Modifier mon mot de passe</a>
-                        <a href="{{ path('profile_edit_email', {id: app.user.id } )}}" class="btn btnMail m-5">Modifier mon adresse email</a>
+                        <a href="{{ path('profile_edit_password', {id: app.user.id } )}}" class="btn btnSend m-2">Modifier mon mot de passe</a>
                     </p>
-                    <p class="card-text">
-                        
+                    <p class="card-text text-center">
+                        <a href="{{ path('profile_edit_email', {id: app.user.id } )}}" class="btn btnMail m-2">Modifier mon adresse email</a>
                     </p>
                 </div>
             </div>
@@ -27,9 +26,13 @@
             <div class="card col-md-5 ms-3 mt-2">
                 <div class="card-body d-flex row">
                     <p class="card-title h5 mb-3">Suppression du compte</p>
-                    <p class="card-text">
+                    <!--<p class="card-text">
                         En cliquant sur ce bouton, vous supprimerez définitivement votre compte.
-                    <p class="card-text text-center d-flex align-items-end justify-content-center mt-2">
+                    </p>-->
+                    <!--<p class="card-text text-center d-flex align-items-end justify-content-center mt-2">
+                        {{ include('profile/_delete_form.html.twig') }}
+                    </p>-->
+                    <p class="card-text text-center align-items-center justify-content-center border border-danger rounded pt-3">
                         {{ include('profile/_delete_form.html.twig') }}
                     </p>
                 </div>

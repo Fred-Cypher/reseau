@@ -118,7 +118,7 @@ class ProfileController extends AbstractController
     }
 
     //Suppression du compte d'un utilisateur
-    #[Route('/delete/{id}', name: 'app_user_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'user_delete', methods: ['POST'])]
     public function deleteUser(Request $request, Users $user, UsersRepository $usersRepository): Response
     {
         if($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))){
