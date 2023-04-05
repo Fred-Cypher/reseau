@@ -24,7 +24,7 @@
                     <th>Vérifié</th>
                     <th>Rôle(s)</th>
                     <th>Bloqué / Autorisé</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </thead>
                 <tbody>
                     {% for user in users %}
@@ -62,6 +62,7 @@
                             </td>
                             <td>
                                 <a href="{{ path('admin_users_edit', {'id': user.id}) }}" class="btn btn-warning">Modifier</a>
+                                <a href="{{ path('admin_users_delete', {'id': user.id}) }}" class="btn btn-danger">Supprimer</a>
                             </td>
                         </tr>
                     {% endfor %}

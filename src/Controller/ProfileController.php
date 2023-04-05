@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Articles;
+use App\Entity\Images;
 use App\Entity\Users;
 use App\Form\EditUsersPassFormType;
 use App\Form\EditUserTypeForm;
-use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-//use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 #[Route('/profil', name: 'profile_')]
 class ProfileController extends AbstractController
@@ -118,13 +119,24 @@ class ProfileController extends AbstractController
     }
 
     //Suppression du compte d'un utilisateur
-    #[Route('/delete/{id}', name: 'user_delete', methods: ['POST'])]
-    public function deleteUser(Request $request, Users $user, UsersRepository $usersRepository): Response
+    #[Route('/delete', name: 'user_delete', methods: ['GET', 'POST'])]
+    public function deleteUser(EntityManagerInterface $entityManager, TokenStorageInterface $tokenStorage): RedirectResponse
     {
-        if($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))){
-            $usersRepository->remove($user, true);
+        $user = $this->getUser();
+
+        foreach ($entityManager->getRepository(Images::class)->findBy(['user' => $user]) as $images) {
+            $entityManager->remove($images);
         }
 
+        foreach ($entityManager->getRepository(Articles::class)->findBy(['user' => $user]) as $articles) {
+            $entityManager->remove($articles);
+        }
+
+        $tokenStorage->setToken(null);
+
+        $entityManager->remove($user);
+        $entityManager->flush();
+
         return $this->redirectToRoute('main', [], Response::HTTP_SEE_OTHER);
-    }
+    } 
 }

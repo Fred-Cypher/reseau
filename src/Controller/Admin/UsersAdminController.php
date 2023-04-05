@@ -54,4 +54,12 @@ class UsersAdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    // Suppression d'un utilisateur
+    #[Route('/{id}/delete', name:'delete', methods: ['GET', 'POST'])]
+    public function adminUserDelete(){
+        //Mettre ici la suppression de l'utilisateur
+
+        return $this->render('baseTest.html.twig');
+    }
 }

@@ -26,15 +26,18 @@
             <div class="card col-md-5 ms-3 mt-2">
                 <div class="card-body d-flex row">
                     <p class="card-title h5 mb-3">Suppression du compte</p>
-                    <!--<p class="card-text">
-                        En cliquant sur ce bouton, vous supprimerez définitivement votre compte.
-                    </p>-->
-                    <!--<p class="card-text text-center d-flex align-items-end justify-content-center mt-2">
-                        {{ include('profile/_delete_form.html.twig') }}
-                    </p>-->
-                    <p class="card-text text-center align-items-center justify-content-center border border-danger rounded pt-3">
-                        {{ include('profile/_delete_form.html.twig') }}
-                    </p>
+                    <div class="card-text text-center">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <p class="text-danger h3">Ce compte ne peut pas être supprimé</p>
+                        {% elseif is_granted('ROLE_MODO') %}
+                            <p  class="text-danger h5">Ce compte ne peut pas être supprimé, demandez à un administrateur de vous enlever les accès de modérateur pour que ce soit possible.</p>
+                        {% else %}
+                            <p>En cliquant sur ce bouton, vous supprimerez définitivement votre compte.</p>
+                            <p>Supprimer votre compte supprimera également vos contributions au forum.</p>
+                            <a href="{{ path('profile_user_delete') }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?)">Supprimer mon compte</a>
+                        {% endif %}
+                        
+                    </div>
                 </div>
             </div>
         </section>
