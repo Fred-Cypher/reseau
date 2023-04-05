@@ -27,11 +27,3 @@ class ForumController extends AbstractController
         ]);
     }
 }
-
-/**
- * 
- * An exception has been thrown during the rendering of a template ("Undefined method "image_url". The method name must start with either findBy, findOneBy or countBy!").
- * 
- * Dans twig 
- * 
- */

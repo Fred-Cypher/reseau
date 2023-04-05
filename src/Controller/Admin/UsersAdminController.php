@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/users', name: 'admin_users_')]
 class UsersAdminController extends AbstractController
 {
-        // Affichage de le liste des utilisateurs
+    // Affichage de le liste des utilisateurs
     #[Route('/', name: 'index', methods: ['GET'])]
     public function users(UsersRepository $usersRepository): Response
     {

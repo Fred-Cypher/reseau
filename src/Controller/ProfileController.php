@@ -19,13 +19,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 #[Route('/profil', name: 'profile_')]
 class ProfileController extends AbstractController
 {
-    /*private $security;
-
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }*/
-
     // Affichage de la page de profil d'un utilisateur
     #[Route('/', name: 'index')]
     public function index(): Response
@@ -46,7 +39,6 @@ class ProfileController extends AbstractController
     }
 
     // Affichage de la page d'édition du mot de passe
-    //#[Security("is_granted('ROLE_USER' and user === user)")]
     #[Route('/edit/pass/{id}', name: 'edit_password', methods: ['GET', 'POST'])]
         public function editPass(
             Users $currentUser, 
@@ -81,7 +73,6 @@ class ProfileController extends AbstractController
         }
 
     // Affichage de la page d'édition de l'adresse mail
-    //#[Security("is_granted('ROLE_USER' and user === user)")]
     #[Route('/edit/email/{id}', name: 'edit_email', methods: ['GET', 'POST'])]
     public function editEmail(Request $request, Users $user, EntityManagerInterface $entityManagerInterface, UserPasswordHasherInterface $hasher): Response
     {
@@ -89,7 +80,6 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            //$user = $form->getData();
                 $user->setUpdatedAt(new \DateTimeImmutable());
                 $entityManagerInterface->persist($user);
                 $entityManagerInterface->flush();

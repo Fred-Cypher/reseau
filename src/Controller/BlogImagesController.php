@@ -136,18 +136,14 @@ class BlogImagesController extends AbstractController
     public function delete(Request $request, Images $image, ImagesRepository $imagesRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$image->getId(), $request->request->get('_token'))) {
+            $path = 'public/assets/media/cache/miniature/assets/uploads';
+            $miniature = $path . '/' . $image->getImageUrl();
+            if(file_exists($miniature)){
+                unlink($miniature);
+            }
             $imagesRepository->remove($image, true);
         }
 
         return $this->redirectToRoute('images_app_blog_images_index', [], Response::HTTP_SEE_OTHER);
     }
 }
-
-
-/**
-*  $path = 'asset(assets/media/cache/miniature/assets/uploads)';
-*  $miniature = $path . $image->getImageUrl();
-*  if(file_exists($miniature)){
-*     unlink($miniature);
-*  }
- */

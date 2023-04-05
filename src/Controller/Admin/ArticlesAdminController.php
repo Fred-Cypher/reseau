@@ -28,12 +28,8 @@ class ArticlesAdminController extends AbstractController
     {
         $article->setIsVisible(($article->isIsVisible() ? true : false));
         $articlesRepository->save($article, true);
-        /*$em = $this->getDoctrine()->getManager();
-        $em->persist($article);
-        $em->flush();*/
 
         return $this->render('admin/articles/index.html.twig', [
-            /*'articles' => $articlesRepository->findAll(),*/
             'articles' => $article,
         ]);
     }

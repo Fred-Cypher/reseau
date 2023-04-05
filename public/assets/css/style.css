@@ -1,3 +1,5 @@
+/*#### GENERAL ####*/
+
 *{
     margin: 0;
     padding:0;
@@ -12,11 +14,6 @@ body{
 header{
     background-color: whitesmoke;
 }
-
-/*.adminbtn:hover{
-    background-color: rgba(255, 0, 0, 0.315);
-    color: black;
-}*/
 
 .siteTitle{
     color:rgb(187, 47, 47);
@@ -49,14 +46,18 @@ a{
     font-size: 0.8rem;
 }
 
+li{
+    list-style-type: none;
+}
+
+/*#### ACCUEIL ####*/
+
 .connectedUser{
     font-weight: bold;
     color: crimson;
 }
 
-li{
-    list-style-type: none;
-}
+/*#### PAGES FORUM ####*/
 
 .itemTitle:hover{
     color:crimson;
