@@ -20,7 +20,7 @@ class EditUsersEmailFormType extends AbstractType
                 ],
                 'label' => 'Entrez votre nouvelle adresse email : '
             ])
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver):void

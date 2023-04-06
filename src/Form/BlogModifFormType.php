@@ -26,13 +26,12 @@ class BlogModifFormType extends AbstractType
                 ],
                 'label' => ' '
             ])
-            ->add('description', TextareaType::class,
-                [
-                    'attr' => [
-                        'class' => 'form-control mt-2'
-                    ],
-                    'label' => 'Description de l\'image (limité 300 caractères) : '
-                ])
+            ->add('description', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
+                'label' => 'Description de l\'image (limité 300 caractères) : '
+            ])
         ;
     }
 

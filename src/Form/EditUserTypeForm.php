@@ -28,7 +28,7 @@ class EditUserTypeForm extends AbstractType
                     'class' => 'form-control'
                 ]
             ])*/
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

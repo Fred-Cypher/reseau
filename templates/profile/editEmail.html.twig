@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Modification du profil {% endblock %}
+{% block title %} Modification de l'adresse email {% endblock %}
 
 {% block body %}
     {% include '_parts/_forumHeader.html.twig' %}
 
     <main class="container h-100">
-        <h2 class="mt-4 mb-4 bg-warning p-4">Modifier mon adresse email</h2>
-        <section class="m-2 card">
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Modifier mon adresse email</span>
+        </div>
+        <section class="mt-3 card">
             <div class="card-body">
                 {{ form_start(form) }}
                     {{ form_row(form.email) }}

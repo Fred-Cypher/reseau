@@ -11,9 +11,9 @@
             <div class="card-body">
                 <p class="card-title font-weight-bold h3">{{ article.title }}</p>
                 {% if article.user.nickname %}
-                <small class="card-subtitle text-muted">{{ article.user.nickname }}</small>
+                    <small class="card-subtitle text-muted">{{ article.user.nickname }}</small>
                 {% else %}
-                <small class="card-subtitle text-muted">Anonyme</small>
+                    <small class="card-subtitle text-muted">Anonyme</small>
                 {% endif %}
                 <p class="card-text mt-2">{{ article.summary }}</p>
                 <p class="card-text">{{ article.content}}</p>

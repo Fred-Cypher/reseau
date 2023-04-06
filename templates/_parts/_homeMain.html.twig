@@ -1,12 +1,15 @@
 <main class="container">
-    <div class="card my-5 mx-auto w-75">
+    <section class="card my-5 mx-auto w-75">
         <div class="card-body m-auto">
             <p class="card-title mt-3 h5">Forum privé</p>
             <p class="card-subtitle mt-3 mb-2 text-muted h6">Forum pour s'amuser entre amis</p>
             <p class="card-text mt-4">Ce forum privé est destiné à partager des images ou des articles entre amis.</p>
             <p class="text-center mt-2">
                 {% if app.user %}
-                    <p class="text-dark">Vous êtes connecté en tant que <span class="connectedUser">{{ app.user.nickname }}</span>, vous pouvez accéder au forum en suivant le lien prévu à cet effet.</p>
+                    <p class="text-dark">
+                        Vous êtes connecté en tant que <span class="connectedUser">{{ app.user.nickname }}</span>, 
+                        vous pouvez accéder au forum en suivant le lien prévu à cet effet.
+                    </p>
                 {% else %}
                     <p class="mt-5 text-center">
                         <a href="{{ path('app_login') }}" class="card-link btn btn-primary">Connexion</a>
@@ -15,5 +18,5 @@
                 {% endif %}
             </p>
         </div>
-    </div>
+    </section>
 </main>

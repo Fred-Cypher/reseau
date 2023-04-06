@@ -21,7 +21,7 @@ class ModoArticlesFormType extends AbstractType
                 ],
                 'label' => 'Titre de l\'article : '
             ])
-            ->add('summary', TextType::class,[
+            ->add('summary', TextType::class, [
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],

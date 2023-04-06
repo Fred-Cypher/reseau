@@ -1,6 +1,5 @@
 {% extends "base.html.twig" %}
 
-
 {% block title %}Forum Articles{% endblock %}
 
 {% block body %} 
@@ -13,7 +12,6 @@
         </div>
         
         <section class="row card mt-3">
-
             <h3>Liste tes articles existants</h3>
 
             <ul class="p-3">
@@ -53,7 +51,6 @@
             {% set pages = articles.pages %}
             {% set currentPage = articles.page %}
             {% include "_parts/_pagination.html.twig" %}
-
         </section>
 
         <p class="backTo">
@@ -68,9 +65,3 @@
     {% include "_parts/_footer.html.twig" %}
     
 {% endblock %}
-
-{# Lien vers page d'un article : 
-
-href="{{ path('articles_article'), {title: article.title} }}"
-
-#}

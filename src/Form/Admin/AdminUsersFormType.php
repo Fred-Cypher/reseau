@@ -17,7 +17,7 @@ class AdminUsersFormType extends AbstractType
         $roles = $this->getParent('security.role_hierarchy.roles');
 
         $builder
-            ->add('email', EmailType::class,[
+            ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control my-2'
                 ],
@@ -29,7 +29,7 @@ class AdminUsersFormType extends AbstractType
                 ],
                 'label' => 'Pseudo : '
             ])
-            ->add('roles', ChoiceType::class,[
+            ->add('roles', ChoiceType::class, [
                 'attr' => [
                     'class' => 'form-check d-flex justify-content-evenly align-items-center col-sm-12 col-md-8 col-lg-7 mt-2',
                 ],

@@ -23,8 +23,7 @@
                         Cette image a été bloquée par un administrateur ou un modérateur, elle n'est pas visible par les autres utilisateurs. <br>
                         Pour plus de renseignements, contactez un administrateur.
                     </p>
-            {% endif %}
-                
+                {% endif %}
             {% elseif is_granted ('ROLE_MODO') %}
                 {% if image.isVisible %}
                     <p class="card mt-5 p-5">Veuillez passer par le tableau de modération pour éditer les images</p>

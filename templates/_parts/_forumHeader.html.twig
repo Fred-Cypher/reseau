@@ -37,7 +37,6 @@
                 </div>
             </div>
         
-
             <nav class="navbar text-center">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,38 +78,6 @@
                     </div>
                 </div>
             </nav>
-
-            <!--<div class="navbar-nav col-12 col-md-3 text-center">
-                <ul class="nav w-100 flex-column justify-content-center">
-                    
-                        {% if is_granted ('ROLE_ADMIN') %} 
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-outline-danger rounded-pill adminbtn" href="{{ path('admin_index') }}">Administration du forum</a>
-                            </li>
-                        {% elseif is_granted ('ROLE_MODO') %}
-                            <li>
-                                <a class="nav-link btn btn-outline-info rounded-pill " href="{{ path('modo_index') }}">Modération du forum</a>
-                            </li>
-                        {% endif %}
-                    
-                    {% if app.user %}
-                        {% if app.user.isEnabled %}
-                            <li class="nav-item">
-                                <a class="nav-link btn" href="{{ path('profile_index') }}">Mon compte</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-outline-warning rounded-pill" href="{{ path('app_logout') }}">Me déconnecter</a>
-                            </li>
-                            <li class="nav-item mt-3">
-                                Compte : {{ app.user.nickname }}
-                            </li>
-                        {% else %}
-                            Aucun utilisateur connecté
-                        {% endif %}
-                    {% endif %}
-                    
-                </ul>
-            </div>-->
         </div>
     </nav>
 </header>

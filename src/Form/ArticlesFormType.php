@@ -30,7 +30,7 @@ class ArticlesFormType extends AbstractType
                     'class' => 'small text-secondary'
                 ]
             ])
-            ->add('content', TextareaType::class,[
+            ->add('content', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],

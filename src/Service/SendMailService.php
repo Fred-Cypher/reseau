@@ -21,7 +21,6 @@ class SendMailService
         array $context
     ): void
     {
-        
         // Création mail
         $email = (new TemplatedEmail()) 
             ->from($from)

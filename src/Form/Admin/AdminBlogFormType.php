@@ -20,13 +20,13 @@ class AdminBlogFormType extends AbstractType
                 ],
                 'label' => 'Titre de l\'image : '
             ])
-            ->add('image_url', TextType::class,[
+            ->add('image_url', TextType::class, [
                 'attr' => [
                     'class' => 'visually-hidden'
                 ],
                 'label' => ' '
             ])
-            ->add('description', TextType::class,[
+            ->add('description', TextType::class, [
                 'attr' => [
                     'class' => 'form-control mt-2'
                 ],

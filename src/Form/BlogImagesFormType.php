@@ -31,14 +31,13 @@ class BlogImagesFormType extends AbstractType
                 'required' => true
             ])
             ->add(
-                'description', TextareaType::class,
-                [
-                    'attr' => [
-                        'class' => 'form-control mt-2'
-                    ],
-                    'label' => 'Description de l\'image (limité 300 caractères) : '
-                ]
-            );
+                'description', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control mt-2'
+                ],
+                'label' => 'Description de l\'image (limité 300 caractères) : '
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
