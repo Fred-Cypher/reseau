@@ -20,42 +20,44 @@
                 
                 {% for role in app.user.roles %}
                     {% if role == 'ROLE_ADMIN' %}
-                        {% if article.isVisible %}
-                            <p class="card-link mt-4">
-                                <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnSend">Modifier l'article</a>
-                                {{ include('articles/_delete_form.html.twig') }}
-                            </p>
-                        {% else %}
-                            <p class="card-link mt-4">
-                                <p class="btn btn-warning">Article bloqué</p>
-                                <p>
+                        {% if app.user is not same as (article.user) %}
+                            {% if article.isVisible %}
+                                <p class="card-link mt-4">
                                     <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnSend">Modifier l'article</a>
                                     {{ include('articles/_delete_form.html.twig') }}
                                 </p>
-                            </p>
+                            {% else %}
+                                <p class="card-link mt-4">
+                                    <p class="btn btn-warning">Article bloqué</p>
+                                    <p>
+                                        <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnSend">Modifier l'article</a>
+                                        {{ include('articles/_delete_form.html.twig') }}
+                                    </p>
+                                </p>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                    {% if role == 'ROLE_MODO' %}
-                        {% if article.isVisible %}
-                            <p class="card-link mt-4">
-                                <a href="{{ path('modo_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnSend">Modifier l'article</a>
-                                {{ include('articles/_delete_form.html.twig') }}
-                            </p>
-                        {% else %}
-                            <p class="card-link mt-4">
-                                <p class="btn btn-warning">Article bloqué</p>
-                                <p>
+                    {% elseif role == 'ROLE_MODO' %}
+                        {% if app.user is not same as (article.user) %}
+                            {% if article.isVisible %}
+                                <p class="card-link mt-4">
                                     <a href="{{ path('modo_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnSend">Modifier l'article</a>
                                     {{ include('articles/_delete_form.html.twig') }}
                                 </p>
-                            </p>
+                            {% else %}
+                                <p class="card-link mt-4">
+                                    <p class="btn btn-warning">Article bloqué</p>
+                                    <p>
+                                        <a href="{{ path('modo_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnSend">Modifier l'article</a>
+                                        {{ include('articles/_delete_form.html.twig') }}
+                                    </p>
+                                </p>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                    {% if role == 'ROLE_USER' %}
+                    {% else %}
                         {% if app.user is same as (article.user) %}
                             {% if article.isVisible %}
                                 <p class="card-link mt-4">
-                                    <a href="{{ path('articles_app_article_edit', {'slug': article.slug})|lower  }}" class="btn btn-info">Modifier l'article</a>
+                                    <a href="{{ path('articles_app_article_edit', {'slug': article.slug})|lower  }}" class="btn  btnSend">Modifier l'article</a>
                                     {{ include('articles/_delete_form.html.twig') }}
                                 </p>
                             {% else %}

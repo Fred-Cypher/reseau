@@ -152,12 +152,12 @@ li{
 }
 
 .btnSend{
-    background-color: #91283b;
+    background-color: #595455;
     color: whitesmoke;
 }
 
 .btnSend:hover{
-    background-color: #963e4e;
+    background-color: #5a5959;
     box-shadow: 2px 2px #302d2859;
     color: whitesmoke;
 }
@@ -190,4 +190,15 @@ li{
 
 .userWarning{
     border: #bb2f2f 3px solid;
+}
+
+.btnDelete{
+    background-color:firebrick ;
+    color: whitesmoke;
+}
+
+.btnDelete:hover{
+    background-color: rgb(175, 61, 61);
+    box-shadow: 2px 2px #302d2859;
+    color: whitesmoke;
 }
