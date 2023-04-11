@@ -6,15 +6,15 @@
 
     {% include "_parts/_forumHeader.html.twig" %}
 
-    <main class="container">
+    <main class="container m-auto">
         <section class="row">
             {% if app.user %}
                 {% if app.user.isEnabled %}
-                    <div class="mt-3 text-center">
+                    <div class="mt-3 text-center ">
                         <span class="backgroundTitle h2 px-3 rounded">Choix du forum </span>
                     </div>
                     
-                    <div class="row d-flex justify-content-evenly"> 
+                    <div class="row d-flex justify-content-evenly m-auto"> 
                         <div class="card col-md-5 mt-4 forumCard">
                             <div class="card-body">
                                 <p class="card-title h5">Forum Images</p>
@@ -24,10 +24,10 @@
                                         {% if images.isVisible %}
                                             <img src="{{ vich_uploader_asset(images, 'imageFile')|imagine_filter('miniature') }}" class="img-fluid rounded mt-2" alt="{{ images.title }}">
                                         {% else %}
-                                            <img src=" {{ asset('assets/icons/globe.ico') }}" alt="Logo site" class="logo mt-4">
+                                            <img src=" {{ asset('assets/icons/jupiter.ico') }}" alt="Logo site" class="logo mt-4">
                                         {% endif %}
                                     {% else %}
-                                        <img src=" {{ asset('assets/icons/globe.ico') }}" alt="Logo site" class="logo mt-4">
+                                        <img src=" {{ asset('assets/icons/jupiter.ico') }}" alt="Logo site" class="logo mt-4">
                                     {% endif %}
                                 </p>
                                 <p class="card-text text-center d-flex align-items-end justify-content-center">

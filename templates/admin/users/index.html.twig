@@ -12,7 +12,7 @@
         </div>
 
         <p class="m-3 d-flex justify-content-end">
-            <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+            <a href="{{ path('admin_index') }}" class="btn btnModif">Retour au panneau de modération</a>
         </p>
 
         <section class="row">
@@ -61,7 +61,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="{{ path('admin_users_edit', {'id': user.id}) }}" class="btn btn-warning">Modifier</a>
+                                <a href="{{ path('admin_users_edit', {'id': user.id}) }}" class="btn btnModif">Modifier</a>
                                 <a href="{{ path('admin_users_delete', {'id': user.id}) }}" class="btn btn-danger">Supprimer</a>
                             </td>
                         </tr>
@@ -71,7 +71,7 @@
 
             <div class="backTo">
                 <p class="m-3 d-flex justify-content-end">
-                    <a href="{{ path('admin_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+                    <a href="{{ path('admin_index') }}" class="btn btnModif">Retour au panneau de modération</a>
                 </p>
             </div>
         </section>

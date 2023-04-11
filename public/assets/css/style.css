@@ -185,7 +185,10 @@ li{
 }
 
 .backgroundTitle{
-    background-color:antiquewhite;
+    color:#cac8c4;
+    background-color: transparent;
+    /*-webkit-text-stroke: 1px #ccc9c3;
+    text-shadow: 2px 2px 2px #fff0bea2;*/
 }
 
 .userWarning{
@@ -201,4 +204,20 @@ li{
     background-color: rgb(175, 61, 61);
     box-shadow: 2px 2px #302d2859;
     color: whitesmoke;
+}
+
+.btnModif{
+    background-color: #EBD0B3;
+    color: black;
+}
+
+.btnModif:hover{
+    background-color: #EBD0B3;
+    color: black;
+    box-shadow: 2px 2px #302d2859;
+}
+
+.btnPrivate{
+    background-color: #FEEFBE;
+    color: black;
 }

@@ -12,7 +12,7 @@
         </div>
 
         <p class="m-3 d-flex justify-content-end">
-            <a href="{{ path('modo_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+            <a href="{{ path('modo_index') }}" class="btn btnModif">Retour au panneau de modération</a>
         </p>
 
         <section class="row mt-5">
@@ -46,7 +46,7 @@
                                     </div>
                                 </td>
                             <td>
-                                <a href="{{ path('modo_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier</a>
+                                <a href="{{ path('modo_blog_images_edit', {'slug': image.slug}) }}" class="btn btnModif">Modifier</a>
                                 <a href="" class="btn">{{ include('blog_images/_delete_form.html.twig') }}</a>
                             </td>
                         </tr>
@@ -56,7 +56,7 @@
 
             <div class="backTo">
                 <p class="m-3 d-flex justify-content-end">
-                    <a href="{{ path('modo_index') }}" class="btn btn-warning">Retour au panneau de modération</a>
+                    <a href="{{ path('modo_index') }}" class="btn btnModif">Retour au panneau de modération</a>
                 </p>
             </div>
         </section>
