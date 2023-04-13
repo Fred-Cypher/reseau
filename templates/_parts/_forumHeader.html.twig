@@ -21,15 +21,28 @@
                     <ul class="nav w-100 justify-content-center flex-column flex-md-row">
                         {% if app.user %}
                             {% if app.user.isEnabled %}
-                                <li class="nav-item ms-2">
-                                    <a class="nav-link" href="{{ path('forum_index') }}">Retour à l'accueil du forum</a>
-                                </li>
-                                <li class="nav-item ms-2">
-                                    <a class="nav-link" href="{{ path('images_app_blog_images_index') }}">Partage d'images</a>
-                                </li>
-                                <li class="nav-item ms-2">
-                                    <a class="nav-link" href="{{ path('articles_app_articles') }}">Partage d'articles</a>
-                                </li>
+                                {% if app.user.isVerified %}
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="{{ path('forum_index') }}">Retour à l'accueil du forum</a>
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="{{ path('images_app_blog_images_index') }}">Partage d'images</a>
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="{{ path('articles_app_articles') }}">Partage d'articles</a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="{{ path('forum_index') }}">Retour à l'accueil du forum</a>
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="#">Partage d'images</a>
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="#">Partage d'articles</a>
+                                    </li>
+                                {% endif %}
+                                
                             {% endif %}
                         {% endif %}
                         
@@ -62,6 +75,10 @@
                                     {% endif %}
                                     {% if app.user %}
                                         {% if app.user.isEnabled %}
+                                            <li>
+                                                <a class="dropdown-item" href="{{ path('forum_rules') }}">Réglement du site</a>
+                                            </li>
+                                            <li><hr class="dropdown-divider"></li>
                                             <li>
                                                 <a class="dropdown-item" href="{{ path('profile_index') }}">Mon compte</a>
                                             </li>

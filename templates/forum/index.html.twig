@@ -31,7 +31,9 @@
                                     {% endif %}
                                 </p>
                                 <p class="card-text text-center d-flex align-items-end justify-content-center">
-                                    <a href="{{ path('images_app_blog_images_index') }}" class="btn btnSend">Forum images</a>
+                                    {% if app.user.isVerified %}
+                                        <a href="{{ path('images_app_blog_images_index') }}" class="btn btnSend">Forum images</a>
+                                    {% endif %}
                                 </p>
                             </div>
                         </div>
@@ -51,7 +53,9 @@
                                     {% endif %}
                                 </p>
                                 <p class="card-text text-center d-flex align-items-end justify-content-center align-self-end">
-                                    <a href="{{ path('articles_app_articles') }}" class="btn btnSend">Forum articles</a>
+                                    {% if app.user.isVerified %}
+                                        <a href="{{ path('articles_app_articles') }}" class="btn btnSend">Forum articles</a>
+                                    {% endif %}
                                 </p>
                             </div>
                         </div>

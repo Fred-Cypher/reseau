@@ -26,4 +26,12 @@ class ForumController extends AbstractController
             'articles' => $articles[$article]
         ]);
     }
+
+    #[Route('/rules', name: 'rules', methods: ['GET'])]
+    public function rules(): Response
+    {
+        return $this->render('forum/rules.html.twig', [
+            'controller_name' => 'Réglement du site',
+        ]);
+    }
 }

@@ -101,11 +101,16 @@ li{
     width: 14rem;
 }
 
+.ruleIcon{
+    height: 0.8rem;
+    width: 0.8rem;
+    margin-right: 0.6rem;
+}
 
 /*### COULEURS BOUTONS, CHECKS ###*/
 
 .pagination a{
-    color: brown;
+    color: #a52a2a;
 }
 
 .pagination .active a{

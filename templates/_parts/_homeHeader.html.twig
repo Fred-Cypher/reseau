@@ -20,15 +20,28 @@
                 <div class="navbar-nav">
                     <ul class="nav w-100 justify-content-center">
                         {% if app.user %}
-                            <li class="nav-item ms-2">
-                                <a class="nav-link" href="{{ path('forum_index') }}">Accès au forum</a>
-                            </li>
-                            <li class="nav-item ms-2">
-                                <a class="nav-link" href="{{ path('profile_index') }}">Mon compte</a>
-                            </li>
-                            <li class="nav-item ms-2">
-                                <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
-                            </li>
+                            {% if app.user.isVerified %}
+                                <li class="nav-item ms-2">
+                                    <a class="nav-link" href="{{ path('forum_index') }}">Accès au forum</a>
+                                </li>
+                                <li class="nav-item ms-2">
+                                    <a class="nav-link" href="{{ path('profile_index') }}">Mon compte</a>
+                                </li>
+                                <li class="nav-item ms-2">
+                                    <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item ms-2">
+                                    <a class="nav-link" href="#">Accès au forum</a>
+                                </li>
+                                <li class="nav-item ms-2">
+                                    <a class="nav-link" href="#">Mon compte</a>
+                                </li>
+                                <li class="nav-item ms-2">
+                                    <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+                                </li>
+                            {% endif %}
+                            
                         {% else %}
                             <li class="nav-item ms-2">
                                 <a class="nav-link" href="{{ path('app_login') }}">Me connecter</a>

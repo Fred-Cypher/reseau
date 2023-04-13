@@ -148,6 +148,6 @@ class RegistrationController extends AbstractController
             ]
         );
         $this->addFlash('success', 'Email de vérification envoyé');
-        return $this->redirectToRoute('profile_index');
+        return $this->redirectToRoute('forum_rules');
     }
 }
