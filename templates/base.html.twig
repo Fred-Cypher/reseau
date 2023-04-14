@@ -25,7 +25,8 @@
             <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
                 <div class="alert-message">
-                    Votre compte n'est pas activé, veuillez l'activer pour avoir accès au reste du forum, <a href="{{ path('resend_verif') }}" class="text-success fw-bold fst-italic">renvoyer le lien d'activation</a>
+                    Votre compte n'est pas activé, veuillez l'activer en cliquant sur le lien que vous avez reçu par email pour avoir accès au reste du forum, <br> 
+                    si le lien a expiré : <a href="{{ path('resend_verif') }}" class="text-success fw-bold fst-italic">cliquer ici pour renvoyer un nouveau lien d'activation</a>
                 </div>
             </div>
         {% endif %}

@@ -96,8 +96,8 @@ class RegistrationController extends AbstractController
                 if($user && !$user->getIsVerified()){
                     $user->setIsVerified(true);
                     $em->flush($user);
-                $this->addFlash('success', 'Utilisateur activé');
-                return $this->redirectToRoute('profile_index');
+                $this->addFlash('success', 'Votre compte a bien été activé, vous avez désormais accès à toutes les pages du forum.');
+                return $this->redirectToRoute('forum_rules');
                 }
 
             }
