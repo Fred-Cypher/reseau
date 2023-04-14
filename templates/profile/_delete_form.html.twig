@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('profile_user_delete') }}" onsubmit="return confirm('Êtes-vous bien sûr de vouloir supprimer votre compte ? Cette action est irréversible et supprimera tous vos messages également.');">
+    {% if app.user %}
+        <button class="btn btn-danger">Supprimer mon compte</button>
+    {% endif %}
+</form>

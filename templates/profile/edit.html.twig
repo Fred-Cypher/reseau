@@ -34,8 +34,8 @@
                         {% else %}
                             <p>En cliquant sur ce bouton, vous supprimerez définitivement votre compte.</p>
                             <p>Supprimer votre compte supprimera également vos contributions au forum.</p>
-                            <a href="{{ path('profile_user_delete') }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?)">Supprimer mon compte</a>
-                        {% endif %}
+                            {{ include('profile/_delete_form.html.twig') }}
+                        {% endif %} 
                     </div>
                 </div>
             </div>
