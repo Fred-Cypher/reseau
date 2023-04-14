@@ -107,6 +107,10 @@ li{
     margin-right: 0.6rem;
 }
 
+.credit{
+    font-size: 0.8rem;
+}
+
 /*### COULEURS BOUTONS, CHECKS ###*/
 
 .pagination a{

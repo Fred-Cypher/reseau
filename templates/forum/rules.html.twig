@@ -12,12 +12,12 @@
 
     <main class="container m-auto">
         <section class="row">
-            <article class="card my-5 mx-auto">
+            <article class="card my-4 mx-auto">
                 <div class="card-body">
                     <div class="card-title m-auto h3">
                         Réglement intérieur du site
                     </div>
-                    <div class="card-text mt-4">
+                    <div class="card-text mt-3">
                         <ul>
                             <li class="mt-2">
                                 <img src="{{ asset('assets/icons/meteor.svg') }}" alt="Météore" class="ruleIcon">
@@ -41,7 +41,8 @@
                                 <img src="{{ asset('assets/icons/meteor.svg') }}" alt="Météore" class="ruleIcon">
                                 L'écriture SMS est interdite, merci d'écrire le plus correctement possible. 
                             </li>
-                            <li class="mt-5">
+                            <li class="line mt-3"></li>
+                            <li class="mt-2">
                                 <img src="{{ asset('assets/icons/laugh.svg') }}" alt="Visage rieur" class="ruleIcon">
                                 Amusez-vous bien tous ensemble dans le respect et la bonne humeur.
                             </li>
@@ -52,7 +53,7 @@
             <div class="backTo text-center">
                 <a href="{{ path('main') }}" class="btn btnReturn">Accueil du site</a>
                 {% if app.user %}
-                    <a href="{{ path('forum_index') }}" class="btn btnReturn">Accès au forum</a>
+                    <a href="{{ path('forum_index') }}" class="btn btnReturn ms-4">Accès au forum</a>
                 {% endif %}
             </div>
         </section>
