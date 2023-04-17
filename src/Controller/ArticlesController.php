@@ -24,7 +24,7 @@ class ArticlesController extends AbstractController
         // Récupération des articles, définition du nombre d'articles par page
         $articles = $articlesRepository->articlesPaginated($page, 10);
 
-        return $this->render('articles/articles.html.twig', [
+        return $this->render('articles/index.html.twig', [
             'articles' => $articles,
         ]);
     }
@@ -63,7 +63,7 @@ class ArticlesController extends AbstractController
     #[Route('/{slug}', name: 'app_article_show', methods: ['GET'])]
     public function show(Articles $article): Response
     {
-        return $this->render('articles/article.html.twig', [
+        return $this->render('articles/show.html.twig', [
             'article' => $article,
         ]);
     }
