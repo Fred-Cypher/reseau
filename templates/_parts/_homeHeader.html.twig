@@ -1,12 +1,12 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
+        <div class="container-fluid align-items-end">
             <div class="row col-12 col-md-3 text-center">
-                <div class="border">
+                <div class="">
                     <a href="{{ path('main') }}">
                         <p class="dateNow">{{ "now"|date('d M Y, H : i', 'Europe/Paris') }}</p>
                         <img src=" {{ asset('assets/icons/jupiter.ico') }}" alt="Logo site" class="logo">
-                        <p class="mt-2">Page d'accueil du site</p>
+                        <p class="mt-1">Accueil du site</p>
                     </a>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                 </div>
             
                 <div class="navbar-nav">
-                    <ul class="nav w-100 justify-content-center">
+                    <ul class="nav w-100 justify-content-center flex-column flex-md-row">
                         {% if app.user %}
                             {% if app.user.isVerified %}
                                 <li class="nav-item ms-2">

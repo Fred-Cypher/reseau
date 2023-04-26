@@ -6,7 +6,7 @@
 
     {% include "_parts/_forumHeader.html.twig" %}
 
-    <main class="container m-auto">
+    <main class="container m-auto pb-5">
         <section class="row">
             {% if app.user %}
                 {% if app.user.isEnabled %}
@@ -86,7 +86,6 @@
                 </div>
             {% endif %}
         </section>
-        <div class="backTo"></div>
     </main>
     
     {% include "_parts/_footer.html.twig" %}

@@ -40,7 +40,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('nickname', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control mt-2'
                 ],
             'label' => 'Pseudo : '
             ])
