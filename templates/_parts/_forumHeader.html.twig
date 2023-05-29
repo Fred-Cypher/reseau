@@ -42,7 +42,6 @@
                                         <a class="nav-link" href="#">Partage d'articles</a>
                                     </li>
                                 {% endif %}
-                                
                             {% endif %}
                         {% endif %}
                         
@@ -59,7 +58,11 @@
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ app.user.nickname }}
+                                    {% if app.user.isEnabled %}
+                                        {{ app.user.nickname }}
+                                    {% else %}
+                                        <a class="dropdown-item" href="{{ path('app_logout') }}">Purger la page</a>
+                                    {% endif %}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
                                     {% if is_granted ('ROLE_ADMIN') %} 

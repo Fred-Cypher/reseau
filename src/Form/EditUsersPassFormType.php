@@ -21,7 +21,7 @@ class EditUsersPassFormType extends AbstractType
                     'type' => 'password',
                     'class' => 'form-control'
                 ],
-                'label' => 'Mot de passe actuel',
+                'label' => 'Mot de passe actuel :',
             ])
             ->add('newPassword',RepeatedType::class, [
                 'mapped' => false,
@@ -33,8 +33,8 @@ class EditUsersPassFormType extends AbstractType
                         'class' => 'form-control'
                     ]
                 ],
-                'first_options' => ['label' => 'Mot de passe : '],
-                'second_options' => ['label' => 'Confirmez le mot de passe :'],
+                'first_options' => ['label' => 'Nouveau mot de passe : '],
+                'second_options' => ['label' => 'Confirmez le nouveau mot de passe :'],
                 'constraints' => [
                     new NotBlank(),
                     new Length([
