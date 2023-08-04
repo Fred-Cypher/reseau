@@ -22,5 +22,15 @@
 
 ### Divers
 codetest.php
-afaire.txt
+afaire.md
 .env
+/public/assets/uploads
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
+
+/.vscode
+
+indexImage.html.twig
+
+baseTest.html.twig
