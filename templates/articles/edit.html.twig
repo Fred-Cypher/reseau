@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un article{% endblock %}
+
+{% block body %}
+
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <main class="container pb-2">
+        <h2>Modifier un article</h2>
+        <section class="mt-3">
+            {% if app.user is same as (article.user) %}
+                {% if article.isVisible %}
+                    {{ form_start(form) }}
+                        {{ form_row(form.title) }}
+                        {{ form_row(form.summary) }}
+                        {{ form_row(form.content) }}
+                        <button type="submit" class="btn btnSend mt-3 btn-lg">Modifier l'article</button>
+                    {{ form_end(form) }}
+                {% else %}
+                    <p class="bg-warning p-3 mt-2">
+                        Cet article a été bloqué par un administrateur ou un modérateur, il n'est pas visible par les autres utilisateurs. <br>
+                        Pour plus de renseignements, contactez un administrateur.
+                    </p>
+            {% endif %}
+
+            {% elseif is_granted ('ROLE_MODO') %}
+                {% if article.isVisible %}
+                    <p class="card mt-5 p-5">Veuillez passer par le tableau de modération pour éditer les articles</p>
+                {% else %}
+                    <p class="btn btn-lg btn-dark mt-3">⚠️ Attention, article bloqué</p>
+                    <p class="card mt-3 p-5">Veuillez passer par le tableau de modération pour éditer les articles</p>
+                {% endif %}
+                
+            {% else %}
+                Vous n'avez pas le droit de modifier cet article
+            {% endif %}
+            
+            <p class="backTo">
+                <a href="{{ path('articles_app_articles') }}" class="btn btnReturn mt-3">Retour à la liste d'articles</a>
+            </p>
+        </section>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
+
+{% endblock %}

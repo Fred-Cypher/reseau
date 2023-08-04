@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration du forum{% endblock %}
+
+{% block body %}
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <main class="container col-sm-9 col-md-12 pb-3">
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Administration du forum</span>
+        </div>
+        
+        <section class="row m-5 w-75 m-auto">
+            <nav class="nav flex-column">
+                <li class="nav-item">
+                    <a href="{{ path('admin_blog_index') }}" class="btn btnModif mt-3 nav-link moderationButton">Gestion du blog images</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('admin_articles_index') }}" class="btn btnModif mt-3 nav-link moderationButton">Gestion des articles</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('admin_users_index') }}" class="btn btnModif mt-3 nav-link moderationButton">Gestion des utilisateurs</a>
+                </li>
+                <li class="nav-item mb-5">
+                    <a href="{{ path('admin_users_private') }}" class="btn btnPrivate mt-3 nav-link moderationButton">Données utilisateurs privées</a>
+                </li>
+            </nav>
+        </section>
+    </main>
+    
+    {% include "_parts/_footer.html.twig" %}
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Image : {{ image.title }}{% endblock %}
+
+{% block body %}
+
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <main class="container pb-2">
+        <section class="card m-2 m-md-5">
+            <div class="card-body">
+                <p class="card-title h3">{{ image.title }}</p>
+                    {% if image.user.nickname %}
+                        <small class="card-subtitle text-muted">{{ image.user.nickname }}</small>
+                    {% else %}
+                        <small class="card-subtitle text-muted">Anonyme</small>
+                    {% endif %}
+                <p class="card-text">{{ image.description }}</p>
+                <p class="card-text text-center">
+                    <img class="card-img-bottom blogPicture" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
+                </p>
+
+                {% for role in app.user.roles %}
+                    {% if role == 'ROLE_ADMIN' %}
+                        {% if app.user is not same as (image.user) %}
+                            {% if image.isVisible %}
+                                <p class="card-link mt-4">
+                                    <a href="{{ path('admin_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier l'image</a>
+                                    {{ include('blog_images/_delete_form.html.twig') }}
+                                </p>
+                            {% else %}
+                                <p class="card-link mt-4">
+                                    <p class="btn btn-warning">Image bloquée</p>
+                                    <p>
+                                        <a href="{{ path('admin_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier l'image</a>
+                                        {{ include('blog_images/_delete_form.html.twig') }}
+                                    </p>
+                                </p>
+                            {% endif %}
+                        {% endif %}
+                    {% elseif role == 'ROLE_MODO' %}
+                        {% if app.user is not same as (image.user) %}
+                            {% if image.isVisible %}
+                                <p class="card-link mt-4">
+                                    <a href="{{ path('modo_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier l'image</a>
+                                    {{ include('blog_images/_delete_form.html.twig') }}
+                                </p>
+                            {% else %}
+                                <p class="card-link mt-4">
+                                    <p class="btn btn-warning">Image bloquée</p>
+                                    <p>
+                                        <a href="{{ path('modo_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier l'image</a>
+                                        {{ include('blog_images/_delete_form.html.twig') }}
+                                    </p>
+                                </p>
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        {% if app.user is same as (image.user) %}
+                            {% if image.isVisible %}
+                                <p class="card-link mt-4">
+                                <a href="{{ path('images_app_blog_images_edit', {'slug': image.slug}) }}" class="btn btnSend">Modifier l'image</a>
+                                {{ include('blog_images/_delete_form.html.twig') }}
+                            </p>
+                            {% else %}
+                                <p class="bg-warning p-3">
+                                    Cette image a été bloquée par un administrateur ou un modérateur, elle n'est pas visible par les autres utilisateurs. <br>
+                                    Pour plus de renseignements, contactez un administrateur.
+                                </p>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+
+        <p class="text-start backTo">
+            <a href="{{ path('images_app_blog_images_index') }}" class="btn btnReturn">Retour à la liste d'images</a>
+        </p>
+    </main>
+    
+    {% include "_parts/_footer.html.twig" %}
+
+{% endblock %}

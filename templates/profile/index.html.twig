@@ -1,23 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %} Profil de {{ app.user.nickname }} {% endblock %}
 
 {% block body %}
 
-{% include "_parts/_forumHeader.html.twig" %}
+    {% include '_parts/_forumHeader.html.twig' %}
 
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <main class="container h-75 pb-3">
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Mon profil</span>
+        </div>
+        
+        <section class="row m-2 d-flex justify-content-evenly">
+            <div class="card col-md-5 ms-3 mt-2">
+                <div class="card-body d-flex row">
+                    <p class="card-title h5 mb-3">Voir mes publications</p>
+                    <p class="card-text text-center">
+                        <a href="{{ path('profile_images') }}" class="btn btn-outline-dark">Voir mes images</a>
+                    </p>
+                    <p class="card-text text-center">
+                        <a href="{{ path('profile_articles') }}" class="btn btn-outline-dark">Voir mes articles</a>
+                    </p>
+                </div>
+            </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <div class="card col-md-5 ms-3 mt-2">
+                <div class="card-body d-flex row">
+                    <p class="card-title h5 mb-3">Modifier mon profil</p>
+                    <p class="card-text">
+                        Il est seulement possible de modifier le mot de passe et l'adresse mail. <br> 
+                        Les coordonnées (nom, prénom) et le pseudo ne sont pas modifiables.</p>
+                    <p class="card-text text-center d-flex align-items-end justify-content-center mt-2">
+                        <a href="{{ path('profile_edit') }}" class="btn btnSend">Modifier mon profil</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/reseau/src/Controller/ProfileController.php'|file_link(0) }}">src/Controller/ProfileController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/reseau/templates/profile/index.html.twig'|file_link(0) }}">templates/profile/index.html.twig</a></code></li>
-    </ul>
-</div>
+    {% include "_parts/_footer.html.twig" %}
+
 {% endblock %}

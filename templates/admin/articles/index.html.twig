@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Modération des articles{% endblock %}
+
+{% block body %}
+
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <main class="container pb-3">
+        <div class="mt-3 text-center">   
+            <span class="backgroundTitle h2 px-3 rounded">Liste des articles à modérer</span>
+        </div>
+        
+        <p class="m-3 d-flex justify-content-end">
+            <a href="{{ path('admin_index') }}" class="btn btnModif">Retour au panneau de modération</a>
+        </p>
+
+        <section class="row mt-5">
+            <table class="table table-striped bg-light">
+                <thead>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Résumé</th>
+                    <th>Visible</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    {% for article in articles %}
+                        <tr>
+                            <td>{{ article.id }}</td>
+                            <td>{{ article.title }}</td>
+                            <td>{{ article.user.nickname }}</td>
+                            <td class="w-25">{{ article.summary }}</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="switch{{ article.id }}" {{ (article.isVisible) ? 'checked' : '' }} data-id="{{ article.id }}" disabled>
+                                    <label class="form-check-label" for="switch{{ article.id }}"></label>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_articles_edit', {'slug': article.slug})|lower  }}" class="btn btnModif">Modifier</a>
+                                <a href="" class="btn">{{ include('articles/_delete_form.html.twig') }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="backTo">
+                <p class="m-3 d-flex justify-content-end">
+                    <a href="{{ path('admin_index') }}" class="btn btnModif">Retour au panneau de modération</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
+
+{% endblock %}

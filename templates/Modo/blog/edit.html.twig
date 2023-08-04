@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modérateur - Modification d'une image{% endblock %}
+
+{% block body %}
+
+    {% include '_parts/_forumHeader.html.twig' %}
+
+    <main class="container pb-4">
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Modifier une image</span>
+        </div>
+
+        <section class="mt-2 col-12 col-md-8 p-3 m-auto card">
+            <img class="img-thumbnail modifPicture m-auto" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
+            {{ form_start(form) }}
+                <div class="mt-2 p-2">
+                    {{ form_row(form.title) }}
+                </div>
+                <div class="mt-2 p-2">
+                    {{ form_row(form.description) }}
+                </div>
+                <div class="mt-2 p-2">
+                    {{ form_row(form.isVisible) }}
+                </div>
+                    {{ form_row(form.image_url) }}
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btnSend mt-2 btn-lg">Modifier l'image</button>
+                </div>
+            {{ form_end(form) }}
+        </section>
+
+        <div class="backTo">
+            <p class="m-3 d-flex justify-content-end">
+                <a href="{{ path('images_app_blog_images_index') }}" class="btn btnReturn me-4">Aller à la liste d'images du forum</a>
+                <a href="{{ path('modo_index') }}" class="btn btnModif">Retour au panneau de modération</a>
+            </p>
+        </div>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
+    
+{% endblock %}

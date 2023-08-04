@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modification de l'adresse email {% endblock %}
+
+{% block body %}
+    {% include '_parts/_forumHeader.html.twig' %}
+
+    <main class="container pb-5">
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Modifier mon adresse email</span>
+        </div>
+        <section class="mt-3 card">
+            <div class="card-body">
+                {{ form_start(form) }}
+                    {{ form_row(form.email) }}
+                    <button type="submit" class="btn btnSend mt-4 btn-lg">Modifier l'adresse mail</button>
+                {{ form_end(form) }} 
+            </div>
+        </section>  
+
+        <div class="mt-4">
+            <a href="{{ path('profile_index') }}" class="btn btnReturn">Retour au profil</a>
+        </div>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
+
+{% endblock %}

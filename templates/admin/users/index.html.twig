@@ -1,11 +1,82 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administration - Users{% endblock %}
+{% block title %}Admin - Modération des utilisateurs{% endblock %}
 
 {% block body %}
-    {% include "_parts/_homeHeader.html.twig" %}
 
-    <h1>Administration des utilisateurs</h1>
+    {% include "_parts/_forumHeader.html.twig" %}
 
+    <main class="container pb-3">
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Liste des utilisateurs à modérer</span>    
+        </div>
+
+        <p class="m-3 d-flex justify-content-end">
+            <a href="{{ path('admin_index') }}" class="btn btnModif">Retour au panneau de modération</a>
+        </p>
+
+        <section class="row">
+            <table class="table table-striped mt-5 bg-light">
+                <thead>
+                    <th>Id</th>
+                    <th>Pseudo</th>
+                    <th>Email</th>
+                    <th>Vérifié</th>
+                    <th>Rôle(s)</th>
+                    <th>Bloqué / Autorisé</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.nickname }}</td>
+                            <td>{{ user.email }}</td>
+                            <td class="text-center">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="switch{{ user.id }}" {{ (user.isVerified) ? 'checked' : '' }} data-id="{{ user.id }}" disabled>
+                                    <label class="form-check-label" for="switch{{ user.id }}"></label>
+                                </div>
+                            </td>
+                            <!--<td>{{ user.roles|json_encode() }}</td>-->
+                            <td>
+                                {% for role in user.roles %}
+                                    {% if role == "ROLE_ADMIN" %}
+                                        {% set name = "Administrateur" %}
+                                        {% set color = "black" %}
+                                    {% elseif role == "ROLE_MODO" %}
+                                        {% set name = "Modérateur" %}
+                                        {% set color = "danger" %}
+                                    {% else %}
+                                        {% set name = "Membre" %}
+                                        {% set color = "secondary" %}
+                                    {% endif %}
+                                    <span class="badge bg-{{ color }}">{{ name }}</span>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <label class="form-check-label" for="switch{{ user.id }}"></label>
+                                    <input class="form-check-input ms-2" type="checkbox" role="switch" id="switch{{ user.id }}" {{ (user.isEnabled) ? 'checked' : '' }} data-id="{{ user.id }}" disabled>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_users_edit', {'id': user.id}) }}" class="btn btnModif">Modifier</a>
+                                <a href="{{ path('admin_users_delete', {'id': user.id}) }}" class="btn btn-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody> 
+            </table>
+
+            <div class="backTo">
+                <p class="m-3 d-flex justify-content-end">
+                    <a href="{{ path('admin_index') }}" class="btn btnModif">Retour au panneau de modération</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
 
 {% endblock %}

@@ -24,7 +24,7 @@ class RegistrationController extends AbstractController
     UserAuthenticatorInterface $userAuthenticator, UsersAuthenticator $authenticator, 
     EntityManagerInterface $entityManager, SendMailService $mail, JwtService $jwt): Response
     {
-        $user = new Users();
+        $user = new Users('');
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -96,8 +96,8 @@ class RegistrationController extends AbstractController
                 if($user && !$user->getIsVerified()){
                     $user->setIsVerified(true);
                     $em->flush($user);
-                $this->addFlash('success', 'Utilisateur activé');
-                return $this->redirectToRoute('profile_index');
+                $this->addFlash('success', 'Votre compte a bien été activé, vous avez désormais accès à toutes les pages du forum.');
+                return $this->redirectToRoute('forum_rules');
                 }
 
             }
@@ -106,48 +106,48 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_login');
     }
 
-        #[Route('/newverif', name: 'resend_verif')]
-        public function resendVerif(JwtService $jwt, SendMailService $mail, UsersRepository $usersRepository): Response
-        {
-            $user = $this->getUser();
+    #[Route('/newverif', name: 'resend_verif')]
+    public function resendVerif(JwtService $jwt, SendMailService $mail, UsersRepository $usersRepository): Response
+    {
+        $user = $this->getUser();
 
-            if(!$user){
-                $this->addFlash('danger', 'Vous devez être connecté pour accéder à cette page');
-                return $this->redirectToRoute('app_login');
-            }
+        if(!$user){
+            $this->addFlash('danger', 'Vous devez être connecté pour accéder à cette page');
+            return $this->redirectToRoute('app_login');
+        }
 
-            if($user->getIsVerified()){
-                $this->addFlash('warning', 'Cet utilisateur est déjà activé');
-                return $this->redirectToRoute('profile_index');
-            }
-
-            // Génération du Jwt de l'utilisateur
-            // Création header
-            $header = [
-                'type' => 'JWT',
-                'alg' => 'HS256'
-            ];
-
-            // Création payload
-            $payload = [
-                'user_id' => $user->getId() 
-            ];
-
-            // Génération token
-            $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
-
-            // Envoi d'un mail
-            $mail->send(
-                'no-reply@test.com',
-                $user->getEmail(),
-                'Activation de votre compte sur le forum de partage',
-                'register',
-                [
-                    'user' => $user,
-                    'token' => $token
-                ]
-            );
-            $this->addFlash('success', 'Email de vérification envoyé');
+        if($user->getIsVerified()){
+            $this->addFlash('warning', 'Cet utilisateur est déjà activé');
             return $this->redirectToRoute('profile_index');
         }
+
+        // Génération du Jwt de l'utilisateur
+        // Création header
+        $header = [
+            'type' => 'JWT',
+            'alg' => 'HS256'
+        ];
+
+        // Création payload
+        $payload = [
+            'user_id' => $user->getId() 
+        ];
+
+        // Génération token
+        $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
+
+        // Envoi d'un mail
+        $mail->send(
+            'no-reply@test.com',
+            $user->getEmail(),
+            'Activation de votre compte sur le forum de partage',
+            'register',
+            [
+                'user' => $user,
+                'token' => $token
+            ]
+        );
+        $this->addFlash('success', 'Email de vérification envoyé');
+        return $this->redirectToRoute('forum_rules');
+    }
 }

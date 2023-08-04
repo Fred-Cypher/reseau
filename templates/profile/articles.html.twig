@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Liste des articles de {{ app.user.nickname }} {% endblock %}
+
+{% block body %}
+    {% include '_parts/_forumHeader.html.twig' %}
+
+    <main class="container pb-2">
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Mes articles</span>
+        </div>
+        
+        <section class="row m-auto">
+            <ul class="mt-3 card">
+                {% for article in app.user.articles %}
+                    {% if article.isVisible %}
+                        <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle">
+                            <li>{{ article.title }}</li>
+                        </a>
+                        <div class="line my-1"></div>
+                    {% else %}
+                        <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
+                            <li>{{ article.title }} <span class="badge bg-warning text-dark shadow-sm">Bloqué</span> </li>
+                        </a>
+                        <div class="line my-1"></div>
+                    {% endif %}
+                {% else %}
+                    <p class="p-4">Pas d'article trouvé.</p>
+                {% endfor %}  
+            </ul>
+
+            <p class="mt-5 backTo">
+                <a href="{{ path('profile_index') }}" class="btn btnReturn">Retour à mon profil</a>
+            </p>
+        </section>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
+
+{% endblock %}

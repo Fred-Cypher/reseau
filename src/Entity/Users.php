@@ -22,7 +22,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'ROLE_USER'])]
     private array $roles = [];
 
     /**
@@ -30,6 +30,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    private ?string $plainPassword = null;
 
     #[ORM\Column(length: 70)]
     private ?string $lastname = null;
@@ -43,7 +45,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: false)]
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\Column(options: ['default' => false])]
@@ -52,9 +54,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(options: ['default' => false])]
     private ?bool $is_verified = false;
 
-    #[ORM\Column(type : 'string', length: 100)]
-    private $resetToken;
+    #[ORM\Column(options: ['default' => true])]
+    private ?bool $is_enabled = true;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $resetToken = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Articles::class)]
     private Collection $articles;
@@ -68,14 +72,26 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: CommentsArticle::class)]
     private Collection $commentsArticles;
 
+    public $user;
 
-    public function __construct()
+    public function __construct($user)
     {
         $this->articles = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->commentsImages = new ArrayCollection();
         $this->commentsArticles = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
+        //$this->roles = new ArrayCollection();
+        $this->user = $user;
+    }
+
+    public function __toString(): string
+    {
+        if(is_null($this->user)){
+            return 'NULL';
+        }
+        return $this->user;
     }
 
     public function getId(): ?int
@@ -120,6 +136,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword; 
 
         return $this;
     }
@@ -232,6 +260,17 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function isIsEnabled(): ?bool
+    {
+        return $this->is_enabled;
+    }
+
+    public function setIsEnabled(bool $is_enabled): self
+    {
+        $this->is_enabled = $is_enabled;
+
+        return $this;
+    }
     public function getResetToken(): ?string
     {
         return $this->resetToken;
@@ -243,7 +282,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
 
     /**
      * @return Collection<int, Articles>
@@ -364,4 +402,5 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 }

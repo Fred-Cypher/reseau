@@ -1,43 +1,74 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <div>
-                <h1>Réseau social</h1>
-                <a href="{{ path('main') }}"><p>Logo Réseau / Accueil</p></a>
-                <p>Bienvenue sur notre réseau social</p>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid align-items-end">
+            <div class="row col-12 col-md-3 text-center">
+                <div class="">
+                    <a href="{{ path('main') }}">
+                        <p class="dateNow">{{ "now"|date('d M Y, H : i', 'Europe/Paris') }}</p>
+                        <img src=" {{ asset('assets/icons/jupiter.ico') }}" alt="Logo site" class="logo">
+                        <p class="mt-1">Accueil du site</p>
+                    </a>
+                </div>
             </div>
             
-            <div class="navbar-nav">
-                <ul class="navbar-nav">
-                    {% if app.user %}
-                    <li class="nav-item">
-                            <a class="nav-link" href="{{ path('forum_index') }}">Accès au forum</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('profile_index') }}">Mon compte</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_login') }}">Me connecter</a>
-                        </li>
-                    {% endif %}
-                </ul>
+            <div class="col-12 col-md-6 w-100 text-center">
+                <div class="mt-2">
+                    <h1 class="siteTitle">Réseau social</h1>
+                    <p>Bienvenue sur notre réseau social</p>
+                </div>
+            
+                <div class="navbar-nav">
+                    <ul class="nav w-100 justify-content-center flex-column flex-md-row">
+                        {% if app.user %}
+                            {% if app.user.isEnabled %}
+                                {% if app.user.isVerified %}
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="{{ path('forum_index') }}">Accès au forum</a>
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="{{ path('profile_index') }}">Mon compte</a>
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="#">Accès au forum</a>
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="#">Mon compte</a>
+                                    </li>
+                                    <li class="nav-item ms-2">
+                                        <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+                                    </li>
+                                {% endif %}
+                            {% else %}
+                                <li class="nav-item ms-2">
+                                        <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+                                    </li>
+                            {% endif %}
+                            
+                        {% else %}
+                            <li class="nav-item ms-2">
+                                <a class="nav-link" href="{{ path('app_login') }}">Me connecter</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
         </div>
 
-        {% if app.user %}
-            <div>
-                Compte : {{ app.user.nickname }}
-            </div>
-        {% else %}
-            <div>
-                Compte : aucun utilisateur connecté
-            </div>
-        {% endif %}
-        
+        <div class="col-12 col-md-3 align-self-end text-center">
+            {% if app.user %}
+                {% if app.user.isEnabled %}
+                    Compte : {{ app.user.nickname }}
+                {% else %}
+                    Aucun utilisateur connecté
+                {% endif %}
+            {% else %}
+                Aucun utilisateur connecté
+            {% endif %}
+        </div>
     </nav>
 
 </header>

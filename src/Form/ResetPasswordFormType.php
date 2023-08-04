@@ -15,9 +15,10 @@ class ResetPasswordFormType extends AbstractType
             ->add('password', PasswordType::class, [
                 'label' => 'Entrez votre nouveau mot de passe',
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control mt-2'
                 ]
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

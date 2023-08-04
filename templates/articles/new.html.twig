@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Nouvel article{% endblock %}
+
+
+{% block body %}
+
+{% include "_parts/_forumHeader.html.twig" %}
+
+    <main class="container pb-2">
+        <div class="row">
+            <div class="col card mt-3">
+                <h2>Enregistrer un nouvel article</h2>
+                <section class="mt-3">
+                    {{ form_start(formNew) }}
+                        <p class="mt-3">
+                            {{ form_row(formNew.title) }}
+                        </p>
+                        <p class="mt-3">
+                            {{ form_row(formNew.summary) }}
+                            
+                        </p>
+                        <p class="mt-3">
+                            {{ form_row(formNew.content) }}
+                        </p>
+                        <p class="mt-3">
+                            Auteur de l'article : {{ app.user.nickname }}
+                        </p>
+                        <p>
+                            <button type="submit" class="btn btnSend mt-3 btn-lg">Enregistrer l'article</button>
+                        </p>
+                    {{ form_end(formNew) }}
+                </section>
+            </div>
+            <p class="backTo mt-2">
+                <a href="{{ path('articles_app_articles') }}" class="btn btnReturn">Retour à la liste d'articles</a>
+            </p>
+        </div>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
+    
+{% endblock %}

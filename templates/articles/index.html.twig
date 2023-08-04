@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Forum Articles{% endblock %}
+
+{% block body %} 
+
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <main class="container pb-2">
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Forum articles</span>
+        </div>
+        
+        <section class="row card m-2 m-md-5">
+            <h3>Liste tes articles existants</h3>
+
+            <ul class="p-3">
+                {% if articles.data %}
+                    {% for article in articles.data %}
+                        {% if article.isVisible %}
+                            <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
+                                <li>{{ article.title }}</li>
+                            </a>
+                            <div class="line my-1"></div>
+                            {% elseif app.user is same as (article.user) %}
+                                <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
+                                    <li>{{ article.title }} <span class="badge bg-warning text-dark">Bloqué</span> </li>
+                                </a>
+                                <div class="line my-1"></div>
+                            {% else %}
+                                {% if is_granted ('ROLE_MODO') %}
+                                    {% if app.user is not same as (article.user) %}
+                                    <a href="{{ path('articles_app_article_show', {'slug': article.slug}) }}" class="itemTitle d-inline-flex">
+                                        <li>{{ article.title }} <span class="badge bg-warning text-dark">Bloqué</span> </li>
+                                    </a>
+                                    <div class="line my-1"></div>
+                                    {% endif %}
+                                {% endif %}
+                        {% endif %}
+                    {% else %}
+                        <p>Pas d'article trouvé.</p>
+                    {% endfor %}
+                {% else %}
+                    <p>
+                        Il n'y a pas encore d'articles enregistrés.
+                    </p>
+                {% endif %}
+            </ul>
+
+            {% set path = 'articles_app_articles' %}
+            {% set pages = articles.pages %}
+            {% set currentPage = articles.page %}
+            {% include "_parts/_pagination.html.twig" %}
+        </section>
+
+        <p class="backTo">
+            <a href="{{ path('articles_app_article_new') }}">
+                <button class='btn btnNew mt-3'>
+                    Enregistrer un nouvel article
+                </button>
+            </a>
+        </p>
+    </main>
+    
+    {% include "_parts/_footer.html.twig" %}
+    
+{% endblock %}

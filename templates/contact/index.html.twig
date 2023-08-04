@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+    <main class="container pb-2">
+        <section class="row">
+            <div class="card mt-3 mt-md-5 p-3">
+                <h2>Formulaire de contact</h2>
+                <article class="mt-3">
+                    {{ form_start(form) }}
+                        <div class="mt-3">   
+                            {{ form_row(form.firstName) }}
+                        </div>
+                        <div class="mt-3"> 
+                            {{ form_row(form.lastName) }}
+                        </div>
+                        <p class="mt-3">
+                            {{ form_row(form.email) }}
+                        </p>
+                        <p class="mt-3">
+                            {{ form_row(form.subject) }}
+                        </p>
+                        <p class="mt-3">
+                            {{ form_row(form.message) }}
+                        </p>
+                    {{ form_end(form) }}
+                </article>
+            </div>
+            <p class="backTo mt-2">
+                {% if app.user %}
+                    <a href="{{ path('forum_index') }}" class="btn btnReturn">Accès à la page d'accueil du forum</a>
+                {% else %}
+                    <a href="{{ path('main') }}" class="btn btnReturn">Retour à la page d'accueil du site</a>
+                {% endif %}
+            </p>
+        </section>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
+
+{% endblock %}

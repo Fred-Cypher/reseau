@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification image{% endblock %}
+
+{% block body %}
+
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <main class="container pb-2">
+        <h2 class="mt-3">Modifier une image</h2>
+        <section class="mt-3 mb-5">
+            {% if app.user is same as (image.user) %}
+                {% if image.isVisible %}
+                    <img class="img-thumbnail modifPicture" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="{{ image.title }}">
+                    {{ form_start(form) }}
+                        {{ form_row(form.title) }}
+                        {{ form_row(form.description) }}
+                        {{ form_row(form.image_url) }}
+                        <button type="submit" class="btn btnSend mt-3 btn-lg">Modifier l'image</button>
+                    {{ form_end(form) }}
+                {% else %}
+                <p class="bg-warning p-3 mt-2">
+                        Cette image a été bloquée par un administrateur ou un modérateur, elle n'est pas visible par les autres utilisateurs. <br>
+                        Pour plus de renseignements, contactez un administrateur.
+                    </p>
+                {% endif %}
+            {% elseif is_granted ('ROLE_MODO') %}
+                {% if image.isVisible %}
+                    <p class="card mt-5 p-5">Veuillez passer par le tableau de modération pour éditer les images</p>
+                {% else %}
+                    <p class="btn btn-lg btn-dark mt-3">⚠️ Attention, image bloquée</p>
+                    <p class="card mt-3 p-5">Veuillez passer par le tableau de modération pour éditer les images</p>
+                {% endif %}
+            {% else %}
+                Vous n'avez pas le droit de modifier cette image
+            {% endif %}
+
+            <p class="backTo">
+                <a href="{{ path('images_app_blog_images_index') }}" class="btn btnReturn mt-3">Retour à la liste d'images</a>
+            </p>
+        </section>
+    </main>
+    
+    {% include "_parts/_footer.html.twig" %}
+
+{% endblock %}

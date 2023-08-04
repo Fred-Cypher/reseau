@@ -1,3 +1,232 @@
+/*#### GENERAL ####*/
+
+*{
+    margin: 0;
+    padding:0;
+}
+
 body{
     background-color:bisque;
+    height: 100%;
+    background-image: url("../images/nebuleuse.jpg");
+}
+
+header{
+    background-color: whitesmoke;
+}
+
+.siteTitle{
+    color:rgb(187, 47, 47);
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color:#CB454E; /*avant brown*/
+    width: 100% !important;
+    color: whitesmoke;
+}
+
+.contactLink{
+    display: flex;
+    width: auto;
+}
+
+a{
+    text-decoration: none;
+    color: currentColor;
+}
+
+.logo{
+    width: 5rem;
+    height: auto;
+}
+
+.dateNow{
+    font-size: 0.8rem;
+}
+
+li{
+    list-style-type: none;
+}
+
+/*#### ACCUEIL ####*/
+
+.connectedUser{
+    font-weight: bold;
+    color: crimson;
+}
+
+/*#### PAGES FORUM ####*/
+
+.itemTitle:hover{
+    color:crimson;
+    font-weight: bold;
+}
+
+.line{
+    border-top: solid 2px grey;
+    width: 4rem;
+}
+
+.forumCard{
+    height: 20rem;
+}
+
+.textCard{
+    height: 2rem;
+}
+
+.blogPicture{
+    max-width: 30rem;
+}
+
+.modifPicture{
+    max-width: 20rem;
+}
+
+.invisible{
+    display: none;
+}
+
+.backTo{
+    height: 6rem;
+}
+
+.buttons{
+    height: 8rem;
+}
+
+.catError{
+    width: 14rem;
+}
+
+.ruleIcon{
+    height: 0.8rem;
+    width: 0.8rem;
+    margin-right: 0.6rem;
+}
+
+.credit{
+    font-size: 0.8rem;
+}
+
+/*### COULEURS BOUTONS, CHECKS ###*/
+
+.pagination a{
+    color: #a52a2a;
+}
+
+.pagination .active a{
+    background-color: brown !important;
+    border: 1px brown solid !important; 
+}
+
+.pagination .active a:hover{
+    background-color: rgb(187, 47, 47) !important; /*un peu plus clair*/
+    border: 1px brown solid !important; 
+}
+
+.moderationButton{
+    color: black;
+}
+
+.moderationButton:hover{
+    color: black;
+    font-weight: bold;
+}
+
+.form-check-input{
+    border: 1px brown solid !important;
+}
+
+.form-check-input:checked{
+    background-color: brown !important;
+}
+
+.checkColor{
+    border-color: brown !important;
+}
+
+.btnReturn{
+    background-color: #2B2211;
+    border: #2B2211;
+    color : white;
+}
+
+.btnReturn:hover{
+    background-color: #302d28; /* un peu plus clair */
+    box-shadow: 2px 2px #302d2859;
+    color: whitesmoke;
+}
+
+.btnSend{
+    background-color: #595455;
+    color: whitesmoke;
+}
+
+.btnSend:hover{
+    background-color: #5a5959;
+    box-shadow: 2px 2px #302d2859;
+    color: whitesmoke;
+}
+
+.btnNew{
+    background-color: #1d7753;
+    color: #ffffff;
+}
+
+.btnNew:hover{
+    background-color: #249568;
+    box-shadow: 2px 2px #302d2859;
+    color: white;
+}
+
+.btnMail{
+    background-color: #4165c0;
+    color: white;
+}
+
+.btnMail:hover{
+    background-color: #5c78be;
+    box-shadow: 2px 2px #302d2859;
+    color: white;
+}
+
+.backgroundTitle{
+    color:#cac8c4;
+    background-color: transparent;
+    /*-webkit-text-stroke: 1px #ccc9c3;
+    text-shadow: 2px 2px 2px #fff0bea2;*/
+}
+
+.userWarning{
+    border: #bb2f2f 3px solid;
+}
+
+.btnDelete{
+    background-color:firebrick ;
+    color: whitesmoke;
+}
+
+.btnDelete:hover{
+    background-color: rgb(175, 61, 61);
+    box-shadow: 2px 2px #302d2859;
+    color: whitesmoke;
+}
+
+.btnModif{
+    background-color: #EBD0B3;
+    color: black;
+}
+
+.btnModif:hover{
+    background-color: #EBD0B3;
+    color: black;
+    box-shadow: 2px 2px #302d2859;
+}
+
+.btnPrivate{
+    background-color: #FEEFBE;
+    color: black;
 }

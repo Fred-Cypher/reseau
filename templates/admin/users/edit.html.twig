@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Admin - Modification d'un utilisateur {% endblock title %}
+
+{% block body %}
+
+    {% include "_parts/_forumHeader.html.twig" %}
+
+    <main class="container pb-2">
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Modifier un utilisateur</span>
+        </div>
+
+        <section class="mt-3 p-3 w-75 m-auto card">
+            {{ form_start(form) }}
+                {{ form_row(form.nickname) }}
+                <div class="mt-3 p-2 border">
+                    {{ form_row(form.roles) }}
+                </div>
+                <div class="mt-3 p-2 border">
+                    {{ form_row(form.email) }}
+                </div>
+                <div class="mt-3 p-2 border">
+                    {{ form_row(form.isEnabled) }}
+                </div>
+                <div class="mt-3 d-flex justify-content-center">
+                    <button type="submit" class="btn btnSend mt-3 btn-lg">Modifier l'utilisateur</button>
+                </div>
+            {{ form_end(form) }}
+        </section>
+
+        <div class="backTo">
+            <p class="m-3 d-flex justify-content-end">
+                <a href="{{ path('admin_index') }}" class="btn btnModif">Retour au panneau de modération</a>
+            </p>
+        </div>
+    </main>
+    
+    {% include "_parts/_footer.html.twig" %}
+
+{% endblock %} 

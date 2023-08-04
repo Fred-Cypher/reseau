@@ -6,9 +6,9 @@
 
     {% include "_parts/_homeHeader.html.twig" %}
 
-    <section class="container my-5">
-        <div class="row">
-            <div class="col">
+    <main class="container pb-5">
+        <section class="row m-auto">
+            <div class="col card mt-5 p-3">
                 <form method="post">
                     {% if error %}
                         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -43,18 +43,17 @@
                         </div>
                     #}
                     <div>
-                        <button class="btn btn-lg btn-primary mt-3" type="submit">
+                        <button class="btn btn-lg btnSend mt-3" type="submit">
                             Me connecter
                         </button>
                         <a href="{{ path('app_register') }}" class="btn btn-outline-dark mt-3 ms-5">Pas encore enregistré ?</a>
                         <a href="{{ path('forgotten_password') }} " class="btn btn-outline-danger mt-3 ms-5">Mot de passe oublié ?</a>
                     </div>
-                    
                 </form>
-
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-
+    {% include "_parts/_footer.html.twig" %}
+    
 {% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Données privées{% endblock %}
+
+{% block body %}
+
+    {% include '_parts/_forumHeader.html.twig' %}
+
+    <main class="container pb-2">
+        <div class="mt-3 text-center">
+            <span class="backgroundTitle h2 px-3 rounded">Données privées des utilisateurs</span>
+        </div>
+        <div class="mt-4 text-center">
+            <span class="text-danger px-3 h2 font-weight-bolder rounded userWarning">⚠️ À ne pas diffuser</span>
+        </div>
+        
+        <p class="m-3 d-flex justify-content-end">
+            <a href="{{ path('admin_index') }}" class="btn btnModif">Retour au panneau de modération</a>
+        </p>
+
+        <section class="row">
+            {% if is_granted ('ROLE_ADMIN') %}
+                <table class="table table-sm table-striped mt-3 bg-light">
+                    <thead>
+                        <th>Id</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Pseudo</th>
+                        <th>Email</th>
+                    </thead>
+                    <tbody> 
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td class="text-capitalize">{{ user.firstname }}</td>
+                                <td class="text-capitalize">{{ user.lastname }}</td>
+                                <td>{{ user.nickname}}</td>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="fs-4 text-danger font-weight-bold">Vous n'avez pas le droit de lire ces informations</p>
+            {% endif %}
+        </section>
+
+        <div class="backTo">
+            <p class="m-3 d-flex justify-content-end">
+                <a href="{{ path('admin_index') }}" class="btn btnModif">Retour au panneau de modération</a>
+            </p>
+        </div>
+    </main>
+
+    {% include "_parts/_footer.html.twig" %}
+    
+{% endblock %}

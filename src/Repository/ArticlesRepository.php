@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Articles;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -39,25 +40,41 @@ class ArticlesRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Articles[] Returns an array of Articles objects
-//     */
-
-    /*public function findAll()
+    public function articlesPaginated(int $page, int $limit = 0): array
     {
-        return $this->findBy(array());
-    }*/
+        $limit = abs($limit);
 
-    /*public function findAllArticles(): array{
-
-        $result=[];
+        $result = [];
 
         $query = $this->getEntityManager()->createQueryBuilder()
-        ->select('t')
-        ->
+            ->select('article')
+            ->from('App\Entity\Articles', 'article')
+            //->where('article.is_visible = 1')
+            ->setMaxResults($limit)
+            ->setFirstResult(($page * $limit) - $limit);
+
+        $paginator = new Paginator($query);
+        $data = $paginator->getQuery()->getResult();
+
+        if(empty($data)){
+            return $result;
+        }
+
+        //Calcul du nombre de pages
+        $pages = ceil($paginator->count() / $limit);
+
+        //Remplissage tableau
+        $result['data'] = $data;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit'] = $limit;
 
         return $result;
-    }*/
+    }
+
+    //    /**
+    //     * @return Articles[] Returns an array of Articles objects
+    //     */
 
 //    public function findByExampleField($value): array
 //    {

@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Réglement du site{% endblock %}
+
+{% block body %} 
+
+    {% if app.user %}
+        {% include "_parts/_forumHeader.html.twig" %}
+    {% else %}
+        {% include "_parts/_homeHeader.html.twig" %}
+    {% endif %}
+
+    <main class="container m-auto pb-2">
+        <section class="row">
+            <article class="card my-4 mx-auto">
+                <div class="card-body">
+                    <div class="card-title m-auto h3">
+                        Réglement intérieur du site
+                    </div>
+                    <div class="card-text mt-3">
+                        <ul>
+                            <li class="mt-2">
+                                <img src="{{ asset('assets/icons/meteor.svg') }}" alt="Météore" class="ruleIcon">
+                                Un seul compte par personne est autorisé.
+                            </li>
+                            <li class="mt-2">
+                                <img src="{{ asset('assets/icons/meteor.svg') }}" alt="Météore" class="ruleIcon">
+                                Les administrateurs du site peuvent, s'ils le jugent nécessaire, modifier un pseudo qui serait jugé offensant, 
+                                inapproprié, insultant... sans en avertir le membre au préalable. 
+                            </li>
+                            <li class="mt-2">
+                                <img src="{{ asset('assets/icons/meteor.svg') }}" alt="Météore" class="ruleIcon">
+                                Tout propos, ou image, raciste, irrespectueux, injurieux, ou intolérant de n'importe quelle façon, 
+                                sera sanctionné par les administrateurs par un blocage du message et/ou blocage de l'auteur, voire la suppression de l'un ou l'autre.
+                            </li>
+                            <li class="mt-2">
+                                <img src="{{ asset('assets/icons/meteor.svg') }}" alt="Météore" class="ruleIcon">
+                                Les liens vers les sites de nature pornographique ou choquante seront punis d'un bannissement. 
+                            </li>
+                            <li class="mt-2">
+                                <img src="{{ asset('assets/icons/meteor.svg') }}" alt="Météore" class="ruleIcon">
+                                L'écriture SMS est interdite, merci d'écrire le plus correctement possible. 
+                            </li>
+                            <li class="line mt-3"></li>
+                            <li class="mt-2">
+                                <img src="{{ asset('assets/icons/laugh.svg') }}" alt="Visage rieur" class="ruleIcon">
+                                Amusez-vous bien tous ensemble dans le respect et la bonne humeur.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+            <div class="backTo text-center">
+                <a href="{{ path('main') }}" class="btn btnReturn">Accueil du site</a>
+                {% if app.user %}
+                    <a href="{{ path('forum_index') }}" class="btn btnReturn ms-4">Accès au forum</a>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+    
+    {% include "_parts/_footer.html.twig" %}
+
+{% endblock %}
